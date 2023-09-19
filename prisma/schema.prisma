@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum Platform {
+  XBOX
+  PLAYSTATION
+  NINTENDO
+  PC
+}
+
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  firstName String
+  role      Role      @default(USER)
+  password  Password?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orders Order[]
+}
+
+model Password {
+  id     String @id @default(uuid())
+  hash   String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
+}
+
+model Product {
+  id          String            @id @default(uuid())
+  name        String
+  price       Decimal
+  language    String
+  pegi        Int
+  description String            @db.VarChar(1000)
+  mainPicture String
+  platform    ProductPlatform[]
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orders   OrderItem[]
+  pictures Picture[]
+}
+
+model ProductPlatform {
+  id        String   @id @default(uuid())
+  productId String
+  platform  Platform
+
+  product Product @relation(fields: [productId], references: [id])
+
+  @@unique([productId, platform])
+}
+
+model Picture {
+  id        String @id @default(uuid())
+  url       String
+  productId String
+
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model OrderItem {
+  id        String @id @default(uuid())
+  productId String
+  orderId   String
+  quantity  Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  product Product @relation(fields: [productId], references: [id])
+  order   Order   @relation(fields: [orderId], references: [id])
+}
+
+model Order {
+  id            String  @id @default(uuid())
+  userId        String
+  totalQuantity Int
+  totalPrice    Decimal
+  address       String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user  User        @relation(fields: [userId], references: [id])
+  items OrderItem[]
+}
