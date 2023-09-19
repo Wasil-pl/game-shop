@@ -51,6 +51,7 @@ model Product {
   description String            @db.VarChar(1000)
   mainPicture String
   platform    ProductPlatform[]
+  inStock     Int
 
   isActive Boolean @default(true)
 
