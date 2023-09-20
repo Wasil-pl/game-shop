@@ -49,7 +49,7 @@ model Product {
   pegi        Int
   description String            @db.VarChar(1000)
   mainPicture String
-  platform    ProductPlatform[]
+  platforms   ProductPlatform[]
   inStock     Int
 
   isActive Boolean @default(true)

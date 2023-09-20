@@ -1,5 +1,5 @@
 import {
-  IsArray,
+  IsBoolean,
   IsNotEmpty,
   IsNumber,
   IsString,
@@ -11,18 +11,19 @@ export class CreateProductDto {
   @IsNotEmpty()
   name: string;
 
+  @IsString()
+  @IsNotEmpty()
+  @Length(2, 3)
+  language: string;
+
   @IsNumber()
   @IsNotEmpty()
-  price: number;
+  pegi: number;
 
   @IsString()
   @IsNotEmpty()
   @Length(10, 1000)
   description: string;
-
-  @IsNumber()
-  @IsNotEmpty()
-  pegi: number;
 
   @IsString()
   @IsNotEmpty()
@@ -32,12 +33,11 @@ export class CreateProductDto {
   @IsNotEmpty()
   inStock: number;
 
-  @IsArray()
+  @IsBoolean()
   @IsNotEmpty()
-  pictures: string[];
+  isActive: boolean;
 
-  @IsString()
-  @IsNotEmpty()
-  @Length(2, 3)
-  language: string;
+  // @ValidateNested({ each: true })
+  // @Type(() => ProductPlatformDto)
+  // platforms: ProductPlatformDto[];
 }
