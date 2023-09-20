@@ -9,10 +9,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
+import { ProductsModule } from './products/products.module';
 import configuration from './config/configuration';
 
 @Module({
   imports: [
+    ProductsModule,
     PrismaModule,
     ConfigModule.forRoot({
       load: [configuration],
