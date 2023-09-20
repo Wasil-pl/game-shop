@@ -59,7 +59,7 @@ export class ProductsController {
       pictures: Express.Multer.File[];
     },
   ) {
-    const mainPicture = files.mainPicture[0]; // Ponieważ 'mainPicture' jest tablicą o maksymalnej liczbie elementów 1
+    const mainPicture = files.mainPicture[0];
     const pictures = files.pictures;
     return this.productService.create(product, platform, mainPicture, pictures);
   }
