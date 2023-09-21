@@ -157,8 +157,5 @@ export class ProductsController {
       files.pictures.forEach((picture) => deleteFile(picture.filename));
       throw error;
     }
-    const mainPicture = files.mainPicture[0];
-    const pictures = files.pictures;
-    return this.productService.create(product, platform, mainPicture, pictures);
   }
 }
