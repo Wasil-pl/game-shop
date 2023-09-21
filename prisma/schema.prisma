@@ -43,13 +43,14 @@ model Password {
 }
 
 model Product {
-  id          String            @id @default(uuid())
+  id          String   @id @default(uuid())
   name        String
   language    String
   pegi        Int
-  description String            @db.VarChar(1000)
-  mainPicture String
-  platforms   ProductPlatform[]
+  description String   @db.VarChar(1000)
+  mainPicture String   @default("default.jpg")
+  price       Decimal
+  platform    Platform
   inStock     Int
 
   isActive Boolean @default(true)
@@ -59,17 +60,6 @@ model Product {
 
   orders   OrderItem[]
   pictures Picture[]
-}
-
-model ProductPlatform {
-  id        String   @id @default(uuid())
-  productId String
-  platform  Platform
-  price     Decimal
-
-  product Product @relation(fields: [productId], references: [id])
-
-  @@unique([productId, platform])
 }
 
 model Picture {

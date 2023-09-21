@@ -1,9 +1,13 @@
+import { Platform } from '@prisma/client';
+import { Decimal } from '@prisma/client/runtime/library';
 import {
-  IsArray,
+  IsBoolean,
+  IsDecimal,
   IsNotEmpty,
   IsNumber,
   IsString,
   Length,
+  Min,
 } from 'class-validator';
 
 export class UpdateProductDto {
@@ -13,8 +17,8 @@ export class UpdateProductDto {
 
   @IsString()
   @IsNotEmpty()
-  @Length(10, 1000)
-  description: string;
+  @Length(2, 3)
+  language: string;
 
   @IsNumber()
   @IsNotEmpty()
@@ -22,18 +26,23 @@ export class UpdateProductDto {
 
   @IsString()
   @IsNotEmpty()
-  mainPicture: string;
+  @Length(10, 1000)
+  description: string;
 
   @IsNumber()
   @IsNotEmpty()
+  @Min(0)
   inStock: number;
 
-  @IsArray()
+  @IsBoolean()
   @IsNotEmpty()
-  pictures: string[];
+  isActive: boolean;
 
   @IsString()
   @IsNotEmpty()
-  @Length(2, 3)
-  language: string;
+  platform: Platform;
+
+  @IsDecimal()
+  @IsNotEmpty()
+  price: Decimal;
 }

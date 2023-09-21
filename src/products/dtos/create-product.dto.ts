@@ -1,9 +1,13 @@
+import { Platform } from '@prisma/client';
+import { Decimal } from '@prisma/client/runtime/library';
 import {
   IsBoolean,
+  IsDecimal,
   IsNotEmpty,
   IsNumber,
   IsString,
   Length,
+  Min,
 } from 'class-validator';
 
 export class CreateProductDto {
@@ -25,19 +29,20 @@ export class CreateProductDto {
   @Length(10, 1000)
   description: string;
 
-  @IsString()
-  @IsNotEmpty()
-  mainPicture: string;
-
   @IsNumber()
   @IsNotEmpty()
+  @Min(0)
   inStock: number;
 
   @IsBoolean()
   @IsNotEmpty()
   isActive: boolean;
 
-  // @ValidateNested({ each: true })
-  // @Type(() => ProductPlatformDto)
-  // platforms: ProductPlatformDto[];
+  @IsString()
+  @IsNotEmpty()
+  platform: Platform;
+
+  @IsDecimal()
+  @IsNotEmpty()
+  price: Decimal;
 }
