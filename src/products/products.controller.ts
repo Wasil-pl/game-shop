@@ -55,7 +55,11 @@ export class ProductsController {
     FileFieldsInterceptor(
       [
         { name: 'mainPicture', maxCount: 1 },
-        { name: 'pictures', maxCount: 5 },
+        { name: 'pictureOne', maxCount: 1 },
+        { name: 'pictureTwo', maxCount: 1 },
+        { name: 'pictureThree', maxCount: 1 },
+        { name: 'pictureFour', maxCount: 1 },
+        { name: 'pictureFive', maxCount: 1 },
       ],
       multerOptions,
     ),
@@ -63,32 +67,56 @@ export class ProductsController {
   public async addFiles(
     @UploadedFiles()
     files: {
-      mainPicture: Express.Multer.File[];
-      pictures: Express.Multer.File[];
+      mainPicture?: Express.Multer.File;
+      pictureOne: Express.Multer.File;
+      pictureTwo?: Express.Multer.File;
+      pictureThree?: Express.Multer.File;
+      pictureFour?: Express.Multer.File;
+      pictureFive?: Express.Multer.File;
     },
     @Param('id', new ParseUUIDPipe()) id: Product['id'],
   ) {
     try {
-      const mainPicture = files.mainPicture[0];
-      const pictures = files.pictures;
+      const mainPicture = files.mainPicture?.[0];
+      const pictureOne = files.pictureOne?.[0];
+      const pictureTwo = files.pictureTwo?.[0];
+      const pictureThree = files.pictureThree?.[0];
+      const pictureFour = files.pictureFour?.[0];
+      const pictureFive = files.pictureFive?.[0];
 
-      if (!mainPicture || !pictures)
-        throw new BadRequestException('Files not found');
-
-      if (!acceptedFileTypes.includes(mainPicture.mimetype))
+      if (mainPicture && !acceptedFileTypes.includes(mainPicture.mimetype))
         throw new BadRequestException('Invalid file type');
 
-      if (
-        pictures.some(
-          (picture) => !acceptedFileTypes.includes(picture.mimetype),
-        )
-      )
+      if (pictureOne && !acceptedFileTypes.includes(pictureOne.mimetype))
         throw new BadRequestException('Invalid file type');
 
-      return this.productService.addFiles(id, mainPicture, pictures);
+      if (pictureTwo && !acceptedFileTypes.includes(pictureTwo.mimetype))
+        throw new BadRequestException('Invalid file type');
+
+      if (pictureThree && !acceptedFileTypes.includes(pictureThree.mimetype))
+        throw new BadRequestException('Invalid file type');
+
+      if (pictureFour && !acceptedFileTypes.includes(pictureFour.mimetype))
+        throw new BadRequestException('Invalid file type');
+
+      if (pictureFive && !acceptedFileTypes.includes(pictureFive.mimetype))
+        throw new BadRequestException('Invalid file type');
+
+      return this.productService.addFiles(
+        id,
+        mainPicture,
+        pictureOne,
+        pictureTwo,
+        pictureThree,
+        pictureFour,
+        pictureFive,
+      );
     } catch (error) {
-      deleteFile(files.mainPicture[0].filename);
-      files.pictures.forEach((picture) => deleteFile(picture.filename));
+      for (const key in files) {
+        if (files[key]) {
+          deleteFile(files[key][0].filename);
+        }
+      }
       throw error;
     }
   }
@@ -110,7 +138,11 @@ export class ProductsController {
     FileFieldsInterceptor(
       [
         { name: 'mainPicture', maxCount: 1 },
-        { name: 'pictures', maxCount: 5 },
+        { name: 'pictureOne', maxCount: 1 },
+        { name: 'pictureTwo', maxCount: 1 },
+        { name: 'pictureThree', maxCount: 1 },
+        { name: 'pictureFour', maxCount: 1 },
+        { name: 'pictureFive', maxCount: 1 },
       ],
       multerOptions,
     ),
@@ -118,43 +150,75 @@ export class ProductsController {
   public async updateFiles(
     @UploadedFiles()
     files: {
-      mainPicture: Express.Multer.File[];
-      pictures: Express.Multer.File[];
+      mainPicture?: Express.Multer.File;
+      pictureOne?: Express.Multer.File;
+      pictureTwo?: Express.Multer.File;
+      pictureThree?: Express.Multer.File;
+      pictureFour?: Express.Multer.File;
+      pictureFive?: Express.Multer.File;
     },
     @Param('id', new ParseUUIDPipe()) id: Product['id'],
   ) {
     try {
-      const mainPicture = files.mainPicture[0];
-      const pictures = files.pictures;
+      const mainPicture = files.mainPicture?.[0];
+      const pictureOne = files.pictureOne?.[0];
+      const pictureTwo = files.pictureTwo?.[0];
+      const pictureThree = files.pictureThree?.[0];
+      const pictureFour = files.pictureFour?.[0];
+      const pictureFive = files.pictureFive?.[0];
 
       const product = await this.productService.getProductById(id);
-      const OldMainPicture = product.mainPicture;
-      const OldPictures = await this.productService.getPicturesByProductId(id);
 
-      if (!mainPicture || !pictures)
-        throw new BadRequestException('Files not found');
-
-      if (!acceptedFileTypes.includes(mainPicture.mimetype))
+      if (mainPicture && !acceptedFileTypes.includes(mainPicture.mimetype))
         throw new BadRequestException('Invalid file type');
 
-      if (
-        pictures.some(
-          (picture) => !acceptedFileTypes.includes(picture.mimetype),
-        )
-      )
+      if (pictureOne && !acceptedFileTypes.includes(pictureOne.mimetype))
         throw new BadRequestException('Invalid file type');
 
-      this.productService.updateFilesProduct(id, mainPicture, pictures);
-      deleteFile(OldMainPicture);
-      OldPictures.forEach((picture) => deleteFile(picture.url));
+      if (pictureTwo && !acceptedFileTypes.includes(pictureTwo.mimetype))
+        throw new BadRequestException('Invalid file type');
 
-      const oldFilesUrl = OldPictures.map((picture) => picture.url);
-      await this.productService.removeOldFiles(id, oldFilesUrl);
+      if (pictureThree && !acceptedFileTypes.includes(pictureThree.mimetype))
+        throw new BadRequestException('Invalid file type');
+
+      if (pictureFour && !acceptedFileTypes.includes(pictureFour.mimetype))
+        throw new BadRequestException('Invalid file type');
+
+      if (pictureFive && !acceptedFileTypes.includes(pictureFive.mimetype))
+        throw new BadRequestException('Invalid file type');
+
+      this.productService.updateFilesProduct(
+        id,
+        mainPicture,
+        pictureOne,
+        pictureTwo,
+        pictureThree,
+        pictureFour,
+        pictureFive,
+      );
+
+      const oldMainPicture = product.mainPicture;
+      const oldPictureOne = product.pictureOne;
+      const oldPictureTwo = product.pictureTwo;
+      const oldPictureThree = product.pictureThree;
+      const oldPictureFour = product.pictureFour;
+      const oldPictureFive = product.pictureFive;
+
+      if (oldMainPicture) deleteFile(oldMainPicture);
+      if (oldPictureOne) deleteFile(oldPictureOne);
+      if (oldPictureTwo) deleteFile(oldPictureTwo);
+      if (oldPictureThree) deleteFile(oldPictureThree);
+      if (oldPictureFour) deleteFile(oldPictureFour);
+      if (oldPictureFive) deleteFile(oldPictureFive);
 
       return { message: 'Product updated successfully' };
     } catch (error) {
-      deleteFile(files.mainPicture[0].filename);
-      files.pictures.forEach((picture) => deleteFile(picture.filename));
+      for (const key in files) {
+        if (files[key]) {
+          deleteFile(files[key][0].filename);
+        }
+      }
+
       throw error;
     }
   }

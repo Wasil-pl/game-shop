@@ -43,31 +43,27 @@ model Password {
 }
 
 model Product {
-  id          String   @id @default(uuid())
-  name        String
-  language    String
-  pegi        Int
-  description String   @db.VarChar(1000)
-  mainPicture String   @default("default.jpg")
-  price       Decimal
-  platform    Platform
-  inStock     Int
+  id           String   @id @default(uuid())
+  name         String
+  language     String
+  pegi         Int
+  description  String   @db.VarChar(1000)
+  mainPicture  String   @default("default.jpg")
+  price        Decimal
+  platform     Platform
+  inStock      Int
+  pictureOne   String?
+  pictureTwo   String?
+  pictureThree String?
+  pictureFour  String?
+  pictureFive  String?
 
   isActive Boolean @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  orders   OrderItem[]
-  pictures Picture[]
-}
-
-model Picture {
-  id        String @id @default(uuid())
-  url       String
-  productId String
-
-  product Product @relation(fields: [productId], references: [id])
+  orders OrderItem[]
 }
 
 model OrderItem {

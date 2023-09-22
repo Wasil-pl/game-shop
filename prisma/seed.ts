@@ -14,12 +14,10 @@ function getProducts() {
       inStock: 10,
       platform: Platform.PC,
       price: 159.99,
-      pictures: [
-        'Witcher3_1.jpg',
-        'Witcher3_2.jpg',
-        'Witcher3_3.jpg',
-        'Witcher3_4.jpg',
-      ],
+      pictureOne: 'Witcher3_1.jpg',
+      pictureTwo: 'Witcher3_2.jpg',
+      pictureThree: 'Witcher3_3.jpg',
+      pictureFour: 'Witcher3_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17267',
@@ -32,12 +30,10 @@ function getProducts() {
       inStock: 10,
       platform: Platform.XBOX,
       price: 259.99,
-      pictures: [
-        'Witcher3_1.jpg',
-        'Witcher3_2.jpg',
-        'Witcher3_3.jpg',
-        'Witcher3_4.jpg',
-      ],
+      pictureOne: 'Witcher3_1.jpg',
+      pictureTwo: 'Witcher3_2.jpg',
+      pictureThree: 'Witcher3_3.jpg',
+      pictureFour: 'Witcher3_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17266',
@@ -50,12 +46,10 @@ function getProducts() {
       inStock: 10,
       platform: Platform.PLAYSTATION,
       price: 259.99,
-      pictures: [
-        'Witcher3_1.jpg',
-        'Witcher3_2.jpg',
-        'Witcher3_3.jpg',
-        'Witcher3_4.jpg',
-      ],
+      pictureOne: 'Witcher3_1.jpg',
+      pictureTwo: 'Witcher3_2.jpg',
+      pictureThree: 'Witcher3_3.jpg',
+      pictureFour: 'Witcher3_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17257',
@@ -68,12 +62,10 @@ function getProducts() {
       inStock: 7,
       platform: Platform.PC,
       price: 159.99,
-      pictures: [
-        'Cyberpunk2077_1.jpg',
-        'Cyberpunk2077_2.jpg',
-        'Cyberpunk2077_3.jpg',
-        'Cyberpunk2077_4.jpg',
-      ],
+      pictureOne: 'Cyberpunk2077_1.jpg',
+      pictureTwo: 'Cyberpunk2077_2.jpg',
+      pictureThree: 'Cyberpunk2077_3.jpg',
+      pictureFour: 'Cyberpunk2077_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17246',
@@ -86,12 +78,10 @@ function getProducts() {
       inStock: 7,
       platform: Platform.XBOX,
       price: 259.99,
-      pictures: [
-        'Cyberpunk2077_1.jpg',
-        'Cyberpunk2077_2.jpg',
-        'Cyberpunk2077_3.jpg',
-        'Cyberpunk2077_4.jpg',
-      ],
+      pictureOne: 'Cyberpunk2077_1.jpg',
+      pictureTwo: 'Cyberpunk2077_2.jpg',
+      pictureThree: 'Cyberpunk2077_3.jpg',
+      pictureFour: 'Cyberpunk2077_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17245',
@@ -104,12 +94,10 @@ function getProducts() {
       inStock: 7,
       platform: Platform.PLAYSTATION,
       price: 259.99,
-      pictures: [
-        'Cyberpunk2077_1.jpg',
-        'Cyberpunk2077_2.jpg',
-        'Cyberpunk2077_3.jpg',
-        'Cyberpunk2077_4.jpg',
-      ],
+      pictureOne: 'Cyberpunk2077_1.jpg',
+      pictureTwo: 'Cyberpunk2077_2.jpg',
+      pictureThree: 'Cyberpunk2077_3.jpg',
+      pictureFour: 'Cyberpunk2077_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17256',
@@ -122,13 +110,11 @@ function getProducts() {
       inStock: 3,
       platform: Platform.PC,
       price: 159.99,
-      pictures: [
-        'GTA5_1.jpg',
-        'GTA5_2.jpg',
-        'GTA5_3.jpg',
-        'GTA5_4.jpg',
-        'GTA5_5.jpg',
-      ],
+      pictureOne: 'GTA5_1.jpg',
+      pictureTwo: 'GTA5_2.jpg',
+      pictureThree: 'GTA5_3.jpg',
+      pictureFour: 'GTA5_4.jpg',
+      pictureFive: 'GTA5_5.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17356',
@@ -141,13 +127,11 @@ function getProducts() {
       inStock: 3,
       platform: Platform.XBOX,
       price: 259.99,
-      pictures: [
-        'GTA5_1.jpg',
-        'GTA5_2.jpg',
-        'GTA5_3.jpg',
-        'GTA5_4.jpg',
-        'GTA5_5.jpg',
-      ],
+      pictureOne: 'GTA5_1.jpg',
+      pictureTwo: 'GTA5_2.jpg',
+      pictureThree: 'GTA5_3.jpg',
+      pictureFour: 'GTA5_4.jpg',
+      pictureFive: 'GTA5_5.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17345',
@@ -160,13 +144,11 @@ function getProducts() {
       inStock: 3,
       platform: Platform.PLAYSTATION,
       price: 259.99,
-      pictures: [
-        'GTA5_1.jpg',
-        'GTA5_2.jpg',
-        'GTA5_3.jpg',
-        'GTA5_4.jpg',
-        'GTA5_5.jpg',
-      ],
+      pictureOne: 'GTA5_1.jpg',
+      pictureTwo: 'GTA5_2.jpg',
+      pictureThree: 'GTA5_3.jpg',
+      pictureFour: 'GTA5_4.jpg',
+      pictureFive: 'GTA5_5.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17255',
@@ -179,7 +161,9 @@ function getProducts() {
       inStock: 0,
       platform: Platform.PC,
       price: 159.99,
-      pictures: ['Skyrim_1.jpg', 'Skyrim_2.jpg', 'Skyrim_3.jpg'],
+      pictureOne: 'Skyrim_1.jpg',
+      pictureTwo: 'Skyrim_2.jpg',
+      pictureThree: 'Skyrim_3.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a27255',
@@ -192,7 +176,9 @@ function getProducts() {
       inStock: 0,
       platform: Platform.XBOX,
       price: 159.99,
-      pictures: ['Skyrim_1.jpg', 'Skyrim_2.jpg', 'Skyrim_3.jpg'],
+      pictureOne: 'Skyrim_1.jpg',
+      pictureTwo: 'Skyrim_2.jpg',
+      pictureThree: 'Skyrim_3.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a37255',
@@ -205,7 +191,9 @@ function getProducts() {
       inStock: 0,
       platform: Platform.PLAYSTATION,
       price: 159.99,
-      pictures: ['Skyrim_1.jpg', 'Skyrim_2.jpg', 'Skyrim_3.jpg'],
+      pictureOne: 'Skyrim_1.jpg',
+      pictureTwo: 'Skyrim_2.jpg',
+      pictureThree: 'Skyrim_3.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17254',
@@ -218,12 +206,10 @@ function getProducts() {
       inStock: 1,
       platform: Platform.PC,
       price: 159.99,
-      pictures: [
-        'EldenRing_1.jpg',
-        'EldenRing_2.jpg',
-        'EldenRing_3.jpg',
-        'EldenRing_4.jpg',
-      ],
+      pictureOne: 'EldenRing_1.jpg',
+      pictureTwo: 'EldenRing_2.jpg',
+      pictureThree: 'EldenRing_3.jpg',
+      pictureFour: 'EldenRing_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a27254',
@@ -236,12 +222,10 @@ function getProducts() {
       inStock: 1,
       platform: Platform.XBOX,
       price: 159.99,
-      pictures: [
-        'EldenRing_1.jpg',
-        'EldenRing_2.jpg',
-        'EldenRing_3.jpg',
-        'EldenRing_4.jpg',
-      ],
+      pictureOne: 'EldenRing_1.jpg',
+      pictureTwo: 'EldenRing_2.jpg',
+      pictureThree: 'EldenRing_3.jpg',
+      pictureFour: 'EldenRing_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a37254',
@@ -254,12 +238,10 @@ function getProducts() {
       inStock: 1,
       platform: Platform.PLAYSTATION,
       price: 159.99,
-      pictures: [
-        'EldenRing_1.jpg',
-        'EldenRing_2.jpg',
-        'EldenRing_3.jpg',
-        'EldenRing_4.jpg',
-      ],
+      pictureOne: 'EldenRing_1.jpg',
+      pictureTwo: 'EldenRing_2.jpg',
+      pictureThree: 'EldenRing_3.jpg',
+      pictureFour: 'EldenRing_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17253',
@@ -272,7 +254,10 @@ function getProducts() {
       inStock: 5,
       platform: Platform.PC,
       price: 159.99,
-      pictures: ['RDR2_1.jpg', 'RDR2_2.jpg', 'RDR2_3.jpg', 'RDR2_4.jpg'],
+      pictureOne: 'RDR2_1.jpg',
+      pictureTwo: 'RDR2_2.jpg',
+      pictureThree: 'RDR2_3.jpg',
+      pictureFour: 'RDR2_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a27253',
@@ -285,7 +270,10 @@ function getProducts() {
       inStock: 5,
       platform: Platform.XBOX,
       price: 159.99,
-      pictures: ['RDR2_1.jpg', 'RDR2_2.jpg', 'RDR2_3.jpg', 'RDR2_4.jpg'],
+      pictureOne: 'RDR2_1.jpg',
+      pictureTwo: 'RDR2_2.jpg',
+      pictureThree: 'RDR2_3.jpg',
+      pictureFour: 'RDR2_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a37253',
@@ -298,7 +286,10 @@ function getProducts() {
       inStock: 5,
       platform: Platform.PLAYSTATION,
       price: 159.99,
-      pictures: ['RDR2_1.jpg', 'RDR2_2.jpg', 'RDR2_3.jpg', 'RDR2_4.jpg'],
+      pictureOne: 'RDR2_1.jpg',
+      pictureTwo: 'RDR2_2.jpg',
+      pictureThree: 'RDR2_3.jpg',
+      pictureFour: 'RDR2_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17252',
@@ -310,12 +301,10 @@ function getProducts() {
       inStock: 2,
       platform: Platform.PC,
       price: 99.99,
-      pictures: [
-        'ACValhalla_1.jpg',
-        'ACValhalla_2.jpg',
-        'ACValhalla_3.jpg',
-        'ACValhalla_4.jpg',
-      ],
+      pictureOne: 'ACValhalla_1.jpg',
+      pictureTwo: 'ACValhalla_2.jpg',
+      pictureThree: 'ACValhalla_3.jpg',
+      pictureFour: 'ACValhalla_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a27252',
@@ -327,12 +316,10 @@ function getProducts() {
       inStock: 2,
       platform: Platform.XBOX,
       price: 99.99,
-      pictures: [
-        'ACValhalla_1.jpg',
-        'ACValhalla_2.jpg',
-        'ACValhalla_3.jpg',
-        'ACValhalla_4.jpg',
-      ],
+      pictureOne: 'ACValhalla_1.jpg',
+      pictureTwo: 'ACValhalla_2.jpg',
+      pictureThree: 'ACValhalla_3.jpg',
+      pictureFour: 'ACValhalla_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a37252',
@@ -344,12 +331,10 @@ function getProducts() {
       inStock: 2,
       platform: Platform.PLAYSTATION,
       price: 99.99,
-      pictures: [
-        'ACValhalla_1.jpg',
-        'ACValhalla_2.jpg',
-        'ACValhalla_3.jpg',
-        'ACValhalla_4.jpg',
-      ],
+      pictureOne: 'ACValhalla_1.jpg',
+      pictureTwo: 'ACValhalla_2.jpg',
+      pictureThree: 'ACValhalla_3.jpg',
+      pictureFour: 'ACValhalla_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17251',
@@ -362,7 +347,8 @@ function getProducts() {
       inStock: 4,
       platform: Platform.PC,
       price: 159.99,
-      pictures: ['BaldursGate3_1.jpg', 'BaldursGate3_2.jpg'],
+      pictureOne: 'BaldursGate3_1.jpg',
+      pictureTwo: 'BaldursGate3_2.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17250',
@@ -375,7 +361,8 @@ function getProducts() {
       inStock: 6,
       platform: Platform.PC,
       price: 159.99,
-      pictures: ['FIFA22_1.jpg', 'FIFA22_2.jpg'],
+      pictureOne: 'FIFA22_1.jpg',
+      pictureTwo: 'FIFA22_2.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8b17246',
@@ -388,7 +375,8 @@ function getProducts() {
       inStock: 6,
       platform: Platform.XBOX,
       price: 159.99,
-      pictures: ['FIFA22_1.jpg', 'FIFA22_2.jpg'],
+      pictureOne: 'FIFA22_1.jpg',
+      pictureTwo: 'FIFA22_2.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17247',
@@ -401,9 +389,9 @@ function getProducts() {
       inStock: 6,
       platform: Platform.PLAYSTATION,
       price: 159.99,
-      pictures: ['FIFA22_1.jpg', 'FIFA22_2.jpg'],
+      pictureOne: 'FIFA22_1.jpg',
+      pictureTwo: 'FIFA22_2.jpg',
     },
-
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17249',
       name: 'Mario Kart 8 Deluxe',
@@ -415,7 +403,10 @@ function getProducts() {
       inStock: 8,
       platform: Platform.NINTENDO,
       price: 159.99,
-      pictures: ['MarioKart8_1.jpg', 'MarioKart8_2.jpg', 'MarioKart8_3.jpg'],
+      pictureOne: 'MarioKart8_1.jpg',
+      pictureTwo: 'MarioKart8_2.jpg',
+      pictureThree: 'MarioKart8_3.jpg',
+      pictureFour: 'MarioKart8_4.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17248',
@@ -428,22 +419,18 @@ function getProducts() {
       inStock: 0,
       platform: Platform.NINTENDO,
       price: 159.99,
-      pictures: ['Zelda_1.jpg', 'Zelda_2.jpg', 'Zelda_3.jpg'],
+      pictureOne: 'Zelda_1.jpg',
+      pictureTwo: 'Zelda_2.jpg',
+      pictureThree: 'Zelda_3.jpg',
+      pictureFour: 'Zelda_4.jpg',
     },
   ];
 }
 
 async function seed() {
   await Promise.all(
-    getProducts().map(({ pictures, ...productData }) => {
-      return db.product.create({
-        data: {
-          ...productData,
-          pictures: {
-            create: pictures.map((url) => ({ url: url })),
-          },
-        },
-      });
+    getProducts().map((productData) => {
+      return db.product.create({ data: productData });
     }),
   );
 }

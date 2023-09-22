@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { Picture, Product } from '@prisma/client';
+import { Product } from '@prisma/client';
 import { PrismaService } from 'src/shared/services/prisma.service';
 
 @Injectable()
@@ -7,27 +7,12 @@ export class ProductsService {
   constructor(private prismaService: PrismaService) {}
 
   public getProducts(): Promise<Product[]> {
-    return this.prismaService.product.findMany({
-      include: {
-        pictures: true,
-      },
-    });
+    return this.prismaService.product.findMany({});
   }
 
   public getProductById(id: Product['id']): Promise<Product | null> {
     return this.prismaService.product.findUnique({
       where: { id },
-      include: {
-        pictures: true,
-      },
-    });
-  }
-
-  public getPicturesByProductId(
-    id: Picture['productId'],
-  ): Promise<Picture[] | null> {
-    return this.prismaService.picture.findMany({
-      where: { productId: id },
     });
   }
 
@@ -36,16 +21,21 @@ export class ProductsService {
   ): Promise<Product[]> {
     return this.prismaService.product.findMany({
       where: { platform },
-      include: {
-        pictures: true,
-      },
     });
   }
 
   public async create(
     productData: Omit<
       Product,
-      'id' | 'createdAt' | 'updatedAt' | 'mainPicture'
+      | 'id'
+      | 'createdAt'
+      | 'updatedAt'
+      | 'mainPicture'
+      | 'pictureOne'
+      | 'pictureTwo'
+      | 'pictureThree'
+      | 'pictureFour'
+      | 'pictureFive'
     >,
   ): Promise<Product> {
     try {
@@ -62,7 +52,11 @@ export class ProductsService {
   public async addFiles(
     productId: Product['id'],
     mainPicture: Express.Multer.File,
-    pictures: Express.Multer.File[],
+    pictureOne: Express.Multer.File,
+    pictureTwo: Express.Multer.File,
+    pictureThree: Express.Multer.File,
+    pictureFour: Express.Multer.File,
+    pictureFive: Express.Multer.File,
   ): Promise<Product> {
     const productData = await this.prismaService.product.findUnique({
       where: { id: productId },
@@ -73,24 +67,12 @@ export class ProductsService {
     return await this.prismaService.product.update({
       where: { id: productId },
       data: {
-        mainPicture: mainPicture.filename,
-        pictures: {
-          create: pictures.map((picture) => ({ url: picture.filename })),
-        },
-      },
-    });
-  }
-
-  public async removeOldFiles(
-    productId: Picture['productId'],
-    oldFilesUrl: string[],
-  ) {
-    return this.prismaService.picture.deleteMany({
-      where: {
-        productId: productId,
-        url: {
-          in: oldFilesUrl,
-        },
+        mainPicture: mainPicture?.filename,
+        pictureOne: pictureOne?.filename,
+        pictureTwo: pictureTwo?.filename,
+        pictureThree: pictureThree?.filename,
+        pictureFour: pictureFour?.filename,
+        pictureFive: pictureFive?.filename,
       },
     });
   }
@@ -99,7 +81,15 @@ export class ProductsService {
     id: Product['id'],
     productData: Omit<
       Product,
-      'id' | 'createdAt' | 'updatedAt' | 'mainPicture'
+      | 'id'
+      | 'createdAt'
+      | 'updatedAt'
+      | 'mainPicture'
+      | 'pictureOne'
+      | 'pictureTwo'
+      | 'pictureThree'
+      | 'pictureFour'
+      | 'pictureFive'
     >,
   ): Promise<Product> {
     try {
@@ -117,7 +107,11 @@ export class ProductsService {
   public async updateFilesProduct(
     productId: Product['id'],
     mainPicture: Express.Multer.File,
-    pictures: Express.Multer.File[],
+    pictureOne: Express.Multer.File,
+    pictureTwo: Express.Multer.File,
+    pictureThree: Express.Multer.File,
+    pictureFour: Express.Multer.File,
+    pictureFive: Express.Multer.File,
   ): Promise<Product> {
     const product = await this.prismaService.product.findUnique({
       where: { id: productId },
@@ -129,9 +123,11 @@ export class ProductsService {
       where: { id: productId },
       data: {
         mainPicture: mainPicture.filename,
-        pictures: {
-          create: pictures.map((picture) => ({ url: picture.filename })),
-        },
+        pictureOne: pictureOne ? pictureOne.filename : null,
+        pictureTwo: pictureTwo ? pictureTwo.filename : null,
+        pictureThree: pictureThree ? pictureThree.filename : null,
+        pictureFour: pictureFour ? pictureFour.filename : null,
+        pictureFive: pictureFive ? pictureFive.filename : null,
       },
     });
   }
