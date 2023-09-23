@@ -6,15 +6,21 @@ import { PrismaService } from 'src/shared/services/prisma.service';
 export class ProductsService {
   constructor(private prismaService: PrismaService) {}
 
+  /* --------------------- GET PRODUCTS --------------------- */
+
   public getProducts(): Promise<Product[]> {
     return this.prismaService.product.findMany({});
   }
+
+  /* --------------------- GET PRODUCT BY ID --------------------- */
 
   public getProductById(id: Product['id']): Promise<Product | null> {
     return this.prismaService.product.findUnique({
       where: { id },
     });
   }
+
+  /* --------------------- GET PRODUCT BY PLATFORM --------------------- */
 
   public getProductByPlatform(
     platform: Product['platform'],
@@ -23,6 +29,18 @@ export class ProductsService {
       where: { platform },
     });
   }
+
+  /* --------------------- GET PRODUCT BY SEARCH PHRASE --------------------- */
+
+  public async getProductsBySearchPhrase(
+    searchPhrase: string,
+  ): Promise<Product[]> {
+    return this.prismaService.product.findMany({
+      where: { name: { contains: searchPhrase } },
+    });
+  }
+
+  /* --------------------- CREATE PRODUCT DATA --------------------- */
 
   public async create(
     productData: Omit<
@@ -49,6 +67,8 @@ export class ProductsService {
       throw error;
     }
   }
+
+  /* --------------------- ADD PRODUCT FILES --------------------- */
 
   public async addFiles(
     productId: Product['id'],
@@ -78,6 +98,8 @@ export class ProductsService {
     });
   }
 
+  /* --------------------- UPDATE PRODUCT DATA --------------------- */
+
   public async updateDataProduct(
     id: Product['id'],
     productData: Omit<
@@ -104,6 +126,8 @@ export class ProductsService {
       throw error;
     }
   }
+
+  /* --------------------- UPDATE PRODUCT FILES --------------------- */
 
   public async updateFilesProduct(
     productId: Product['id'],
@@ -132,6 +156,8 @@ export class ProductsService {
       },
     });
   }
+
+  /* --------------------- DELETE PRODUCT --------------------- */
 
   public async delete(id: Product['id']): Promise<Product> {
     return this.prismaService.product.delete({

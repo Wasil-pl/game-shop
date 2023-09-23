@@ -13,6 +13,8 @@ export class AuthService {
     private configService: ConfigService,
   ) {}
 
+  /* --------------------- REGISTER USER --------------------- */
+
   public async register(registrationData: RegisterDTO) {
     const hashedPassword = await bcrypt.hash(registrationData.password, 10);
     const userData = {
@@ -21,6 +23,8 @@ export class AuthService {
     };
     return this.userService.create(userData, hashedPassword);
   }
+
+  /* --------------------- VALIDATE USER --------------------- */
 
   public async validateUser(email: string, password: string) {
     const user = await this.userService.getUserByEmail(email);
@@ -34,6 +38,8 @@ export class AuthService {
     }
     return null;
   }
+
+  /* --------------------- CREATE SESSION --------------------- */
 
   public async createSession(user: any) {
     const payload = { email: user.email, sub: user.id };

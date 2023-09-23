@@ -13,6 +13,7 @@ import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { BannersModule } from './banners/banners.module';
+import { OrdersModule } from './orders/orders.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -26,6 +27,7 @@ import configuration from './config/configuration';
       isGlobal: true,
     }),
     BannersModule,
+    OrdersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

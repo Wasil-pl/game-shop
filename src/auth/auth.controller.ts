@@ -16,10 +16,14 @@ import { JwtAuthGuard } from './jwt-auth-guard';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  /* --------------------- REGISTER --------------------- */
+
   @Post('/register')
   public register(@Body() userData: RegisterDTO) {
     return this.authService.register(userData);
   }
+
+  /* --------------------- LOGIN --------------------- */
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
@@ -30,6 +34,8 @@ export class AuthController {
       message: 'success',
     });
   }
+
+  /* --------------------- LOGOUT --------------------- */
 
   @UseGuards(JwtAuthGuard)
   @Delete('logout')

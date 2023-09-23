@@ -28,10 +28,14 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 export class ProductsController {
   constructor(private productService: ProductsService) {}
 
+  /* --------------------- GET --------------------- */
+
   @Get('/')
   public getProducts() {
     return this.productService.getProducts();
   }
+
+  /* --------------------- GET BY ID --------------------- */
 
   @Get('/:id')
   public async getProductById(
@@ -42,6 +46,8 @@ export class ProductsController {
     return product;
   }
 
+  /* --------------------- GET BY PLATFORM --------------------- */
+
   @Get('/platform/:platform')
   public async getProductByPlatform(
     @Param('platform') platform: Product['platform'],
@@ -49,12 +55,25 @@ export class ProductsController {
     return this.productService.getProductByPlatform(platform);
   }
 
+  /* --------------------- GET BY SEARCH PHRASE --------------------- */
+
+  @Get('/search/:searchPhrase')
+  public async getProductsBySearchPhrase(
+    @Param('searchPhrase') searchPhrase: string,
+  ) {
+    return this.productService.getProductsBySearchPhrase(searchPhrase);
+  }
+
+  /* --------------------- POST DATA --------------------- */
+
   @UseGuards(AdminAuthGuard)
   @UseGuards(JwtAuthGuard)
   @Post('/add')
   public createProduct(@Body() product: CreateProductDto) {
     return this.productService.create(product);
   }
+
+  /* --------------------- POST FILES --------------------- */
 
   @UseGuards(AdminAuthGuard)
   @UseGuards(JwtAuthGuard)
@@ -129,6 +148,8 @@ export class ProductsController {
     }
   }
 
+  /* --------------------- PUT DATA --------------------- */
+
   @UseGuards(AdminAuthGuard)
   @UseGuards(JwtAuthGuard)
   @Put('/update/:id')
@@ -142,6 +163,8 @@ export class ProductsController {
     await this.productService.updateDataProduct(id, productData);
     return { message: 'Product updated successfully' };
   }
+
+  /* --------------------- PUT FILES --------------------- */
 
   @UseGuards(AdminAuthGuard)
   @UseGuards(JwtAuthGuard)
@@ -237,6 +260,8 @@ export class ProductsController {
       throw error;
     }
   }
+
+  /* --------------------- DELETE --------------------- */
 
   @UseGuards(AdminAuthGuard)
   @UseGuards(JwtAuthGuard)

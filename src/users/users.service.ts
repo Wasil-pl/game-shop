@@ -6,15 +6,21 @@ import { PrismaService } from 'src/shared/services/prisma.service';
 export class UsersService {
   constructor(private prismaService: PrismaService) {}
 
+  /* --------------------- GET USERS --------------------- */
+
   public getUsers(): Promise<User[]> {
     return this.prismaService.user.findMany();
   }
+
+  /* --------------------- GET USER BY ID --------------------- */
 
   public getUser(id: User['id']): Promise<User | null> {
     return this.prismaService.user.findUnique({
       where: { id },
     });
   }
+
+  /* --------------------- GET USER BY EMAIL --------------------- */
 
   public getUserByEmail(
     email: User['email'],
@@ -24,6 +30,8 @@ export class UsersService {
       include: { password: true },
     });
   }
+
+  /* --------------------- CREATE USER --------------------- */
 
   public async create(
     userData: Omit<User, 'id' | 'role' | 'createdAt' | 'updatedAt'>,
@@ -46,6 +54,8 @@ export class UsersService {
       throw error;
     }
   }
+
+  /* --------------------- UPDATE USER --------------------- */
 
   public async update(
     userId: User['id'],
@@ -70,6 +80,8 @@ export class UsersService {
       throw error;
     }
   }
+
+  /* --------------------- DELETE USER --------------------- */
 
   public delete(id: User['id']): Promise<User> {
     return this.prismaService.user.delete({

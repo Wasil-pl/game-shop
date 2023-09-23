@@ -16,11 +16,18 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 export class UsersController {
   constructor(private userService: UsersService) {}
 
+  /* --------------------- GET USER --------------------- */
+
+  @UseGuards(AdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('/')
   public getUsers() {
     return this.userService.getUsers();
   }
 
+  /* --------------------- GET USER BY ID --------------------- */
+
+  @UseGuards(JwtAuthGuard)
   @Get('/:id')
   public getUser(@Param('id', new ParseUUIDPipe()) id: User['id']) {
     const user = this.userService.getUser(id);
@@ -29,6 +36,8 @@ export class UsersController {
     }
     return user;
   }
+
+  /* --------------------- DELETE USER --------------------- */
 
   @Delete('/:id')
   @UseGuards(AdminAuthGuard)
