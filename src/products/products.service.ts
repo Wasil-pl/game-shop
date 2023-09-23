@@ -36,6 +36,7 @@ export class ProductsService {
       | 'pictureThree'
       | 'pictureFour'
       | 'pictureFive'
+      | 'isActive'
     >,
   ): Promise<Product> {
     try {
@@ -129,6 +130,12 @@ export class ProductsService {
         pictureFour: pictureFour ? pictureFour.filename : null,
         pictureFive: pictureFive ? pictureFive.filename : null,
       },
+    });
+  }
+
+  public async delete(id: Product['id']): Promise<Product> {
+    return this.prismaService.product.delete({
+      where: { id },
     });
   }
 }

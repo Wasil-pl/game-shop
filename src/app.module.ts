@@ -10,16 +10,22 @@ import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { ProductsModule } from './products/products.module';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { BannersModule } from './banners/banners.module';
 import configuration from './config/configuration';
 
 @Module({
   imports: [
+    UsersModule,
+    AuthModule,
     ProductsModule,
     PrismaModule,
     ConfigModule.forRoot({
       load: [configuration],
       isGlobal: true,
     }),
+    BannersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

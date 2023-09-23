@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Body,
   Controller,
+  Delete,
   Get,
   NotFoundException,
   Param,
@@ -9,6 +10,7 @@ import {
   Post,
   Put,
   UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
@@ -19,6 +21,8 @@ import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { acceptedFileTypes } from 'src/consts';
 import { deleteFile } from 'src/utils/deleteFile';
 import { UpdateProductDto } from './dtos/update-product.dto';
+import { AdminAuthGuard } from 'src/auth/admin-auth.guard';
+import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 
 @Controller('products')
 export class ProductsController {
@@ -45,11 +49,15 @@ export class ProductsController {
     return this.productService.getProductByPlatform(platform);
   }
 
+  @UseGuards(AdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post('/add')
   public createProduct(@Body() product: CreateProductDto) {
     return this.productService.create(product);
   }
 
+  @UseGuards(AdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Put('/add/files/:id')
   @UseInterceptors(
     FileFieldsInterceptor(
@@ -67,8 +75,8 @@ export class ProductsController {
   public async addFiles(
     @UploadedFiles()
     files: {
-      mainPicture?: Express.Multer.File;
-      pictureOne: Express.Multer.File;
+      mainPicture: Express.Multer.File;
+      pictureOne?: Express.Multer.File;
       pictureTwo?: Express.Multer.File;
       pictureThree?: Express.Multer.File;
       pictureFour?: Express.Multer.File;
@@ -121,6 +129,8 @@ export class ProductsController {
     }
   }
 
+  @UseGuards(AdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Put('/update/:id')
   public async updateDataProduct(
     @Param('id', new ParseUUIDPipe()) id: Product['id'],
@@ -133,6 +143,8 @@ export class ProductsController {
     return { message: 'Product updated successfully' };
   }
 
+  @UseGuards(AdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Put('/update/files/:id')
   @UseInterceptors(
     FileFieldsInterceptor(
@@ -150,7 +162,7 @@ export class ProductsController {
   public async updateFiles(
     @UploadedFiles()
     files: {
-      mainPicture?: Express.Multer.File;
+      mainPicture: Express.Multer.File;
       pictureOne?: Express.Multer.File;
       pictureTwo?: Express.Multer.File;
       pictureThree?: Express.Multer.File;
@@ -168,6 +180,9 @@ export class ProductsController {
       const pictureFive = files.pictureFive?.[0];
 
       const product = await this.productService.getProductById(id);
+      if (!product) throw new NotFoundException('Product not found');
+
+      if (!mainPicture) throw new BadRequestException('Main picture required');
 
       if (mainPicture && !acceptedFileTypes.includes(mainPicture.mimetype))
         throw new BadRequestException('Invalid file type');
@@ -221,5 +236,33 @@ export class ProductsController {
 
       throw error;
     }
+  }
+
+  @UseGuards(AdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
+  @Delete('/delete/:id')
+  public async deleteProduct(
+    @Param('id', new ParseUUIDPipe()) id: Product['id'],
+  ) {
+    const product = await this.productService.getProductById(id);
+    if (!product) throw new NotFoundException('Product not found');
+
+    await this.productService.delete(id);
+
+    const mainPicture = product.mainPicture;
+    const pictureOne = product.pictureOne;
+    const pictureTwo = product.pictureTwo;
+    const pictureThree = product.pictureThree;
+    const pictureFour = product.pictureFour;
+    const pictureFive = product.pictureFive;
+
+    if (mainPicture) deleteFile(mainPicture);
+    if (pictureOne) deleteFile(pictureOne);
+    if (pictureTwo) deleteFile(pictureTwo);
+    if (pictureThree) deleteFile(pictureThree);
+    if (pictureFour) deleteFile(pictureFour);
+    if (pictureFive) deleteFile(pictureFive);
+
+    return { message: 'Product deleted successfully' };
   }
 }

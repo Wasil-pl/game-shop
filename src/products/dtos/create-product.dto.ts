@@ -1,7 +1,6 @@
 import { Platform } from '@prisma/client';
 import { Decimal } from '@prisma/client/runtime/library';
 import {
-  IsBoolean,
   IsDecimal,
   IsNotEmpty,
   IsNumber,
@@ -33,10 +32,6 @@ export class CreateProductDto {
   @IsNotEmpty()
   @Min(0)
   inStock: number;
-
-  @IsBoolean()
-  @IsNotEmpty()
-  isActive: boolean;
 
   @IsString()
   @IsNotEmpty()
