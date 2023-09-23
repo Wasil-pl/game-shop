@@ -261,6 +261,20 @@ export class ProductsController {
     }
   }
 
+  /* --------------------- UPDATE ACTIVE STATUS --------------------- */
+
+  @Put('/update/activate/:id')
+  public async updateIsActive(
+    @Param('id', new ParseUUIDPipe()) id: Product['id'],
+    @Body() data: Product['isActive'],
+  ) {
+    const product = await this.productService.getProductById(id);
+    if (!product) throw new NotFoundException('Product not found');
+
+    await this.productService.updateIsActive(id, data);
+    return { message: 'Product active status updated successfully' };
+  }
+
   /* --------------------- DELETE --------------------- */
 
   @UseGuards(AdminAuthGuard)
