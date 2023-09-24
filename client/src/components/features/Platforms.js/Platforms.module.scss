@@ -1,0 +1,36 @@
+@import '../../../styles/settings.scss';
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-size: $iconSize;
+
+  .iconBox {
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+
+    p {
+      font-size: $small-size;
+      text-align: center;
+      margin: 0;
+    }
+  }
+
+  .windows {
+    box-shadow: inset 4px 3px 15px 2px rgba(66, 68, 90, 1);
+  }
+
+  .xbox {
+    box-shadow: inset 4px 3px 15px 2px rgb(17, 124, 3);
+  }
+
+  .playstation {
+    box-shadow: inset 4px 3px 15px 2px rgb(8, 17, 121);
+  }
+
+  .nintendo {
+    box-shadow: inset 4px 3px 15px 2px rgb(158, 4, 4);
+  }
+}

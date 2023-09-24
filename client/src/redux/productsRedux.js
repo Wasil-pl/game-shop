@@ -1,8 +1,16 @@
 import { httpClient } from '../api/httpClient';
 import { API_URL } from '../config';
+import { createSelector } from 'reselect';
 
 /* SELECTORS */
 export const getAllProducts = (state) => state.products.list;
+export const getPlatforms = createSelector(
+  getAllProducts, // input selector
+  (products) => {
+    const platforms = products.map((product) => product.platform);
+    return [...new Set(platforms)];
+  },
+);
 
 /* ACTIONS */
 export const startRequest = (payload) => ({ payload, type: START_REQUEST });

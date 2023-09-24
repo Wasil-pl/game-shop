@@ -2,7 +2,8 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { loadProductsRequest } from './redux/productsRedux';
 import MainLayout from './components/layout/MainLayout/MainLayout';
-import { Container } from 'react-bootstrap';
+import { Route, Routes } from 'react-router-dom';
+import Home from './components/pages/Home/Home';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -13,9 +14,9 @@ const App = () => {
 
   return (
     <MainLayout>
-      <Container>
-        <h1>App</h1>
-      </Container>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </MainLayout>
   );
 };
