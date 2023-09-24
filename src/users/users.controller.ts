@@ -37,11 +37,24 @@ export class UsersController {
     return user;
   }
 
-  /* --------------------- DELETE USER --------------------- */
+  /* --------------------- GET USER BY EMAIL --------------------- */
 
-  @Delete('/:id')
   @UseGuards(AdminAuthGuard)
   @UseGuards(JwtAuthGuard)
+  @Get('/email/:email')
+  public getUserByEmail(@Param('email') email: User['email']) {
+    const user = this.userService.getUserByEmail(email);
+    if (!user) {
+      throw new NotFoundException(`User with email ${email} not found`);
+    }
+    return user;
+  }
+
+  /* --------------------- DELETE USER --------------------- */
+
+  @UseGuards(AdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
+  @Delete('/:id')
   public async deleteUser(@Param('id', new ParseUUIDPipe()) id: User['id']) {
     const user = await this.userService.getUser(id);
     if (!user) {

@@ -1,47 +1,67 @@
 @import '../../../styles/settings.scss';
 
-.navbar {
-  background-color: $main-menu-color-background;
+.menuContainer {
+  position: relative;
 
-  .container {
-    max-width: 1400px;
-    justify-content: space-evenly;
+  .navbar {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translate(-50%, 25%);
+    width: 90%;
+    max-width: 1200px;
+    padding: 0 40px;
+    border-radius: $radius-large;
+    box-shadow: $shadow;
+    border: 1px solid $color-border;
+    background-color: $main-menu-color-background;
 
-    .gameShopBrand {
-      font-family: $font-header;
-      font-size: ($base-size * 1.5);
-      color: $color-primary;
-      text-decoration: none;
+    .basic_nav_dropdown > a {
+      color: $color-text-light;
+    }
+
+    .rightSide > a {
+      color: $color-text-light;
+    }
+
+    .logo {
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: $transition;
-      text-align: center;
+      letter-spacing: 2px;
+      margin-right: 50px;
+      color: $color-text-light;
+    }
 
-      &:hover {
-        font-size: ($base-size * 1.8);
+    .basic_navbar_nav {
+      font-size: $medium-size;
+
+      .searchContainer {
+        display: flex;
+        margin-right: 20px;
+
+        input {
+          margin-right: 10px;
+        }
       }
     }
 
-    .navRows {
-      display: flex;
-      flex-direction: column-reverse;
-
-      .firstRow {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 0;
-
-        .nav {
-          max-height: 100px;
-        }
+    .basic_nav_dropdown {
+      div:first-of-type {
+        right: 200px;
+        left: -50px;
+        min-width: 200px;
+        padding: 5px 20px;
       }
 
-      .secondRow {
+      .formLogin {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        padding: 10px 0;
+
+        button {
+          margin-top: 10px;
+        }
       }
     }
   }

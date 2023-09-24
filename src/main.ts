@@ -4,11 +4,12 @@ import { AppModule } from './app.module';
 import { LoggerInterceptor } from './shared/interceptors/logger.interceptor';
 import { ConfigService } from '@nestjs/config';
 import * as cookieParser from 'cookie-parser';
+import { CORS_OPTIONS } from './consts';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
-  app.enableCors();
+  app.enableCors(CORS_OPTIONS);
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.useGlobalInterceptors(new LoggerInterceptor());
   app.setGlobalPrefix('api');

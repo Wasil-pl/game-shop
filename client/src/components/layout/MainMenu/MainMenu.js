@@ -2,73 +2,88 @@ import React from 'react';
 import styles from './MainMenu.module.scss';
 import {
   Navbar,
-  Container,
   Nav,
   NavDropdown,
   Form,
   Button,
+  FormControl,
 } from 'react-bootstrap';
-import { Cart, PersonCircle, Gear } from 'react-bootstrap-icons';
+import CarouselComponent from '../../features/Carousel/Carousel';
 
 const MainMenu = () => {
   return (
-    <Navbar expand="lg" className={styles.navbar}>
-      <Container fluid className={styles.container}>
-        <Navbar.Brand href="#" className={styles.gameShopBrand}>
+    <div className={styles.menuContainer}>
+      <Navbar variant="dark" expand="lg" className={styles.navbar}>
+        <Navbar.Brand className={styles.logo} href="#">
           Game
           <br /> Shop
         </Navbar.Brand>
-
-        <div className={styles.navRows}>
-          <div className={styles.firstRow}>
-            <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll">
-              <Nav
-                className={`me-auto my-2 my-lg-0 ${styles.nav}`}
-                navbarScroll
-              >
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#cart">
-                  <Cart /> Koszyk
-                </Nav.Link>
-                <NavDropdown title="Panel Administracyjny" id="adminDropdown">
-                  <NavDropdown.Item href="#addProduct">
-                    Dodaj produkt
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#viewOrders">
-                    Podgląd zamówień
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <NavDropdown title="Panel Klienta" id="clientDropdown">
-                  <NavDropdown.Item href="#clientOrders">
-                    Zamówienia
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#settings">
-                    <Gear /> Ustawienia
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#profile">
-                    <PersonCircle /> Profil
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </Nav>
-              <Form className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                />
-                <Button variant="outline-success">Search</Button>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse className={styles.basic_navbar_nav}>
+          <Nav className={`me-auto ${styles.nav}`}>
+            <NavDropdown
+              title="użytkownik"
+              className={styles.basic_nav_dropdown}
+            >
+              <NavDropdown.Item href="#">Moje zamówienia</NavDropdown.Item>
+              <NavDropdown.Item href="#">Moje konto</NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown
+              title="panel administracyjny"
+              className={styles.basic_nav_dropdown}
+            >
+              <NavDropdown.Item href="#">Zamównienia</NavDropdown.Item>
+              <NavDropdown.Item href="#">Dodaj produkt</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+          <Form inline className={styles.searchContainer}>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="success">Search</Button>
+          </Form>
+          <Nav>
+            <NavDropdown className={styles.basic_nav_dropdown} title="koszyk">
+              <NavDropdown.Item href="#">Produkt 1</NavDropdown.Item>
+              <NavDropdown.Item href="#">Produkt 2</NavDropdown.Item>
+              <NavDropdown.Item href="#">Produkt 3</NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Login" className={styles.basic_nav_dropdown}>
+              <Form className={styles.formLogin}>
+                <Form.Group>
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Email address"
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Button type="submit" variant="primary" block>
+                    Sign in
+                  </Button>
+                </Form.Group>
               </Form>
-            </Navbar.Collapse>
-          </div>
-          <div className={styles.secondRow}>
-            <Nav.Link href="#login">Login</Nav.Link>
-            <Nav.Link href="#register">Register</Nav.Link>
-          </div>
-        </div>
-      </Container>
-    </Navbar>
+              <NavDropdown.Divider />
+              <NavDropdown.Item className="text-center">
+                New here?{' '}
+                <a href="#">
+                  <b>Join Us</b>
+                </a>
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+
+      <CarouselComponent />
+    </div>
   );
 };
 

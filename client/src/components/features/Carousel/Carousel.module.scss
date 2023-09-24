@@ -1,0 +1,15 @@
+@import '../../../styles/settings.scss';
+
+.carouselItem {
+  height: 70vh;
+  min-height: 300px;
+  object-fit: cover;
+}
+
+h5 {
+  font-size: $slide-font-size !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: $shadow;
+}

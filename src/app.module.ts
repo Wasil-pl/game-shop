@@ -15,6 +15,8 @@ import { AuthModule } from './auth/auth.module';
 import { BannersModule } from './banners/banners.module';
 import { OrdersModule } from './orders/orders.module';
 import configuration from './config/configuration';
+import { CORS_OPTIONS, STATIC_PATH } from './consts';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
@@ -28,22 +30,16 @@ import configuration from './config/configuration';
     }),
     BannersModule,
     OrdersModule,
+    ServeStaticModule.forRoot(STATIC_PATH),
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): void {
-    consumer
-      .apply(
-        cors({
-          origin: ['http://localhost:3000'],
-          credentials: true,
-        }),
-      )
-      .forRoutes({
-        path: '*',
-        method: RequestMethod.ALL,
-      });
+    consumer.apply(cors(CORS_OPTIONS)).forRoutes({
+      path: '*',
+      method: RequestMethod.ALL,
+    });
   }
 }
