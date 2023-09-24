@@ -1,0 +1,48 @@
+@import '../../../styles/settings.scss';
+
+.navbar {
+  background-color: $main-menu-color-background;
+
+  .container {
+    max-width: 1400px;
+    justify-content: space-evenly;
+
+    .gameShopBrand {
+      font-family: $font-header;
+      font-size: ($base-size * 1.5);
+      color: $color-primary;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: $transition;
+      text-align: center;
+
+      &:hover {
+        font-size: ($base-size * 1.8);
+      }
+    }
+
+    .navRows {
+      display: flex;
+      flex-direction: column-reverse;
+
+      .firstRow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+
+        .nav {
+          max-height: 100px;
+        }
+      }
+
+      .secondRow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@ import App from './App';
 import store from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/normalize.scss';
 import './styles/typography.scss';
 import './styles/global.scss';

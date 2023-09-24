@@ -1,6 +1,5 @@
 const baseOptions = {
   method: 'GET',
-  credentials: 'include',
 };
 
 const validateRequest = async (res) => {
@@ -16,24 +15,19 @@ const validateRequest = async (res) => {
   throw new Error('Unknown error. Details: ' + response.message);
 };
 
-const makeRequest = async (url, method = 'GET', body, options) => {
+const makeRequest = async (url, method = 'GET', formData, options) => {
   const requestOptions = {
     ...baseOptions,
     method,
     ...options,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: body ? JSON.stringify(body) : undefined,
+    body: formData,
   };
 
   return fetch(url, requestOptions).then(validateRequest);
 };
 
-export const httpClient = {
-  get: (url) => makeRequest(url),
-  post: (url, body) => makeRequest(url, 'POST', body),
-  put: (url, body) => makeRequest(url, 'PUT', body),
-  patch: (url, body) => makeRequest(url, 'PATCH', body),
-  delete: (url) => makeRequest(url, 'DELETE'),
+export const formClient = {
+  post: (url, formData) => makeRequest(url, 'POST', formData),
+  put: (url, formData) => makeRequest(url, 'PUT', formData),
+  patch: (url, formData) => makeRequest(url, 'PATCH', formData),
 };

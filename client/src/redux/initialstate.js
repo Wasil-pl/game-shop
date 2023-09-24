@@ -8,13 +8,14 @@ const initialState = {
     searchResult: [],
   },
 
-  user: {
+  users: {
     loading: false,
     error: null,
     user: null,
+    list: [],
   },
 
-  order: {
+  orders: {
     success: false,
     loading: false,
     error: null,
@@ -24,6 +25,8 @@ const initialState = {
 
   banner: {
     list: [],
+    loading: false,
+    error: null,
   },
 };
 

@@ -2,9 +2,15 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import initialState from './initialstate';
 import { productsReducer } from './productsRedux';
+import { usersReducer } from './usersRedux';
+import { ordersReducer } from './ordersRedux';
+import { bannerReducer } from './bannerRedux';
 
 const subreducers = {
   products: productsReducer,
+  users: usersReducer,
+  orders: ordersReducer,
+  banner: bannerReducer,
 };
 
 // combine reducers
