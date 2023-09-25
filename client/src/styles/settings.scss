@@ -1,24 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Mulish:wght@300&display=swap');
+
 $color-text: #141414;
 $color-text-light: #ffffff;
 $color-text-bright: #fff;
 $color-primary: #b91919;
 $color-secondary: #218c74;
-$color-background: #f7f7f7;
+$color-background: #ffffff;
+$color-background-second: #f7f7f7;
+$color-background-third: #e7e7e7;
+
 $color-border: #e0e0e0;
 
 $main-menu-color-background: #00000063;
 
-$font-header: 'Source Sans Pro', sans-serif;
-$font-text: 'Source Sans Pro', sans-serif;
+$font-header: 'Merriweather', serif;
+$font-text: 'Mulish', sans-serif;
 
 $radius: 5px;
 $radius-large: 10px;
+$radius-xlarge: 30px;
+$radius-round: 50%;
 $base-size: 14px;
-$small-size: 14px;
+$small-size: 12px;
 $medium-size: 16px;
 $large-size: 18px;
 $slide-font-size: 36px;
 $transition: all 0.5s;
 $shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 
-$iconSize: 50px;
+$iconSize: 60px;
+$colorXbox: #107c10;
+$colorPlaystation: #0066cc;
+$colorNintendo: #e60012;
+$colorWindows: #00a2ff;

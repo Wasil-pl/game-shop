@@ -1,36 +1,119 @@
 @import '../../../styles/settings.scss';
 
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  font-size: $iconSize;
+.wrapper {
+  background: linear-gradient(
+    to right,
+    $color-background,
+    $color-background-third
+  );
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+  padding-bottom: 40px;
 
-  .iconBox {
-    padding: 20px;
-    flex: 1;
-    text-align: center;
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: $iconSize;
+    position: relative;
+    padding: 30px 0;
+
+    .iconBox {
+      text-align: center;
+      z-index: 1;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      cursor: pointer;
+
+      &:hover.windows {
+        border: solid 2px $color-background;
+        color: $color-background;
+        background-color: $colorWindows;
+        transition: $transition;
+      }
+
+      &:hover.xbox {
+        border: solid 2px $color-background;
+        color: $color-background;
+        background-color: $colorXbox;
+        transition: $transition;
+      }
+
+      &:hover.playstation {
+        border: solid 2px $color-background;
+        color: $color-background;
+        background-color: $colorPlaystation;
+        transition: $transition;
+      }
+
+      &:hover.nintendo {
+        border: solid 2px $color-background;
+        color: $color-background;
+        background-color: $colorNintendo;
+        transition: $transition;
+      }
+    }
 
     p {
-      font-size: $small-size;
+      font-size: $large-size;
       text-align: center;
       margin: 0;
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+
+    .textXbox {
+      color: $colorXbox;
+    }
+
+    .textPS {
+      color: $colorPlaystation;
+    }
+
+    .textNS {
+      color: $colorNintendo;
+    }
+
+    .textWin {
+      color: $colorWindows;
+    }
+
+    .windows {
+      border: solid 2px $colorWindows;
+      color: $colorWindows;
+      background-color: $color-background;
+    }
+
+    .xbox {
+      border: solid 2px $colorXbox;
+      color: $colorXbox;
+      background-color: $color-background;
+    }
+
+    .playstation {
+      border: solid 2px $colorPlaystation;
+      color: $colorPlaystation;
+      background-color: $color-background;
+    }
+
+    .nintendo {
+      border: solid 2px $colorNintendo;
+      color: $colorNintendo;
+      background-color: $color-background;
     }
   }
+}
 
-  .windows {
-    box-shadow: inset 4px 3px 15px 2px rgba(66, 68, 90, 1);
-  }
-
-  .xbox {
-    box-shadow: inset 4px 3px 15px 2px rgb(17, 124, 3);
-  }
-
-  .playstation {
-    box-shadow: inset 4px 3px 15px 2px rgb(8, 17, 121);
-  }
-
-  .nintendo {
-    box-shadow: inset 4px 3px 15px 2px rgb(158, 4, 4);
-  }
+.skewed {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #2c3e50;
+  z-index: -1;
+  transform: skewY(7deg);
+  transform-origin: top right;
 }

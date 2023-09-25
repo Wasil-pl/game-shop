@@ -1,3 +1,4 @@
+import React from 'react';
 import Platforms from '../../features/Platforms.js/Platforms';
 
 const Home = () => {

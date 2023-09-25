@@ -36,7 +36,7 @@ const MainMenu = () => {
               <NavDropdown.Item href="#">Dodaj produkt</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Form inline className={styles.searchContainer}>
+          <Form className={styles.searchContainer}>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="success">Search</Button>
           </Form>
@@ -65,18 +65,16 @@ const MainMenu = () => {
                   />
                 </Form.Group>
                 <Form.Group>
-                  <Button type="submit" variant="primary" block>
+                  <Button type="submit" variant="primary">
                     Sign in
                   </Button>
                 </Form.Group>
               </Form>
               <NavDropdown.Divider />
-              <NavDropdown.Item className="text-center">
-                New here?{' '}
-                <a href="#">
-                  <b>Join Us</b>
-                </a>
-              </NavDropdown.Item>
+              New here?{' '}
+              <a href="*">
+                <b>Join Us</b>
+              </a>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
