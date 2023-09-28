@@ -1,5 +1,18 @@
-import { PrismaClient, Platform } from '@prisma/client';
+import { PrismaClient, Platform, Role } from '@prisma/client';
+import * as bcrypt from 'bcryptjs';
 const db = new PrismaClient();
+
+function getUserAdmin() {
+  return [
+    {
+      id: 'fd105551-0f0d-4a9f-bc41-c559c8a17259',
+      email: 'admin@admin.com',
+      firstName: 'Admin',
+      password: 'admin',
+      role: Role.ADMIN,
+    },
+  ];
+}
 
 function getProducts() {
   return [
@@ -14,6 +27,8 @@ function getProducts() {
       inStock: 10,
       platform: Platform.PC,
       price: 159.99,
+      salePrice: 99,
+      isActive: true,
       pictureOne: 'Witcher3_1.jpg',
       pictureTwo: 'Witcher3_2.jpg',
       pictureThree: 'Witcher3_3.jpg',
@@ -30,6 +45,7 @@ function getProducts() {
       inStock: 10,
       platform: Platform.XBOX,
       price: 259.99,
+      isActive: true,
       pictureOne: 'Witcher3_1.jpg',
       pictureTwo: 'Witcher3_2.jpg',
       pictureThree: 'Witcher3_3.jpg',
@@ -46,6 +62,7 @@ function getProducts() {
       inStock: 10,
       platform: Platform.PLAYSTATION,
       price: 259.99,
+      isActive: true,
       pictureOne: 'Witcher3_1.jpg',
       pictureTwo: 'Witcher3_2.jpg',
       pictureThree: 'Witcher3_3.jpg',
@@ -62,6 +79,8 @@ function getProducts() {
       inStock: 7,
       platform: Platform.PC,
       price: 159.99,
+      isActive: true,
+      salePrice: 99,
       pictureOne: 'Cyberpunk2077_1.jpg',
       pictureTwo: 'Cyberpunk2077_2.jpg',
       pictureThree: 'Cyberpunk2077_3.jpg',
@@ -78,6 +97,8 @@ function getProducts() {
       inStock: 7,
       platform: Platform.XBOX,
       price: 259.99,
+      isActive: true,
+      salePrice: 159.99,
       pictureOne: 'Cyberpunk2077_1.jpg',
       pictureTwo: 'Cyberpunk2077_2.jpg',
       pictureThree: 'Cyberpunk2077_3.jpg',
@@ -94,6 +115,8 @@ function getProducts() {
       inStock: 7,
       platform: Platform.PLAYSTATION,
       price: 259.99,
+      isActive: true,
+      salePrice: 159.99,
       pictureOne: 'Cyberpunk2077_1.jpg',
       pictureTwo: 'Cyberpunk2077_2.jpg',
       pictureThree: 'Cyberpunk2077_3.jpg',
@@ -110,6 +133,7 @@ function getProducts() {
       inStock: 3,
       platform: Platform.PC,
       price: 159.99,
+      salePrice: 99,
       pictureOne: 'GTA5_1.jpg',
       pictureTwo: 'GTA5_2.jpg',
       pictureThree: 'GTA5_3.jpg',
@@ -127,6 +151,7 @@ function getProducts() {
       inStock: 3,
       platform: Platform.XBOX,
       price: 259.99,
+      isActive: true,
       pictureOne: 'GTA5_1.jpg',
       pictureTwo: 'GTA5_2.jpg',
       pictureThree: 'GTA5_3.jpg',
@@ -144,6 +169,7 @@ function getProducts() {
       inStock: 3,
       platform: Platform.PLAYSTATION,
       price: 259.99,
+      isActive: true,
       pictureOne: 'GTA5_1.jpg',
       pictureTwo: 'GTA5_2.jpg',
       pictureThree: 'GTA5_3.jpg',
@@ -161,6 +187,8 @@ function getProducts() {
       inStock: 0,
       platform: Platform.PC,
       price: 159.99,
+      isActive: true,
+      salePrice: 99,
       pictureOne: 'Skyrim_1.jpg',
       pictureTwo: 'Skyrim_2.jpg',
       pictureThree: 'Skyrim_3.jpg',
@@ -176,6 +204,8 @@ function getProducts() {
       inStock: 0,
       platform: Platform.XBOX,
       price: 159.99,
+      isActive: true,
+      salePrice: 99,
       pictureOne: 'Skyrim_1.jpg',
       pictureTwo: 'Skyrim_2.jpg',
       pictureThree: 'Skyrim_3.jpg',
@@ -191,6 +221,8 @@ function getProducts() {
       inStock: 0,
       platform: Platform.PLAYSTATION,
       price: 159.99,
+      isActive: true,
+      salePrice: 99,
       pictureOne: 'Skyrim_1.jpg',
       pictureTwo: 'Skyrim_2.jpg',
       pictureThree: 'Skyrim_3.jpg',
@@ -206,6 +238,7 @@ function getProducts() {
       inStock: 1,
       platform: Platform.PC,
       price: 159.99,
+      isActive: true,
       pictureOne: 'EldenRing_1.jpg',
       pictureTwo: 'EldenRing_2.jpg',
       pictureThree: 'EldenRing_3.jpg',
@@ -222,6 +255,7 @@ function getProducts() {
       inStock: 1,
       platform: Platform.XBOX,
       price: 159.99,
+      isActive: true,
       pictureOne: 'EldenRing_1.jpg',
       pictureTwo: 'EldenRing_2.jpg',
       pictureThree: 'EldenRing_3.jpg',
@@ -238,6 +272,7 @@ function getProducts() {
       inStock: 1,
       platform: Platform.PLAYSTATION,
       price: 159.99,
+      isActive: true,
       pictureOne: 'EldenRing_1.jpg',
       pictureTwo: 'EldenRing_2.jpg',
       pictureThree: 'EldenRing_3.jpg',
@@ -254,6 +289,7 @@ function getProducts() {
       inStock: 5,
       platform: Platform.PC,
       price: 159.99,
+      isActive: true,
       pictureOne: 'RDR2_1.jpg',
       pictureTwo: 'RDR2_2.jpg',
       pictureThree: 'RDR2_3.jpg',
@@ -270,6 +306,7 @@ function getProducts() {
       inStock: 5,
       platform: Platform.XBOX,
       price: 159.99,
+      isActive: true,
       pictureOne: 'RDR2_1.jpg',
       pictureTwo: 'RDR2_2.jpg',
       pictureThree: 'RDR2_3.jpg',
@@ -286,6 +323,7 @@ function getProducts() {
       inStock: 5,
       platform: Platform.PLAYSTATION,
       price: 159.99,
+      isActive: true,
       pictureOne: 'RDR2_1.jpg',
       pictureTwo: 'RDR2_2.jpg',
       pictureThree: 'RDR2_3.jpg',
@@ -300,7 +338,9 @@ function getProducts() {
       mainPicture: 'ACValhallaPC.jpg',
       inStock: 2,
       platform: Platform.PC,
-      price: 99.99,
+      price: 99,
+      isActive: true,
+      salePrice: 59.99,
       pictureOne: 'ACValhalla_1.jpg',
       pictureTwo: 'ACValhalla_2.jpg',
       pictureThree: 'ACValhalla_3.jpg',
@@ -315,7 +355,9 @@ function getProducts() {
       mainPicture: 'ACValhallaXBOX.jpg',
       inStock: 2,
       platform: Platform.XBOX,
-      price: 99.99,
+      price: 99,
+      isActive: true,
+      salePrice: 59.99,
       pictureOne: 'ACValhalla_1.jpg',
       pictureTwo: 'ACValhalla_2.jpg',
       pictureThree: 'ACValhalla_3.jpg',
@@ -330,7 +372,9 @@ function getProducts() {
       mainPicture: 'ACValhallaPS.jpg',
       inStock: 2,
       platform: Platform.PLAYSTATION,
-      price: 99.99,
+      price: 99,
+      isActive: true,
+      salePrice: 59.99,
       pictureOne: 'ACValhalla_1.jpg',
       pictureTwo: 'ACValhalla_2.jpg',
       pictureThree: 'ACValhalla_3.jpg',
@@ -347,6 +391,7 @@ function getProducts() {
       inStock: 4,
       platform: Platform.PC,
       price: 159.99,
+      isActive: true,
       pictureOne: 'BaldursGate3_1.jpg',
       pictureTwo: 'BaldursGate3_2.jpg',
     },
@@ -361,6 +406,7 @@ function getProducts() {
       inStock: 6,
       platform: Platform.PC,
       price: 159.99,
+      isActive: true,
       pictureOne: 'FIFA22_1.jpg',
       pictureTwo: 'FIFA22_2.jpg',
     },
@@ -375,6 +421,7 @@ function getProducts() {
       inStock: 6,
       platform: Platform.XBOX,
       price: 159.99,
+      isActive: true,
       pictureOne: 'FIFA22_1.jpg',
       pictureTwo: 'FIFA22_2.jpg',
     },
@@ -389,6 +436,7 @@ function getProducts() {
       inStock: 6,
       platform: Platform.PLAYSTATION,
       price: 159.99,
+      isActive: true,
       pictureOne: 'FIFA22_1.jpg',
       pictureTwo: 'FIFA22_2.jpg',
     },
@@ -403,6 +451,8 @@ function getProducts() {
       inStock: 8,
       platform: Platform.NINTENDO,
       price: 159.99,
+      isActive: true,
+      salePrice: 99,
       pictureOne: 'MarioKart8_1.jpg',
       pictureTwo: 'MarioKart8_2.jpg',
       pictureThree: 'MarioKart8_3.jpg',
@@ -419,6 +469,7 @@ function getProducts() {
       inStock: 0,
       platform: Platform.NINTENDO,
       price: 159.99,
+      isActive: true,
       pictureOne: 'Zelda_1.jpg',
       pictureTwo: 'Zelda_2.jpg',
       pictureThree: 'Zelda_3.jpg',
@@ -428,6 +479,22 @@ function getProducts() {
 }
 
 async function seed() {
+  await Promise.all(
+    getUserAdmin().map(async ({ password, ...userData }) => {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      return db.user.create({
+        data: {
+          ...userData,
+          password: {
+            create: {
+              hashedPassword: hashedPassword,
+            },
+          },
+        },
+      });
+    }),
+  );
+
   await Promise.all(
     getProducts().map((productData) => {
       return db.product.create({ data: productData });

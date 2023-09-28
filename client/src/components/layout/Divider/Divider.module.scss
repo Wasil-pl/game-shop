@@ -1,0 +1,29 @@
+@import '../../../styles/settings.scss';
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $extra-large-size;
+  text-align: center;
+  margin: 20px 0;
+  text-transform: uppercase;
+  font-family: $font-header;
+  letter-spacing: 2px;
+  position: relative;
+  gap: 10px;
+
+  &::after {
+    content: '';
+    flex: 0.2;
+    height: 2px;
+    background: linear-gradient(to right, #b91919, transparent);
+  }
+
+  &::before {
+    content: '';
+    flex: 0.2;
+    height: 2px;
+    background: linear-gradient(to left, #b91919, transparent);
+  }
+}

@@ -1,0 +1,28 @@
+@import '../../../styles/settings.scss';
+
+.section {
+  background-color: #2d445b;
+  clip-path: polygon(0 19%, 100% 0, 100% 100%, 0 83%);
+  padding: 100px 0;
+
+  .title {
+    color: $color-text-light;
+    font-family: $font-header;
+    font-size: $title-size;
+    letter-spacing: 4px;
+    text-align: right;
+    margin: 0;
+  }
+}
+
+.section-no-divider {
+  padding: 100px 0;
+  clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 100%);
+  background-color: $color-background-second;
+  padding: 0 0 100px 0;
+
+  .title {
+    color: $color-text;
+    text-align: left;
+  }
+}

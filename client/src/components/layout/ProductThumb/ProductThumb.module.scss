@@ -1,0 +1,191 @@
+@import '../../../styles/settings.scss';
+
+.card {
+  border-radius: $radius;
+  width: 250px;
+  height: 400px;
+  background-color: $color-background;
+  box-shadow: $shadow;
+  transition: $transition;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: $shadow;
+  }
+
+  .cardPlatform {
+    border: 1px solid $color-border;
+    border-radius: $radius;
+    color: $color-text-light;
+    text-align: center;
+
+    .platformName {
+      margin-right: 10px;
+    }
+  }
+
+  .windows {
+    background-color: $colorWindows;
+    border: solid 1px $colorWindows;
+  }
+
+  .xbox {
+    background-color: $colorXbox;
+    border: solid 1px $colorXbox;
+  }
+
+  .playstation {
+    background-color: $colorPlaystation;
+    border: solid 1px $colorPlaystation;
+  }
+
+  .nintendo {
+    background-color: $colorNintendo;
+    border: solid 1px $colorNintendo;
+  }
+
+  .cardImg {
+    background-color: $color-background-third;
+    border-radius: $radius;
+    height: 55%;
+    text-align: center;
+    padding: 10px 0;
+    margin: 10px;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .cardBody {
+    margin: 10px;
+
+    .cardTitle {
+      text-align: center;
+      font-size: $large-size;
+      font-weight: bold;
+      margin: 0 0 10px 0;
+    }
+
+    .priceBox {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      font-size: $medium-size;
+      font-weight: bold;
+
+      .oldPrice {
+        text-decoration: line-through;
+      }
+
+      .cardSalePrice {
+        font-size: $extra-large-size;
+        color: $color-text-promotion;
+      }
+    }
+
+    .inStockBox {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 10px;
+      transition: $transitionLong;
+
+      .stockText {
+        font-size: $small-size;
+        flex: 1;
+        margin: 0;
+      }
+
+      .stockBarContainer {
+        width: 100%;
+        height: 10px;
+        border-radius: 5px;
+        background-color: #e0e0e0; // tło dla paska postępu
+        overflow: hidden;
+        flex: 2;
+
+        .stockBar {
+          height: 100%;
+          border-radius: 5px;
+          transition: width 0.3s ease; // dodajemy animację dla płynniejszej zmiany szerokości
+
+          &.green {
+            background: linear-gradient(90deg, green 100%, #e0e0e0 100%);
+          }
+          &.yellow {
+            background: linear-gradient(90deg, lightgreen 80%, #e0e0e0 80%);
+          }
+          &.orange {
+            background: linear-gradient(90deg, orange 40%, #e0e0e0 40%);
+          }
+          &.red {
+            background: linear-gradient(90deg, red 5%, #e0e0e0 5%);
+          }
+        }
+      }
+    }
+
+    .buttons {
+      position: absolute;
+      display: flex;
+      bottom: -10%;
+      opacity: 0;
+      transition: $transitionLong;
+      width: 90%;
+
+      .cartButton {
+        text-transform: uppercase;
+        flex: 2;
+        margin-right: 10px;
+
+        svg {
+          margin-left: 10px;
+        }
+      }
+
+      .showMoreplaystation {
+        font-size: $medium-size;
+        color: $colorPlaystation;
+        background-color: $color-background;
+        border: solid 2px $colorPlaystation;
+      }
+
+      .showMorexbox {
+        font-size: $medium-size;
+        color: $colorXbox;
+        background-color: $color-background;
+        border: solid 2px $colorXbox;
+      }
+
+      .showMorenintendo {
+        font-size: $medium-size;
+        color: $colorNintendo;
+        background-color: $color-background;
+        border: solid 2px $colorNintendo;
+      }
+
+      .showMorewindows {
+        font-size: $medium-size;
+        color: $colorWindows;
+        background-color: $color-background;
+        border: solid 2px $colorWindows;
+      }
+    }
+  }
+
+  &:hover {
+    .buttons {
+      bottom: 1%;
+      opacity: 1;
+    }
+
+    .inStockBox {
+      opacity: 0;
+    }
+  }
+}

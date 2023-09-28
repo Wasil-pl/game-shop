@@ -1,8 +1,24 @@
 import { httpClient } from '../api/httpClient';
 import { API_URL } from '../config';
+import { createSelector } from 'reselect';
 
 /* SELECTORS */
 export const getAllProducts = (state) => state.products.list;
+export const getAllActiveProducts = createSelector(getAllProducts, (products) =>
+  products.filter((product) => product.isActive),
+);
+export const getSaleProducts = createSelector(
+  getAllActiveProducts,
+  (products) => products.filter((product) => product.salePrice),
+);
+export const getNewProducts = createSelector(
+  getAllActiveProducts,
+  (products) => {
+    return products
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      .slice(0, 10);
+  },
+);
 
 /* ACTIONS */
 export const startRequest = (payload) => ({ payload, type: START_REQUEST });

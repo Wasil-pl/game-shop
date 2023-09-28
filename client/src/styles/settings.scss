@@ -2,12 +2,13 @@
 
 $color-text: #141414;
 $color-text-light: #ffffff;
-$color-text-bright: #fff;
-$color-primary: #b91919;
-$color-secondary: #218c74;
+$color-text-promotion: #ec534a;
 $color-background: #ffffff;
 $color-background-second: #f7f7f7;
+$color-background-dark: #000000;
 $color-background-third: #e7e7e7;
+
+$color-section1: #2d445b;
 
 $color-border: #e0e0e0;
 
@@ -24,8 +25,11 @@ $base-size: 14px;
 $small-size: 12px;
 $medium-size: 16px;
 $large-size: 18px;
+$extra-large-size: 24px;
+$title-size: 50px;
 $slide-font-size: 36px;
 $transition: all 0.5s;
+$transitionLong: all 1s;
 $shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 
 $iconSize: 60px;

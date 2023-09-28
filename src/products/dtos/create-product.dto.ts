@@ -40,4 +40,7 @@ export class CreateProductDto {
   @IsDecimal()
   @IsNotEmpty()
   price: Decimal;
+
+  @IsDecimal()
+  salePrice: Decimal;
 }

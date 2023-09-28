@@ -61,8 +61,13 @@ export class OrdersService {
         );
       }
 
+      if (product.salePrice) {
+        calculatedTotalPrice += Number(product.salePrice) * item.quantity;
+      } else {
+        calculatedTotalPrice += Number(product.price) * item.quantity;
+      }
+
       calculatedTotalQuantity += item.quantity;
-      calculatedTotalPrice += Number(product.price) * item.quantity;
 
       orderItemsData.push({
         quantity: item.quantity,

@@ -45,4 +45,7 @@ export class UpdateProductDto {
   @IsDecimal()
   @IsNotEmpty()
   price: Decimal;
+
+  @IsDecimal()
+  salePrice: Decimal;
 }

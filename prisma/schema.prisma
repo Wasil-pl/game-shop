@@ -57,6 +57,7 @@ model Product {
   description  String   @db.VarChar(1000)
   mainPicture  String?
   price        Decimal
+  salePrice    Decimal?
   platform     Platform
   inStock      Int
   pictureOne   String?

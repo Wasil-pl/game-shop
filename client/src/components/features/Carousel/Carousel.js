@@ -5,7 +5,7 @@ import { SLIDER_IMAGES_URL } from '../../../config';
 
 const CarouselComponent = () => {
   return (
-    <Carousel controls={false}>
+    <Carousel className={styles.carousel} controls={false}>
       <Carousel.Item>
         <img
           className={`d-block w-100 ${styles.carouselItem}`}
