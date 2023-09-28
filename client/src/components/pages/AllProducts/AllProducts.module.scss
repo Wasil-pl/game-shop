@@ -1,0 +1,8 @@
+@import '../../../styles/settings.scss';
+
+.thumbsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+}

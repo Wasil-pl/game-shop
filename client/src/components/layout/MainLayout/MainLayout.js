@@ -4,7 +4,7 @@ import React from 'react';
 
 const MainLayout = ({ children }) => (
   <div>
-    <MainMenu inline="true" />
+    <MainMenu />
     {children}
     <Footer />
   </div>

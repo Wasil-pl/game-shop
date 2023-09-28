@@ -14,7 +14,7 @@ const CarouselComponent = () => {
         />
         <Carousel.Caption>
           <h5>Wiedźmin 3</h5>
-          <Button variant="success">Kup teraz</Button>
+          <Button variant="success">Shop Now</Button>
         </Carousel.Caption>
       </Carousel.Item>
 
@@ -26,7 +26,7 @@ const CarouselComponent = () => {
         />
         <Carousel.Caption>
           <h5>Assassins Creed</h5>
-          <Button variant="success">Kup teraz</Button>
+          <Button variant="success">Shop Now</Button>
         </Carousel.Caption>
       </Carousel.Item>
 
@@ -38,7 +38,7 @@ const CarouselComponent = () => {
         />
         <Carousel.Caption>
           <h5>Red Dead Redemption 2</h5>
-          <Button variant="success">Kup teraz</Button>
+          <Button variant="success">Shop Now</Button>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

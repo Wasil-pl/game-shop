@@ -10,7 +10,6 @@ import {
 
 const Home = () => {
   const saleProducts = useSelector(getSaleProducts);
-  console.log('saleProducts:', saleProducts);
   const newProducts = useSelector(getNewProducts);
 
   return (

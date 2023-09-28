@@ -1,47 +1,39 @@
 import React from 'react';
 import styles from './MainMenu.module.scss';
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  Button,
-  FormControl,
-} from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Form, Button } from 'react-bootstrap';
 import CarouselComponent from '../../features/Carousel/Carousel';
+import { Link } from 'react-router-dom';
+import Home from '../../pages/Home/Home';
+import SearchPhrase from '../../features/SearchPhrase/SearchPhrase';
 
 const MainMenu = () => {
   return (
     <div className={styles.menuContainer}>
       <Navbar variant="dark" expand="lg" className={styles.navbar}>
-        <Navbar.Brand className={styles.logo} href="#">
-          Game
-          <br /> Shop
+        <Navbar.Brand className={styles.logo}>
+          <Link to={'/'} element={<Home />}>
+            Game
+            <br /> Shop
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className={styles.basic_navbar_nav}>
           <Nav className={`me-auto ${styles.nav}`}>
-            <NavDropdown
-              title="użytkownik"
-              className={styles.basic_nav_dropdown}
-            >
-              <NavDropdown.Item href="#">Moje zamówienia</NavDropdown.Item>
-              <NavDropdown.Item href="#">Moje konto</NavDropdown.Item>
+            <NavDropdown title="User" className={styles.basic_nav_dropdown}>
+              <NavDropdown.Item href="#">My Orders</NavDropdown.Item>
+              <NavDropdown.Item href="#">My Account</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown
-              title="panel administracyjny"
+              title="Admin Panel"
               className={styles.basic_nav_dropdown}
             >
-              <NavDropdown.Item href="#">Zamównienia</NavDropdown.Item>
-              <NavDropdown.Item href="#">Dodaj produkt</NavDropdown.Item>
+              <NavDropdown.Item href="#">All Orders</NavDropdown.Item>
+              <NavDropdown.Item href="#">Ad Product</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Form className={styles.searchContainer}>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="success">Search</Button>
-          </Form>
+          <SearchPhrase />
           <Nav>
-            <NavDropdown className={styles.basic_nav_dropdown} title="koszyk">
+            <NavDropdown className={styles.basic_nav_dropdown} title="Cart">
               <NavDropdown.Item href="#">Produkt 1</NavDropdown.Item>
               <NavDropdown.Item href="#">Produkt 2</NavDropdown.Item>
               <NavDropdown.Item href="#">Produkt 3</NavDropdown.Item>

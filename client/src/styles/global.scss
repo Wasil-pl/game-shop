@@ -23,6 +23,22 @@ a,
 a:hover,
 a:visited {
   text-decoration: none;
+  color: inherit;
+}
+
+.alert {
+  width: 400px;
+  margin: auto;
+}
+
+.spinnerBox {
+  text-align: center;
+
+  .spinner {
+    width: 80px;
+    height: 80px;
+    font-size: 20px;
+  }
 }
 
 @import './typography.scss';

@@ -40,6 +40,54 @@
       @extend .hoverIconStyles;
       background-color: $colorNintendo;
     }
+
+    &:hover.iconBoxAll {
+      @extend .hoverIconStyles;
+      background-color: $colorAllGames;
+
+      svg {
+        color: $color-background;
+        transition: $transitionLong;
+      }
+    }
+  }
+
+  .iconBoxAll {
+    @extend .iconBox;
+    border: solid 2px $colorAllGames;
+    color: $colorAllGames;
+    background-color: $color-background;
+    font-size: $extra-large-size;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      flex: 50%;
+    }
+
+    & > .ns {
+      color: $colorNintendo;
+    }
+
+    & > .ps {
+      color: $colorPlaystation;
+    }
+
+    & > .win {
+      color: $colorWindows;
+    }
+
+    & > .x {
+      color: $colorXbox;
+    }
+  }
+
+  .textAll {
+    color: $colorAllGames;
   }
 
   p {

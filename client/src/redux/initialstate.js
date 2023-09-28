@@ -4,8 +4,8 @@ const initialState = {
     loading: false,
     error: null,
     list: [],
-    selectedProduct: null,
-    searchResult: [],
+    listByPlatform: [],
+    searchList: [],
   },
 
   users: {

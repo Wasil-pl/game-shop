@@ -1,62 +1,24 @@
 import React from 'react';
 import styles from './ProductThumb.module.scss';
 import { IMAGES_URL } from '../../../config';
-import {
-  Playstation,
-  Xbox,
-  Windows,
-  NintendoSwitch,
-} from 'react-bootstrap-icons';
 import { Button } from 'react-bootstrap';
 import { Cart, ArrowRight } from 'react-bootstrap-icons';
+import {
+  getPlatformIcon,
+  getPlatformCssClass,
+  getStockStatusColor,
+} from '../../../Utils.js/ProductThumbFunctions';
 
-const ProductThumb = ({ data }) => {
-  const platformIcon = (platform) => {
-    switch (platform) {
-      case 'XBOX':
-        return <Xbox />;
-      case 'PLAYSTATION':
-        return <Playstation />;
-      case 'PC':
-        return <Windows />;
-      case 'NINTENDO':
-        return <NintendoSwitch />;
-      default:
-        return null;
-    }
-  };
-
-  const platformColor = (platform) => {
-    switch (platform) {
-      case 'XBOX':
-        return 'xbox';
-      case 'PLAYSTATION':
-        return 'playstation';
-      case 'PC':
-        return 'windows';
-      case 'NINTENDO':
-        return 'nintendo';
-      default:
-        return null;
-    }
-  };
-
-  const stockBarColor = (inStock) => {
-    if (inStock > 8) return 'green';
-    if (inStock > 4) return 'yellow';
-    if (inStock > 0) return 'orange';
-    return 'red';
-  };
-
+const ProductThumb = ({ data, variant = '' }) => {
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${styles[variant]}`}>
       <div
         className={`${styles.cardPlatform} ${
-          styles[platformColor(data.platform)]
+          styles[getPlatformCssClass(data.platform)]
         }`}
       >
         <span className={styles.platformName}>{data.platform}</span>
-        {platformIcon(data.platform)}
+        {getPlatformIcon(data.platform)}
       </div>
 
       <div className={styles.cardImg}>
@@ -82,7 +44,7 @@ const ProductThumb = ({ data }) => {
           <div className={styles.stockBarContainer}>
             <div
               className={`${styles.stockBar} ${
-                styles[stockBarColor(data.inStock)]
+                styles[getStockStatusColor(data.inStock)]
               }`}
             ></div>
           </div>
@@ -92,7 +54,7 @@ const ProductThumb = ({ data }) => {
           <Button
             size="sm"
             className={`${styles.cartButton} ${
-              styles[platformColor(data.platform)]
+              styles[getPlatformCssClass(data.platform)]
             }`}
           >
             Add to cart <Cart />
@@ -101,7 +63,7 @@ const ProductThumb = ({ data }) => {
             variant="outline-info"
             size="sm"
             className={`${styles.showMoreButton} ${
-              styles[`showMore` + platformColor(data.platform)]
+              styles[`showMore` + getPlatformCssClass(data.platform)]
             }`}
           >
             <ArrowRight />
