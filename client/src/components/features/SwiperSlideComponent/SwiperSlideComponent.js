@@ -10,8 +10,23 @@ import 'swiper/css/navigation';
 import './Swiper.css';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useSelector } from 'react-redux';
+import { getScreenMode } from '../../../redux/screenSizeRedux';
+import { getProductsPerPage } from '../../../Utils.js/GetProductsPerPage';
 
 const SwiperSlideComponent = ({ data, title, variant = '' }) => {
+  const screenMode = useSelector(getScreenMode);
+
+  const productsConfig = {
+    bigDesktop: 4,
+    desktop: 3,
+    tablet: 2,
+    mobile: 2,
+    smallMobile: 1,
+  };
+
+  const productsPerPage = getProductsPerPage(screenMode, productsConfig);
+
   return (
     <section className={`${styles.section} ${styles[variant]}`}>
       <Container className={styles.container}>
@@ -20,7 +35,7 @@ const SwiperSlideComponent = ({ data, title, variant = '' }) => {
           modules={[Pagination, Navigation]}
           navigation={true}
           autoHeight={false}
-          slidesPerView={4}
+          slidesPerView={productsPerPage}
           spaceBetween={20}
           pagination={true}
           className="mySwiper"

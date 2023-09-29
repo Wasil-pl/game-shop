@@ -11,10 +11,15 @@ import {
   getProductsByPlatform,
   loadProductsByPlatformRequest,
 } from '../../../redux/productsRedux';
+import { getScreenMode } from '../../../redux/screenSizeRedux';
+import { getProductsPerPage } from '../../../Utils.js/GetProductsPerPage';
+import CustomPagination from '../../features/CustomPagination/CustomPagination';
 
 const ProductsByPlatform = () => {
   const { platform } = useParams();
   const dispatch = useDispatch();
+  const screenMode = useSelector(getScreenMode);
+  const [currentPage, setCurrentPage] = React.useState(1);
 
   useEffect(() => {
     dispatch(loadProductsByPlatformRequest(platform));
@@ -23,6 +28,16 @@ const ProductsByPlatform = () => {
   const products = useSelector(getProductsByPlatform);
   const isLoading = useSelector(getLoadingState);
   const errorMessages = useSelector(getErrorState);
+
+  const productsPerPage = getProductsPerPage(screenMode);
+  const pagesCount = Math.ceil(products.length / productsPerPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const start = (currentPage - 1) * productsPerPage;
+  const end = start + productsPerPage;
 
   return (
     <Container>
@@ -44,7 +59,7 @@ const ProductsByPlatform = () => {
 
       {!isLoading && !errorMessages && products && (
         <div className={styles.thumbsContainer}>
-          {products.map((product) => (
+          {products.slice(start, end).map((product) => (
             <ProductThumb
               data={product}
               variant="noInSwiper"
@@ -53,6 +68,11 @@ const ProductsByPlatform = () => {
           ))}
         </div>
       )}
+      <CustomPagination
+        pagesCount={pagesCount}
+        currentPage={currentPage}
+        handlePageChange={handlePageChange}
+      />
     </Container>
   );
 };

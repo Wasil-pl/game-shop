@@ -5,12 +5,14 @@ import { productsReducer } from './productsRedux';
 import { usersReducer } from './usersRedux';
 import { ordersReducer } from './ordersRedux';
 import { bannerReducer } from './bannerRedux';
+import screenReducer from './screenSizeRedux';
 
 const subreducers = {
   products: productsReducer,
   users: usersReducer,
   orders: ordersReducer,
   banner: bannerReducer,
+  screenMode: screenReducer,
 };
 
 // combine reducers

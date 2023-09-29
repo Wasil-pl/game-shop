@@ -1,4 +1,7 @@
 .mySwiper {
-  /* height: 400px; */
-  padding: 50px
+  padding: 10px
+}
+
+.swiper-wrapper {
+  margin : 25%;
 }
