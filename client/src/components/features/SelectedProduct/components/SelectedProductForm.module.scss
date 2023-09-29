@@ -1,0 +1,61 @@
+@import '../../../../styles/settings.scss';
+
+.container {
+  display: flex;
+  margin-top: 100px;
+
+  .productBox {
+    flex: 3 1;
+    border-right: 1px solid $color-section1;
+    display: flex;
+    flex-wrap: wrap;
+
+    .productPictures {
+      flex: 5;
+    }
+
+    .productInfo {
+      flex: 2;
+      padding: 0 15px;
+
+      p {
+        color: $color-text;
+        margin: 0;
+        font-weight: bold;
+      }
+    }
+
+    .productDescription {
+      flex: 100%;
+      padding: 0 15px;
+      margin-top: 20px;
+    }
+  }
+
+  .productPrice {
+    flex: 1 1;
+    padding: 0 20px;
+    margin-top: 20px;
+
+    .priceBox {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      font-size: $extra-large-size;
+      font-weight: bold;
+
+      .oldPrice {
+        text-decoration: line-through;
+      }
+
+      .cardSalePrice {
+        font-size: $extra-large-size;
+        color: $color-text-promotion;
+      }
+    }
+
+    .addToCartButton {
+      width: 100%;
+    }
+  }
+}

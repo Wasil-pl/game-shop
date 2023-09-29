@@ -35,9 +35,11 @@ const SwiperSlideComponent = ({ data, title, variant = '' }) => {
           modules={[Pagination, Navigation]}
           navigation={true}
           autoHeight={false}
+          loop={true}
           slidesPerView={productsPerPage}
           spaceBetween={20}
-          pagination={true}
+          pagination={false}
+          centeredSlides={true}
           className="mySwiper"
         >
           {data.map((product) => (

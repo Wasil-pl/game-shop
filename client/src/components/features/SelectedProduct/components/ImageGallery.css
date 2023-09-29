@@ -1,0 +1,39 @@
+
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+    height: 400px;
+    object-fit: cover; 
+    width: auto;  
+    max-width: 100%;  
+    padding: 5px;
+  }
+
+
+.image-gallery-thumbnail .image-gallery-thumbnail-image {
+  height: 50px;
+  object-fit: cover;
+  width: auto;
+  max-width: 100%;
+}
+
+.image-gallery-content {
+  border: solid 2px #e4e4e4;
+  border-radius: 10px;
+}
+
+.image-gallery-thumbnails-wrapper.thumbnails-swipe-horizontal {
+  border-top: solid 2px #e4e4e4;
+}
+
+.image-gallery-right-nav .image-gallery-svg {
+  height: 80px;
+  width: 40px;
+}
+
+.image-gallery-left-nav .image-gallery-svg {
+  height: 80px;
+  width: 40px;
+}
+
+
+
+

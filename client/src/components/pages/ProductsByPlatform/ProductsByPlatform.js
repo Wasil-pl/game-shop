@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductThumb from '../../layout/ProductThumb/ProductThumb';
 import { Alert, Container, Spinner } from 'react-bootstrap';
 import Divider from '../../layout/Divider/Divider';
@@ -14,12 +14,15 @@ import {
 import { getScreenMode } from '../../../redux/screenSizeRedux';
 import { getProductsPerPage } from '../../../Utils.js/GetProductsPerPage';
 import CustomPagination from '../../features/CustomPagination/CustomPagination';
+import clsx from 'clsx';
 
 const ProductsByPlatform = () => {
   const { platform } = useParams();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [fade, setFade] = useState(false);
   const dispatch = useDispatch();
+
   const screenMode = useSelector(getScreenMode);
-  const [currentPage, setCurrentPage] = React.useState(1);
 
   useEffect(() => {
     dispatch(loadProductsByPlatformRequest(platform));
@@ -33,7 +36,14 @@ const ProductsByPlatform = () => {
   const pagesCount = Math.ceil(products.length / productsPerPage);
 
   const handlePageChange = (page) => {
-    setCurrentPage(page);
+    setFade(true);
+    setTimeout(() => {
+      setCurrentPage(page);
+
+      setTimeout(() => {
+        setFade(false);
+      }, 0);
+    }, 500);
   };
 
   const start = (currentPage - 1) * productsPerPage;
@@ -58,7 +68,12 @@ const ProductsByPlatform = () => {
       )}
 
       {!isLoading && !errorMessages && products && (
-        <div className={styles.thumbsContainer}>
+        <div
+          className={clsx(styles.thumbsContainer, {
+            [styles.fadeOut]: fade,
+            [styles.fadeIn]: !fade,
+          })}
+        >
           {products.slice(start, end).map((product) => (
             <ProductThumb
               data={product}

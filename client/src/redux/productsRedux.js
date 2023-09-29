@@ -6,6 +6,7 @@ import { createSelector } from 'reselect';
 export const getAllProducts = (state) => state.products.list;
 export const getProductsByPlatform = (state) => state.products.listByPlatform;
 export const getProductsBySearchPhrase = (state) => state.products.searchList;
+export const getProductById = (state) => state.products.selectedProduct;
 export const getAllActiveProducts = createSelector(getAllProducts, (products) =>
   products.filter((product) => product.isActive),
 );
@@ -35,6 +36,7 @@ export const loadProductsByPlatform = (payload) => ({
   type: LOAD_PRODUCTS_BY_PLATFORM,
 });
 export const searchProducts = (payload) => ({ payload, type: SEARCH_PRODUCTS });
+export const loadProductById = (payload) => ({ payload, type: LOAD_PRODUCT });
 
 const createActionName = (name) => `app/products/${name}`;
 const START_REQUEST = createActionName('START_REQUEST');
@@ -43,6 +45,7 @@ const END_REQUEST = createActionName('END_REQUEST');
 const LOAD_PRODUCTS = createActionName('LOAD_PRODUCTS');
 const LOAD_PRODUCTS_BY_PLATFORM = createActionName('LOAD_PRODUCTS_BY_PLATFORM');
 const SEARCH_PRODUCTS = createActionName('SEARCH_PRODUCTS');
+const LOAD_PRODUCT = createActionName('LOAD_PRODUCT');
 
 /* THUNKS */
 export const loadProductsRequest = () => {
@@ -51,6 +54,20 @@ export const loadProductsRequest = () => {
     try {
       const data = await httpClient.get(`${API_URL}/api/products`);
       dispatch(loadProducts(data));
+      dispatch(endRequest());
+    } catch (error) {
+      const action = errorRequest({ message: error.message });
+      dispatch(action);
+    }
+  };
+};
+
+export const loadProductByIdRequest = (id) => {
+  return async (dispatch) => {
+    dispatch(startRequest());
+    try {
+      const data = await httpClient.get(`${API_URL}/api/products/${id}`);
+      dispatch(loadProductById(data));
       dispatch(endRequest());
     } catch (error) {
       const action = errorRequest({ message: error.message });
@@ -97,6 +114,7 @@ export const productsReducer = (
     list: [],
     listByPlatform: [],
     searchList: [],
+    selectedProduct: {},
     loading: false,
     error: null,
     success: false,
@@ -110,6 +128,8 @@ export const productsReducer = (
       return { ...statePart, listByPlatform: [...action.payload] };
     case SEARCH_PRODUCTS:
       return { ...statePart, searchList: [...action.payload] };
+    case LOAD_PRODUCT:
+      return { ...statePart, selectedProduct: { ...action.payload } };
     case START_REQUEST:
       return { ...statePart, loading: true, error: null };
     case END_REQUEST:

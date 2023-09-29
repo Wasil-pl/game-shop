@@ -8,8 +8,15 @@ import {
   getPlatformCssClass,
   getStockStatusColor,
 } from '../../../Utils.js/ProductThumbFunctions';
+import { useNavigate } from 'react-router-dom';
 
 const ProductThumb = ({ data, variant = '' }) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = (id) => {
+    navigate(`/products/${id}`);
+  };
+
   return (
     <div className={`${styles.card} ${styles[variant]}`}>
       <div
@@ -59,8 +66,10 @@ const ProductThumb = ({ data, variant = '' }) => {
           >
             Add to cart <Cart />
           </Button>
+
           <Button
             variant="outline-info"
+            onClick={() => handleSubmit(data.id)}
             size="sm"
             className={`${styles.showMoreButton} ${
               styles[`showMore` + getPlatformCssClass(data.platform)]

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getAllProducts } from '../../../redux/productsRedux';
 import ProductThumb from '../../layout/ProductThumb/ProductThumb';
@@ -8,17 +8,26 @@ import styles from './AllProducts.module.scss';
 import { getScreenMode } from '../../../redux/screenSizeRedux';
 import { getProductsPerPage } from '../../../Utils.js/GetProductsPerPage';
 import CustomPagination from '../../features/CustomPagination/CustomPagination';
+import clsx from 'clsx';
 
 const AllProducts = () => {
   const products = useSelector(getAllProducts);
   const screenMode = useSelector(getScreenMode);
-  const [currentPage, setCurrentPage] = React.useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [fade, setFade] = useState(false);
 
   const productsPerPage = getProductsPerPage(screenMode);
   const pagesCount = Math.ceil(products.length / productsPerPage);
 
   const handlePageChange = (page) => {
-    setCurrentPage(page);
+    setFade(true);
+    setTimeout(() => {
+      setCurrentPage(page);
+
+      setTimeout(() => {
+        setFade(false);
+      }, 0);
+    }, 500);
   };
 
   const start = (currentPage - 1) * productsPerPage;
@@ -27,7 +36,12 @@ const AllProducts = () => {
   return (
     <Container>
       <Divider text={'All Games'} />
-      <div className={styles.thumbsContainer}>
+      <div
+        className={clsx(styles.thumbsContainer, {
+          [styles.fadeOut]: fade,
+          [styles.fadeIn]: !fade,
+        })}
+      >
         {products.slice(start, end).map((product) => (
           <ProductThumb data={product} variant="noInSwiper" key={product.id} />
         ))}

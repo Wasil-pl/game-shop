@@ -1,5 +1,15 @@
 @import '../../../styles/settings.scss';
 
+.fadeOut {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.fadeIn {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
 .thumbsContainer {
   display: flex;
   flex-wrap: wrap;

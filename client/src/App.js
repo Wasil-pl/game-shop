@@ -12,6 +12,7 @@ import { Alert, Spinner } from 'react-bootstrap';
 import AllProducts from './components/pages/AllProducts/AllProducts';
 import ProductsByPlatform from './components/pages/ProductsByPlatform/ProductsByPlatform';
 import SearchResult from './components/pages/SearchResult/SearchResult';
+import { SelectedProduct } from './components/features/SelectedProduct/index';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const App = () => {
           path="/products/search/:searchPhrase"
           element={<SearchResult />}
         />
+        <Route path="/products/:id" element={<SelectedProduct />} />
       </Routes>
     </MainLayout>
   );
