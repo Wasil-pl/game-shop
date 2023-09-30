@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap';
 import Divider from '../../layout/Divider/Divider';
 import styles from './AllProducts.module.scss';
 import { getScreenMode } from '../../../redux/screenSizeRedux';
-import { getProductsPerPage } from '../../../Utils.js/GetProductsPerPage';
+import { getProductsPerPage } from '../../../Utils/getProductsPerPage';
 import CustomPagination from '../../features/CustomPagination/CustomPagination';
 import clsx from 'clsx';
 

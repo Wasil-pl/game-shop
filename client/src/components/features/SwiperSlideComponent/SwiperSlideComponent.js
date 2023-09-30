@@ -12,7 +12,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSelector } from 'react-redux';
 import { getScreenMode } from '../../../redux/screenSizeRedux';
-import { getProductsPerPage } from '../../../Utils.js/GetProductsPerPage';
+import { getProductsPerPage } from '../../../Utils/getProductsPerPage';
 
 const SwiperSlideComponent = ({ data, title, variant = '' }) => {
   const screenMode = useSelector(getScreenMode);

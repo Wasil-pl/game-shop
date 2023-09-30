@@ -1,5 +1,5 @@
 import React from 'react';
-import Platforms from '../../features/Platforms.js/Platforms';
+import Platforms from '../../features/Platforms/Platforms';
 import SwiperSlideComponent from '../../features/SwiperSlideComponent/SwiperSlideComponent';
 import Divider from '../../layout/Divider/Divider';
 import { useSelector } from 'react-redux';

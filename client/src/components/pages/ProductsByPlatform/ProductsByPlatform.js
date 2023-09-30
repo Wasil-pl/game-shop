@@ -12,7 +12,7 @@ import {
   loadProductsByPlatformRequest,
 } from '../../../redux/productsRedux';
 import { getScreenMode } from '../../../redux/screenSizeRedux';
-import { getProductsPerPage } from '../../../Utils.js/GetProductsPerPage';
+import { getProductsPerPage } from '../../../Utils/getProductsPerPage';
 import CustomPagination from '../../features/CustomPagination/CustomPagination';
 import clsx from 'clsx';
 

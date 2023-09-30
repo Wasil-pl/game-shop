@@ -1,6 +1,6 @@
 import { IMAGES_URL } from '../config';
 
-export const GenerateImageList = (data) => {
+export const generateImageList = (data) => {
   const fields = [
     'mainPicture',
     'pictureOne',

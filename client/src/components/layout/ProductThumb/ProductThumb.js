@@ -7,14 +7,22 @@ import {
   getPlatformIcon,
   getPlatformCssClass,
   getStockStatusColor,
-} from '../../../Utils.js/ProductThumbFunctions';
+} from '../../../Utils/productThumbFunctions';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addProductToCart } from '../../../redux/cartRedux';
 
 const ProductThumb = ({ data, variant = '' }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (id) => {
     navigate(`/products/${id}`);
+  };
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    dispatch(addProductToCart(data));
   };
 
   return (
@@ -63,6 +71,7 @@ const ProductThumb = ({ data, variant = '' }) => {
             className={`${styles.cartButton} ${
               styles[getPlatformCssClass(data.platform)]
             }`}
+            onClick={handleAddToCart}
           >
             Add to cart <Cart />
           </Button>

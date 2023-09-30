@@ -3,11 +3,11 @@ import styles from './SelectedProductForm.module.scss';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import './ImageGallery.css';
-import { GenerateImageList } from '../../../../Utils.js/GenerateImageList';
+import { generateImageList } from '../../../../Utils/generateImageList';
 import { Button } from 'react-bootstrap';
 
 const SelectedProductForm = ({ data }) => {
-  const images = GenerateImageList(data);
+  const images = generateImageList(data);
 
   return (
     <div className={styles.container}>

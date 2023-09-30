@@ -29,6 +29,12 @@ const initialState = {
     loading: false,
     error: null,
   },
+
+  cart: {
+    products: [],
+    totalPrice: 0,
+    totalQuantity: 0,
+  },
 };
 
 export default initialState;

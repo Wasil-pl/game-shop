@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import Footer from '../Footer/Footer';
-import MainMenu from '../MainMenu/MainMenu';
 import React, { useEffect, useState } from 'react';
 import { updateViewportMode } from '../../../redux/screenSizeRedux';
+import { MainMenu } from '../../features/MainMenu/index';
 
 const MainLayout = ({ children }) => {
   const dispatch = useDispatch();

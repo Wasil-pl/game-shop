@@ -1,0 +1,68 @@
+@import '../../../../styles/settings.scss';
+
+.product {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .image {
+    width: 70px;
+    height: 70px;
+    padding: 5px;
+    border: solid 1px $color-border;
+    border-radius: $radius;
+    background-color: $color-background-third;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .productInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 10px;
+
+    h3 {
+      font-size: $medium-size;
+      margin: 0;
+    }
+
+    p {
+      font-size: $small-size;
+      margin: 0;
+    }
+  }
+}
+
+.inputAndPriceBox {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+
+  p {
+    font-size: $medium-size;
+    margin: 0;
+  }
+
+  .trash {
+    font-size: $large-size;
+    color: $color-text-danger;
+    cursor: pointer;
+  }
+
+  .inputGroup {
+    width: 100px;
+    margin-left: 40px;
+
+    input {
+      text-align: center;
+    }
+  }
+}

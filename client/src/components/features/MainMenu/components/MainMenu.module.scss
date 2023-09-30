@@ -1,0 +1,52 @@
+@import '../../../../styles/settings.scss';
+
+.menuContainer {
+  position: relative;
+
+  .navbar {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translate(-50%, 25%);
+    width: 90%;
+    height: 46px;
+    max-width: 1200px;
+    padding: 0 40px;
+    box-shadow: $shadow;
+    border-top: 2px solid $color-border-dark;
+    border-bottom: 2px solid $color-border-dark;
+    background-color: $main-menu-color-background;
+
+    .nav > div > a {
+      color: $color-text-light;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    }
+
+    .cart > div {
+      left: -100px;
+    }
+
+    .logo {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-right: 50px;
+      font-family: $font-header;
+      color: $color-text-light;
+    }
+
+    .navBarCollapse {
+      font-size: $medium-size;
+    }
+
+    .loginDropdown > div {
+      left: -100px;
+    }
+  }
+}

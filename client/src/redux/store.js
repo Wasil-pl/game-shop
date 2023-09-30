@@ -5,6 +5,7 @@ import { productsReducer } from './productsRedux';
 import { usersReducer } from './usersRedux';
 import { ordersReducer } from './ordersRedux';
 import { bannerReducer } from './bannerRedux';
+import { cartReducer } from './cartRedux';
 import screenReducer from './screenSizeRedux';
 
 const subreducers = {
@@ -12,6 +13,7 @@ const subreducers = {
   users: usersReducer,
   orders: ordersReducer,
   banner: bannerReducer,
+  cart: cartReducer,
   screenMode: screenReducer,
 };
 
