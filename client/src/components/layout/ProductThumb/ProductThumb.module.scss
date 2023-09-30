@@ -146,9 +146,35 @@
         text-transform: uppercase;
         flex: 2;
         margin-right: 10px;
+        border: 2px solid;
+        transition: $transitionLong;
 
         svg {
           margin-left: 10px;
+        }
+
+        &:hover {
+          background-color: $color-background;
+        }
+
+        &:hover.xbox {
+          color: $colorXbox;
+          border: solid 2px $colorXbox;
+        }
+
+        &:hover.playstation {
+          color: $colorPlaystation;
+          border: solid 2px $colorPlaystation;
+        }
+
+        &:hover.nintendo {
+          color: $colorNintendo;
+          border: solid 2px $colorNintendo;
+        }
+
+        &:hover.windows {
+          color: $colorWindows;
+          border: solid 2px $colorWindows;
         }
       }
 
@@ -157,6 +183,12 @@
         color: $colorPlaystation;
         background-color: $color-background;
         border: solid 2px $colorPlaystation;
+        transition: $transitionLong;
+
+        &:hover {
+          color: $color-background;
+          background-color: $colorPlaystation;
+        }
       }
 
       .showMorexbox {
@@ -164,6 +196,12 @@
         color: $colorXbox;
         background-color: $color-background;
         border: solid 2px $colorXbox;
+        $transition: $transitionLong;
+
+        &:hover {
+          color: $color-background;
+          background-color: $colorXbox;
+        }
       }
 
       .showMorenintendo {
@@ -171,6 +209,12 @@
         color: $colorNintendo;
         background-color: $color-background;
         border: solid 2px $colorNintendo;
+        $transition: $transitionLong;
+
+        &:hover {
+          color: $color-background;
+          background-color: $colorNintendo;
+        }
       }
 
       .showMorewindows {
@@ -178,6 +222,12 @@
         color: $colorWindows;
         background-color: $color-background;
         border: solid 2px $colorWindows;
+        $transition: $transitionLong;
+
+        &:hover {
+          color: $color-background;
+          background-color: $colorWindows;
+        }
       }
     }
   }
