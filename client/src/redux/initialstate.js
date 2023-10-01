@@ -31,9 +31,7 @@ const initialState = {
   },
 
   cart: {
-    products: [],
-    totalPrice: 0,
-    totalQuantity: 0,
+    products: JSON.parse(localStorage.getItem('cartProducts')) || [],
   },
 };
 

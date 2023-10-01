@@ -17,3 +17,5 @@ export const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 export const Error = ({ children }) => (
   <small className="d-block form-text text-danger mt-2">{children}</small>
 );
+
+export const maxDisplayedProducts = 3;

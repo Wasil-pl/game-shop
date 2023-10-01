@@ -1,18 +1,27 @@
-import {
-  updateDecreaseTotalPrice,
-  updateDecreaseTotalQuantity,
-  updateIncreaseTotalPrice,
-  updateIncreaseTotalQuantity,
-} from '../Utils/cartReduxFunctions';
+import { createSelector } from 'reselect';
+import { getAllProducts } from './productsRedux';
 
 /* selectors */
 export const getAllCartProducts = ({ cart }) => cart.products;
-export const getTotalPrice = ({ cart }) => cart.totalPrice;
-export const getTotalQuantity = ({ cart }) => cart.totalQuantity;
+export const getTotalQuantity = ({ cart }) =>
+  cart.products.map((product) => product.quantity).reduce((a, b) => a + b, 0);
 
-/* action name creator */
-const reducerName = 'cart';
-const createActionName = (name) => `app/${reducerName}/${name}`;
+export const getDetailedCartProducts = createSelector(
+  [getAllProducts, getAllCartProducts],
+  (allProducts, cartProducts) => {
+    return cartProducts.map((cartProduct) => {
+      const fullProductInfo = allProducts.find(
+        (product) => product.id === cartProduct.id,
+      );
+      return {
+        ...cartProduct,
+        ...fullProductInfo,
+      };
+    });
+  },
+);
+
+const createActionName = (name) => `app/cart/${name}`;
 
 /* action types */
 const ADD_PRODUCT_TO_CART = createActionName('ADD_PRODUCT_TO_CART');
@@ -49,114 +58,74 @@ export const decreaseProductQuantityInCart = (payload) => ({
 });
 
 /* reducer */
-export const cartReducer = (
-  statePart = {
-    products: [],
-    totalPrice: 0,
-    totalQuantity: 0,
-  },
-  action,
-) => {
+export const cartReducer = (statePart = [], action) => {
+  let newState;
   switch (action.type) {
     case ADD_PRODUCT_TO_CART: {
       const existingProduct = statePart.products.find(
-        (product) => product.id === action.payload.id,
-      );
-      const productPrice = Number(
-        action.payload.salePrice || action.payload.price,
+        (product) => product.id === action.payload,
       );
       if (!existingProduct) {
-        return {
+        newState = {
           ...statePart,
           products: [
             ...statePart.products,
-            {
-              ...action.payload,
-              totalPrice: productPrice,
-              quantity: +1,
-            },
+            { id: action.payload, quantity: 1 },
           ],
-          totalPrice: updateIncreaseTotalPrice(statePart, productPrice),
-          totalQuantity: updateIncreaseTotalQuantity(statePart),
+        };
+      } else {
+        newState = {
+          ...statePart,
+          products: statePart.products.map((product) =>
+            product.id === action.payload
+              ? { ...product, quantity: product.quantity + 1 }
+              : product,
+          ),
         };
       }
-      return {
-        ...statePart,
-        products: statePart.products.map((product) =>
-          product.id === action.payload.id
-            ? {
-                ...product,
-                totalPrice: productPrice * (product.quantity + 1),
-                quantity: product.quantity + 1,
-              }
-            : product,
-        ),
-        totalPrice: updateIncreaseTotalPrice(statePart, productPrice),
-        totalQuantity: updateIncreaseTotalQuantity(statePart),
-      };
+      localStorage.setItem('cartProducts', JSON.stringify(newState.products));
+      return newState;
     }
-
     case REMOVE_PRODUCT_FROM_CART: {
-      const removedProduct = statePart.products.find(
-        (product) => product.id === action.payload.id,
-      );
-      return {
+      newState = {
         ...statePart,
         products: statePart.products.filter(
-          (product) => product.id !== action.payload.id,
+          (product) => product.id !== action.payload,
         ),
-        totalPrice: statePart.totalPrice - removedProduct.totalPrice,
-        totalQuantity: statePart.totalQuantity - removedProduct.quantity,
       };
+      localStorage.setItem('cartProducts', JSON.stringify(newState.products));
+      return newState;
     }
-
     case REMOVE_ALL_PRODUCTS_FROM_CART: {
+      localStorage.removeItem('cartProducts');
       return {
         ...statePart,
         products: [],
-        totalPrice: 0,
-        totalQuantity: 0,
       };
     }
-
     case INCREASE_PRODUCT_QUANTITY_IN_CART: {
-      const productPrice = Number(
-        action.payload.salePrice || action.payload.price,
-      );
-      return {
+      newState = {
         ...statePart,
         products: statePart.products.map((product) =>
-          product.id === action.payload.id
-            ? {
-                ...product,
-                totalPrice: productPrice * (product.quantity + 1),
-                quantity: product.quantity + 1,
-              }
+          product.id === action.payload
+            ? { ...product, quantity: product.quantity + 1 }
             : product,
         ),
-        totalPrice: updateIncreaseTotalPrice(statePart, productPrice),
-        totalQuantity: updateIncreaseTotalQuantity(statePart),
       };
+      localStorage.setItem('cartProducts', JSON.stringify(newState.products));
+      return newState;
     }
-
     case DECREASE_PRODUCT_QUANTITY_IN_CART: {
-      const productPrice = Number(
-        action.payload.salePrice || action.payload.price,
-      );
-      return {
+      newState = {
         ...statePart,
         products: statePart.products.map((product) =>
-          product.id === action.payload.id
-            ? {
-                ...product,
-                totalPrice: productPrice * (product.quantity - 1),
-                quantity: product.quantity - 1,
-              }
+          product.id === action.payload && product.quantity > 1
+            ? { ...product, quantity: product.quantity - 1 }
             : product,
         ),
-        totalPrice: updateDecreaseTotalPrice(statePart, productPrice),
-        totalQuantity: updateDecreaseTotalQuantity(statePart),
       };
+      localStorage.setItem('cartProducts', JSON.stringify(newState.products));
+      return newState;
     }
     default:
       return statePart;

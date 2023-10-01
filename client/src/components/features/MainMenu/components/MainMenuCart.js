@@ -1,23 +1,32 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getAllCartProducts,
-  getTotalPrice,
+  getDetailedCartProducts,
   getTotalQuantity,
   removeAllProductsFromCart,
 } from '../../../../redux/cartRedux';
 import styles from './MainMenuCart.module.scss';
 import { Button } from 'react-bootstrap';
 import MainMenuProductCartForm from './MainMenuProductCartForm';
+import { Link, useNavigate } from 'react-router-dom';
+import { getTotalPrice } from '../../../../Utils/cartFunctions';
+import { maxDisplayedProducts } from '../../../../consts';
 
 const MainMenuCart = () => {
   const dispatch = useDispatch();
-  const cartProducts = useSelector(getAllCartProducts);
-  const totalPrice = useSelector(getTotalPrice);
+  const navigate = useNavigate();
+  const cartProducts = useSelector(getDetailedCartProducts);
+
   const totalQuantity = useSelector(getTotalQuantity);
+  const totalPrice = getTotalPrice(cartProducts);
 
   const handleRemoveAllProducts = () => {
     dispatch(removeAllProductsFromCart());
+  };
+
+  const handleViewCart = (e) => {
+    e.preventDefault();
+    navigate(`/cart`);
   };
 
   if (cartProducts.length === 0) {
@@ -25,7 +34,7 @@ const MainMenuCart = () => {
       <div className={styles.container}>
         <div className={styles.title}>
           <h2>My Cart ({totalQuantity})</h2>
-          <a href="/cart">View All</a>
+          <Link to="/cart">View All</Link>
         </div>
         <div className={styles.emptyCart}>
           <p>Your cart is empty</p>
@@ -38,22 +47,22 @@ const MainMenuCart = () => {
     <div className={styles.container}>
       <div className={styles.title}>
         <h2>My Cart ({totalQuantity})</h2>
-        <a href="/cart">View All</a>
+        <Link to="/cart">View All</Link>
       </div>
       <div className={styles.cart}>
-        {cartProducts.map((product) => (
+        {cartProducts.slice(0, maxDisplayedProducts).map((product) => (
           <MainMenuProductCartForm product={product} key={product.id} />
         ))}
+        {cartProducts.length > maxDisplayedProducts && (
+          <div className={styles.moreProductsIndicator}>And more ...</div>
+        )}
       </div>
       <div className={styles.totalPrice}>
         <h3>Total Price:</h3>
         <p>{totalPrice}zł</p>
       </div>
       <div className={styles.buttons}>
-        <Button variant="primary" size="sm">
-          Checkout
-        </Button>
-        <Button variant="secondary" size="sm">
+        <Button onClick={handleViewCart} variant="secondary" size="sm">
           View Cart
         </Button>
         {totalQuantity !== 0 && (

@@ -22,7 +22,7 @@ const ProductThumb = ({ data, variant = '' }) => {
 
   const handleAddToCart = (e) => {
     e.preventDefault();
-    dispatch(addProductToCart(data));
+    dispatch(addProductToCart(data.id));
   };
 
   return (

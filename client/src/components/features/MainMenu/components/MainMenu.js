@@ -7,17 +7,19 @@ import Home from '../../../pages/Home/Home';
 import SearchPhrase from '../../SearchPhrase/SearchPhrase';
 import MainMenuCart from './MainMenuCart';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTotalQuantity } from '../../../../redux/cartRedux';
 import MainMenuLogin from './MainMenuLogin';
 import {
   getLoggedState,
   logoutUserRequest,
 } from '../../../../redux/usersRedux';
+import { getTotalQuantity } from '../../../../redux/cartRedux';
 
 export const MainMenu = () => {
   const dispatch = useDispatch();
-  const totalQuantity = useSelector(getTotalQuantity);
+
   const isLogged = useSelector(getLoggedState);
+
+  const totalQuantity = useSelector(getTotalQuantity);
 
   const handleLogout = () => {
     dispatch(logoutUserRequest());

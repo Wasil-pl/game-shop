@@ -5,9 +5,17 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 import './ImageGallery.css';
 import { generateImageList } from '../../../../Utils/generateImageList';
 import { Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { addProductToCart } from '../../../../redux/cartRedux';
 
 const SelectedProductForm = ({ data }) => {
+  const dispatch = useDispatch();
   const images = generateImageList(data);
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    dispatch(addProductToCart(data.id));
+  };
 
   return (
     <div className={styles.container}>
@@ -57,7 +65,11 @@ const SelectedProductForm = ({ data }) => {
             <p>{data.price} zł</p>
           </div>
         )}
-        <Button variant="primary" className={styles.addToCartButton}>
+        <Button
+          variant="primary"
+          className={styles.addToCartButton}
+          onClick={handleAddToCart}
+        >
           Add to cart
         </Button>
       </div>

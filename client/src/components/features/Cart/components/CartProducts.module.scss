@@ -1,0 +1,32 @@
+@import '../../../../styles/settings.scss';
+
+.container {
+  .titleBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: $extra-large-size;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  .columnNames {
+    display: flex;
+
+    .columnProduct {
+      flex: 4;
+    }
+
+    .columnPrice {
+      flex: 1;
+    }
+
+    .columnQuantity {
+      flex: 1;
+    }
+  }
+}

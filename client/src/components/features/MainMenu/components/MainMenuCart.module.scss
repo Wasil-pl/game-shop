@@ -20,6 +20,15 @@
     border: solid 1px $color-border;
     border-radius: $radius;
     padding: 10px;
+
+    .moreProductsIndicator {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      font-size: $medium-size;
+      font-weight: bold;
+    }
   }
 
   .totalPrice {

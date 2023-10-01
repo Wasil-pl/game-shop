@@ -1,0 +1,40 @@
+@import '../../../../styles/settings.scss';
+
+.container {
+  display: flex;
+
+  .productBox {
+    flex: 4;
+
+    .image {
+      max-width: 250px;
+      height: 300px;
+      padding: 10px;
+      border: solid 1px $color-border;
+      border-radius: $radius;
+      background-color: $color-background-third;
+      text-align: center;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .priceBox {
+    flex: 1;
+  }
+
+  .inputBox {
+    flex: 1;
+
+    .inputGroup {
+      width: 100px;
+
+      input {
+        text-align: center;
+      }
+    }
+  }
+}

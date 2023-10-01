@@ -9,23 +9,25 @@ import styles from './MainMenuProductCartForm.module.scss';
 import { IMAGES_URL } from '../../../../config';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { Trash } from 'react-bootstrap-icons';
+import { getTotalPrice } from '../../../../Utils/cartFunctions';
 
 const MainMenuProductCartForm = ({ product }) => {
   const dispatch = useDispatch();
 
+  const totalPrice = getTotalPrice([product]);
+
   const handleIncrement = (data) => {
-    dispatch(increaseProductQuantityInCart(data));
+    dispatch(increaseProductQuantityInCart(data.id));
   };
 
   const handleDecrement = (data) => {
     if (data.quantity > 1) {
-      dispatch(decreaseProductQuantityInCart(data));
+      dispatch(decreaseProductQuantityInCart(data.id));
     }
   };
 
   const handleDeleteProduct = (data) => {
-    console.log('data:', data);
-    dispatch(removeProductFromCart(data));
+    dispatch(removeProductFromCart(data.id));
   };
 
   return (
@@ -59,7 +61,7 @@ const MainMenuProductCartForm = ({ product }) => {
             +
           </Button>
         </InputGroup>
-        <p>{product.totalPrice}</p>
+        <p>{totalPrice}</p>
       </div>
       <hr />
     </div>
