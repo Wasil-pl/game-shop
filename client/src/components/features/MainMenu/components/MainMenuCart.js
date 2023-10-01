@@ -20,6 +20,20 @@ const MainMenuCart = () => {
     dispatch(removeAllProductsFromCart());
   };
 
+  if (cartProducts.length === 0) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.title}>
+          <h2>My Cart ({totalQuantity})</h2>
+          <a href="/cart">View All</a>
+        </div>
+        <div className={styles.emptyCart}>
+          <p>Your cart is empty</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>

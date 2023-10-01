@@ -1,17 +1,27 @@
 import React from 'react';
 import styles from './MainMenu.module.scss';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Button } from 'react-bootstrap';
 import CarouselComponent from '../../Carousel/Carousel';
 import { Link } from 'react-router-dom';
 import Home from '../../../pages/Home/Home';
 import SearchPhrase from '../../SearchPhrase/SearchPhrase';
 import MainMenuCart from './MainMenuCart';
-import MainMenuLoginForm from './MainMenuLoginForm';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getTotalQuantity } from '../../../../redux/cartRedux';
+import MainMenuLogin from './MainMenuLogin';
+import {
+  getLoggedState,
+  logoutUserRequest,
+} from '../../../../redux/usersRedux';
 
 export const MainMenu = () => {
+  const dispatch = useDispatch();
   const totalQuantity = useSelector(getTotalQuantity);
+  const isLogged = useSelector(getLoggedState);
+
+  const handleLogout = () => {
+    dispatch(logoutUserRequest());
+  };
 
   return (
     <div className={styles.menuContainer}>
@@ -38,13 +48,26 @@ export const MainMenu = () => {
             <NavDropdown
               title={`Cart ${totalQuantity ? `(${totalQuantity})` : ''}`}
               className={styles.cart}
-              disabled={totalQuantity === 0}
             >
               <MainMenuCart />
             </NavDropdown>
-            <NavDropdown title="Login" className={styles.loginDropdown}>
-              <MainMenuLoginForm />
-            </NavDropdown>
+            {!isLogged && (
+              <NavDropdown title="Login" className={styles.loginDropdown}>
+                <MainMenuLogin />
+              </NavDropdown>
+            )}
+            {isLogged && (
+              <div className={styles.buttonBox}>
+                <Button
+                  className={styles.logoutButton}
+                  variant="outline-danger"
+                  size="sm"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Button>
+              </div>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

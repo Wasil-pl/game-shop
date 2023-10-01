@@ -13,6 +13,7 @@ import AllProducts from './components/pages/AllProducts/AllProducts';
 import ProductsByPlatform from './components/pages/ProductsByPlatform/ProductsByPlatform';
 import SearchResult from './components/pages/SearchResult/SearchResult';
 import { SelectedProduct } from './components/features/SelectedProduct/index';
+import { checkUserSession } from './redux/usersRedux';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,10 @@ const App = () => {
 
   useEffect(() => {
     dispatch(loadProductsRequest());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(checkUserSession());
   }, [dispatch]);
 
   return (
