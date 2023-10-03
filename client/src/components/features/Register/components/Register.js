@@ -5,7 +5,7 @@ import Divider from '../../../layout/Divider/Divider';
 import { modalMessages } from '../../../../consts';
 import {
   getRegisterErrorState,
-  getRegisterSuccessState,
+  getSuccessState,
   getUsersLoadingState,
   registerUserRequest,
   resetUserState,
@@ -18,7 +18,7 @@ export const Register = () => {
   const navigate = useNavigate();
   const isLoading = useSelector(getUsersLoadingState);
   const errorMessages = useSelector(getRegisterErrorState);
-  const success = useSelector(getRegisterSuccessState);
+  const success = useSelector(getSuccessState);
 
   const handleSubmit = async (user) => {
     dispatch(registerUserRequest(user));

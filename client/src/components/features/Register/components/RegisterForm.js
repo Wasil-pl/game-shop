@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './RegisterForm.module.scss';
 import { useForm } from 'react-hook-form';
 import { Button, Form } from 'react-bootstrap';
-import { Error, emailPattern, errorMessages } from '../../../../consts';
+import { Error, errorMessages, patterns } from '../../../../consts';
 
 const RegisterForm = ({ action }) => {
   const {
@@ -29,7 +29,7 @@ const RegisterForm = ({ action }) => {
             {...register('email', {
               required: errorMessages.required,
               pattern: {
-                value: emailPattern,
+                value: patterns.emailPattern,
                 message: errorMessages.emailPattern,
               },
             })}
@@ -45,6 +45,10 @@ const RegisterForm = ({ action }) => {
           <Form.Control
             {...register('password', {
               required: errorMessages.required,
+              minLength: {
+                value: patterns.passwordMinLength,
+                message: errorMessages.minLength(patterns.passwordMinLength),
+              },
             })}
             type="password"
             placeholder="Password"

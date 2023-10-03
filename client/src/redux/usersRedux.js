@@ -8,8 +8,8 @@ export const getUser = (state) => state.users.user;
 export const getLoggedState = (state) => state.users.isLogged;
 export const getUsersLoadingState = (state) => state.users.loading;
 export const getUsersErrorState = (state) => state.users.error;
+export const getSuccessState = (state) => state.users.success;
 export const getRegisterErrorState = (state) => state.users.registerError;
-export const getRegisterSuccessState = (state) => state.users.registerSuccess;
 
 /* ACTIONS */
 export const loadUsers = (payload) => ({ payload, type: LOAD_USERS });
@@ -28,10 +28,6 @@ export const errorUserRequest = (payload) => ({
 export const errorUserRegisterRequest = (payload) => ({
   payload,
   type: ERROR_USER_REGISTER_REQUEST,
-});
-export const endUserRegisterRequest = (payload) => ({
-  payload,
-  type: END_USER_REGISTER_REQUEST,
 });
 export const endUserRequest = (payload) => ({
   payload,
@@ -53,7 +49,6 @@ const ERROR_USER_REQUEST = createActionName('ERROR_USER_REQUEST');
 const ERROR_USER_REGISTER_REQUEST = createActionName(
   'ERROR_USER_REGISTER_REQUEST',
 );
-const END_USER_REGISTER_REQUEST = createActionName('END_USER_REGISTER_REQUEST');
 const END_USER_REQUEST = createActionName('END_USER_REQUEST');
 const RESET_USER_STATE = createActionName('RESET_USER_STATE');
 
@@ -65,6 +60,7 @@ export const loadUsersRequest = () => {
       const data = await httpClient.get(`${API_URL}/api/users`);
       dispatch(loadUsers(data));
       dispatch(endUserRequest());
+      dispatch(resetUserState());
     } catch (error) {
       const action = errorUserRequest({ message: error.message });
       dispatch(action);
@@ -79,6 +75,7 @@ export const loadUserRequest = (userId) => {
       const data = await httpClient.get(`${API_URL}/api/users/${userId}`);
       dispatch(loadUser(data));
       dispatch(endUserRequest());
+      dispatch(resetUserState());
     } catch (error) {
       const action = errorUserRequest({ message: error.message });
       dispatch(action);
@@ -105,7 +102,7 @@ export const registerUserRequest = (user) => {
     dispatch(startUserRequest());
     try {
       await httpClient.post(`${API_URL}/api/auth/register`, user);
-      dispatch(endUserRegisterRequest());
+      dispatch(endUserRequest());
     } catch (error) {
       const action = errorUserRegisterRequest({ message: error.message });
       dispatch(action);
@@ -126,6 +123,7 @@ export const checkUserSession = () => {
       }
 
       dispatch(endUserRequest());
+      dispatch(resetUserState());
     } catch (error) {
       const action = errorUserRequest({ message: error.message });
       dispatch(action);
@@ -140,6 +138,7 @@ export const logoutUserRequest = () => {
       await httpClient.delete(`${API_URL}/api/auth/logout`);
       dispatch(logoutUser());
       dispatch(endUserRequest());
+      dispatch(resetUserState());
     } catch (error) {
       const action = errorUserRequest({ message: error.message });
       dispatch(action);
@@ -156,7 +155,6 @@ export const usersReducer = (
     error: null,
     success: false,
     registerError: null,
-    registerSuccess: false,
     isLogged: false,
   },
   action,
@@ -173,14 +171,7 @@ export const usersReducer = (
     case START_USER_REQUEST:
       return { ...statePart, loading: true, error: null };
     case END_USER_REQUEST:
-      return { ...statePart, loading: false, error: null };
-    case END_USER_REGISTER_REQUEST:
-      return {
-        ...statePart,
-        loading: false,
-        error: null,
-        registerSuccess: true,
-      };
+      return { ...statePart, loading: false, error: null, success: true };
     case ERROR_USER_REQUEST:
       return { ...statePart, loading: false, error: action.payload.message };
     case ERROR_USER_REGISTER_REQUEST:

@@ -10,19 +10,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import MainMenuLogin from './MainMenuLogin';
 import {
   getLoggedState,
+  getSuccessState,
   logoutUserRequest,
+  resetUserState,
 } from '../../../../redux/usersRedux';
 import { getTotalQuantity } from '../../../../redux/cartRedux';
+import ModalComponent from '../../ModalComponent/ModalComponent';
+import { modalMessages } from '../../../../consts';
 
 export const MainMenu = () => {
   const dispatch = useDispatch();
 
   const isLogged = useSelector(getLoggedState);
+  const loginSuccess = useSelector(getSuccessState);
 
   const totalQuantity = useSelector(getTotalQuantity);
 
   const handleLogout = () => {
     dispatch(logoutUserRequest());
+  };
+
+  const handleCloseModal = () => {
+    dispatch(resetUserState());
   };
 
   return (
@@ -75,6 +84,13 @@ export const MainMenu = () => {
       </Navbar>
 
       <CarouselComponent />
+
+      <ModalComponent
+        show={loginSuccess}
+        onConfirm={handleCloseModal}
+        headerText={modalMessages.loginSuccess.headerText}
+        textMessage={modalMessages.loginSuccess.textMessage}
+      />
     </div>
   );
 };

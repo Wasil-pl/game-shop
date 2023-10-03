@@ -8,12 +8,15 @@ export const errorMessages = {
     'This field can contain only letters, numbers, spaces and special characters: . , - _ ( )',
   validatePrice: 'Invalid price, can contain only numbers and . ,',
   validateFile: 'Invalid file type',
-  maxLength: (maxLength) =>
-    `This field can contain max ${maxLength} characters`,
+  minLength: (minLength) =>
+    `This field must be at least ${minLength} characters long`,
   passwordMatch: 'Passwords do not match',
 };
 
-export const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+export const patterns = {
+  emailPattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+  passwordMinLength: 5,
+};
 
 export const Error = ({ children }) => (
   <small className="d-block form-text text-danger mt-2">{children}</small>
@@ -38,6 +41,10 @@ export const modalMessages = {
   registerSuccess: {
     headerText: 'Account created successfully',
     textMessage: 'You can now log in to your account',
+  },
+  loginSuccess: {
+    headerText: 'Login success',
+    textMessage: 'You are logged in, welcome!',
   },
 };
 
