@@ -3,11 +3,12 @@ import styles from './MainMenuLogin.module.scss';
 import { Alert, NavDropdown, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getLoggedState,
   getUsersErrorState,
   loginUserRequest,
 } from '../../../../redux/usersRedux';
 import MainMenuLoginForm from './MainMenuLoginForm';
+import { Link } from 'react-router-dom';
+import { Register } from '../../Register/index';
 
 const MainMenuLogin = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,6 @@ const MainMenuLogin = () => {
 
   const isLoading = useSelector(getUsersErrorState);
   const errorMessages = useSelector(getUsersErrorState);
-  const loginSuccess = useSelector(getLoggedState);
 
   return (
     <div>
@@ -38,20 +38,12 @@ const MainMenuLogin = () => {
         </div>
       )}
 
-      {!isLoading && !errorMessages && loginSuccess && (
-        <Alert className={styles.loginAlert} variant="success">
-          <Alert.Heading>Success</Alert.Heading>
-          <hr />
-          <p>You have successfully logged in!</p>
-        </Alert>
-      )}
-
       <NavDropdown.Divider />
       <div className={styles.registerBox}>
         New here?{' '}
-        <a href="*">
+        <Link to="/register" element={<Register />}>
           <b>Join Us</b>
-        </a>
+        </Link>
       </div>
     </div>
   );

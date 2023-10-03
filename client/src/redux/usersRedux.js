@@ -8,6 +8,8 @@ export const getUser = (state) => state.users.user;
 export const getLoggedState = (state) => state.users.isLogged;
 export const getUsersLoadingState = (state) => state.users.loading;
 export const getUsersErrorState = (state) => state.users.error;
+export const getRegisterErrorState = (state) => state.users.registerError;
+export const getRegisterSuccessState = (state) => state.users.registerSuccess;
 
 /* ACTIONS */
 export const loadUsers = (payload) => ({ payload, type: LOAD_USERS });
@@ -23,9 +25,21 @@ export const errorUserRequest = (payload) => ({
   payload,
   type: ERROR_USER_REQUEST,
 });
+export const errorUserRegisterRequest = (payload) => ({
+  payload,
+  type: ERROR_USER_REGISTER_REQUEST,
+});
+export const endUserRegisterRequest = (payload) => ({
+  payload,
+  type: END_USER_REGISTER_REQUEST,
+});
 export const endUserRequest = (payload) => ({
   payload,
   type: END_USER_REQUEST,
+});
+export const resetUserState = (payload) => ({
+  payload,
+  type: RESET_USER_STATE,
 });
 
 const createActionName = (name) => `app/products/${name}`;
@@ -36,7 +50,12 @@ const LOGIN_USER = createActionName('LOGIN_USER');
 
 const START_USER_REQUEST = createActionName('START_USER_REQUEST');
 const ERROR_USER_REQUEST = createActionName('ERROR_USER_REQUEST');
+const ERROR_USER_REGISTER_REQUEST = createActionName(
+  'ERROR_USER_REGISTER_REQUEST',
+);
+const END_USER_REGISTER_REQUEST = createActionName('END_USER_REGISTER_REQUEST');
 const END_USER_REQUEST = createActionName('END_USER_REQUEST');
+const RESET_USER_STATE = createActionName('RESET_USER_STATE');
 
 /* THUNKS */
 export const loadUsersRequest = () => {
@@ -81,6 +100,19 @@ export const loginUserRequest = (user) => {
   };
 };
 
+export const registerUserRequest = (user) => {
+  return async (dispatch) => {
+    dispatch(startUserRequest());
+    try {
+      await httpClient.post(`${API_URL}/api/auth/register`, user);
+      dispatch(endUserRegisterRequest());
+    } catch (error) {
+      const action = errorUserRegisterRequest({ message: error.message });
+      dispatch(action);
+    }
+  };
+};
+
 export const checkUserSession = () => {
   return async (dispatch) => {
     dispatch(startUserRequest());
@@ -92,6 +124,8 @@ export const checkUserSession = () => {
       if (isValid) {
         dispatch(loginUser());
       }
+
+      dispatch(endUserRequest());
     } catch (error) {
       const action = errorUserRequest({ message: error.message });
       dispatch(action);
@@ -121,6 +155,8 @@ export const usersReducer = (
     loading: false,
     error: null,
     success: false,
+    registerError: null,
+    registerSuccess: false,
     isLogged: false,
   },
   action,
@@ -138,8 +174,29 @@ export const usersReducer = (
       return { ...statePart, loading: true, error: null };
     case END_USER_REQUEST:
       return { ...statePart, loading: false, error: null };
+    case END_USER_REGISTER_REQUEST:
+      return {
+        ...statePart,
+        loading: false,
+        error: null,
+        registerSuccess: true,
+      };
     case ERROR_USER_REQUEST:
       return { ...statePart, loading: false, error: action.payload.message };
+    case ERROR_USER_REGISTER_REQUEST:
+      return {
+        ...statePart,
+        loading: false,
+        registerError: action.payload.message,
+      };
+    case RESET_USER_STATE:
+      return {
+        ...statePart,
+        loading: false,
+        error: null,
+        registerError: null,
+        success: false,
+      };
     default:
       return statePart;
   }

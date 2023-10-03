@@ -102,6 +102,18 @@ export class OrdersService {
         calculatedTotalPrice += Number(product.price) * item.quantity;
       }
 
+      if (product.inStock <= 0) {
+        throw new BadRequestException(
+          `Product ${product.name} is out of stock.`,
+        );
+      }
+
+      if (product.inStock < item.quantity) {
+        throw new BadRequestException(
+          `Not enough ${product.name} in stock. Only ${product.inStock} left.`,
+        );
+      }
+
       calculatedTotalQuantity += item.quantity;
 
       orderItemsData.push({

@@ -10,6 +10,7 @@ export const errorMessages = {
   validateFile: 'Invalid file type',
   maxLength: (maxLength) =>
     `This field can contain max ${maxLength} characters`,
+  passwordMatch: 'Passwords do not match',
 };
 
 export const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -32,6 +33,12 @@ export const modalMessages = {
   outOfStock: {
     headerText: 'Out of stock',
     textMessage:
-      'Sorry, this product is out of stock, you can order it, but it will take longer to deliver. Please confirm if you want to order this product.',
+      'Sorry, this product is out of stock, please check back later or contact us for more information',
+  },
+  registerSuccess: {
+    headerText: 'Account created successfully',
+    textMessage: 'You can now log in to your account',
   },
 };
+
+export const registerSuccessMessage = 'Account created successfully!';

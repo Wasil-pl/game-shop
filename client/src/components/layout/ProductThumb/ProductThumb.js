@@ -32,12 +32,6 @@ const ProductThumb = ({ data, variant = '' }) => {
     dispatch(addProductToCart(data.id));
   };
 
-  const onConfirm = (e) => {
-    e.preventDefault();
-    dispatch(addProductToCart(data.id));
-    setShowModal(false);
-  };
-
   const handleCloseModal = () => setShowModal(false);
 
   return (
@@ -106,11 +100,9 @@ const ProductThumb = ({ data, variant = '' }) => {
 
       <ModalComponent
         show={showModal}
-        onClose={handleCloseModal}
-        onConfirm={onConfirm}
+        onConfirm={handleCloseModal}
         headerText={modalMessages.outOfStock.headerText}
         textMessage={modalMessages.outOfStock.textMessage}
-        cancel
       />
     </div>
   );
