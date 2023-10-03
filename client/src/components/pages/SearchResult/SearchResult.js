@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import {
-  getErrorState,
-  getLoadingState,
-  getProductsBySearchPhrase,
-  searchProductsRequest,
-} from '../../../redux/productsRedux';
 import { Alert, Container, Spinner } from 'react-bootstrap';
 import Divider from '../../layout/Divider/Divider';
 import styles from './SearchResult.module.scss';
 import ProductThumb from '../../layout/ProductThumb/ProductThumb';
+import {
+  getErrorState,
+  getLoadingState,
+  getProductsBySearchPhrase,
+} from '../../../redux/products/productSelectors';
+import { searchProductsRequest } from '../../../redux/products/productThunks';
 
 const SearchResult = () => {
   const { searchPhrase } = useParams();

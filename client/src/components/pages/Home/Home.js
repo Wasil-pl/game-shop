@@ -3,14 +3,14 @@ import Platforms from '../../features/Platforms/Platforms';
 import SwiperSlideComponent from '../../features/SwiperSlideComponent/SwiperSlideComponent';
 import Divider from '../../layout/Divider/Divider';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getSaleProducts,
-  getNewProducts,
-  getLoadingState,
-  getErrorState,
-  loadProductsRequest,
-} from '../../../redux/productsRedux.js';
 import { Alert, Spinner } from 'react-bootstrap';
+import {
+  getErrorState,
+  getLoadingState,
+  getNewProducts,
+  getSaleProducts,
+} from '../../../redux/products/productSelectors';
+import { loadProductsRequest } from '../../../redux/products/productThunks';
 
 const Home = () => {
   const dispatch = useDispatch();

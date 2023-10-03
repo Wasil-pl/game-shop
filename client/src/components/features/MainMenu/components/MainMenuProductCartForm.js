@@ -1,15 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  decreaseProductQuantityInCart,
-  increaseProductQuantityInCart,
-  removeProductFromCart,
-} from '../../../../redux/cartRedux';
 import styles from './MainMenuProductCartForm.module.scss';
 import { IMAGES_URL } from '../../../../config';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { Trash } from 'react-bootstrap-icons';
 import { getTotalPrice } from '../../../../Utils/getTotalPrice';
+import {
+  decreaseProductQuantityInCart,
+  increaseProductQuantityInCart,
+  removeProductFromCart,
+} from '../../../../redux/cart/cartActions';
 
 const MainMenuProductCartForm = ({ product }) => {
   const dispatch = useDispatch();

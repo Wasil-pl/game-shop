@@ -1,11 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import initialState from './initialstate';
-import { productsReducer } from './productsRedux';
-import { usersReducer } from './usersRedux';
-import { ordersReducer } from './ordersRedux';
+import { productsReducer } from './products/productsReducer';
+import { usersReducer } from './users/usersReducer';
+import { cartReducer } from './cart/cartReducer';
+import { ordersReducer } from './orders/ordersReducer';
 import { bannerReducer } from './bannerRedux';
-import { cartReducer } from './cartRedux';
 import screenReducer from './screenSizeRedux';
 
 const subreducers = {

@@ -5,16 +5,16 @@ import Divider from '../../layout/Divider/Divider';
 import styles from './ProductsByPlatform.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import {
-  getErrorState,
-  getLoadingState,
-  getProductsByPlatform,
-  loadProductsByPlatformRequest,
-} from '../../../redux/productsRedux';
 import { getScreenMode } from '../../../redux/screenSizeRedux';
 import { getProductsPerPage } from '../../../Utils/getProductsPerPage';
 import CustomPagination from '../../features/CustomPagination/CustomPagination';
 import clsx from 'clsx';
+import { loadProductsByPlatformRequest } from '../../../redux/products/productThunks';
+import {
+  getErrorState,
+  getLoadingState,
+  getProductsByPlatform,
+} from '../../../redux/products/productSelectors';
 
 const ProductsByPlatform = () => {
   const { platform } = useParams();

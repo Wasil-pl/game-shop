@@ -2,13 +2,14 @@ import React from 'react';
 import styles from './MainMenuLogin.module.scss';
 import { Alert, NavDropdown, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getUsersErrorState,
-  loginUserRequest,
-} from '../../../../redux/usersRedux';
 import MainMenuLoginForm from './MainMenuLoginForm';
 import { Link } from 'react-router-dom';
 import { Register } from '../../Register/index';
+import { loginUserRequest } from '../../../../redux/users/userThunks';
+import {
+  getUsersErrorState,
+  getUsersLoadingState,
+} from '../../../../redux/users/userSelectors';
 
 const MainMenuLogin = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const MainMenuLogin = () => {
     dispatch(loginUserRequest(data));
   };
 
-  const isLoading = useSelector(getUsersErrorState);
+  const isLoading = useSelector(getUsersLoadingState);
   const errorMessages = useSelector(getUsersErrorState);
 
   return (

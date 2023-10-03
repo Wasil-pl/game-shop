@@ -8,15 +8,15 @@ import SearchPhrase from '../../SearchPhrase/SearchPhrase';
 import MainMenuCart from './MainMenuCart';
 import { useDispatch, useSelector } from 'react-redux';
 import MainMenuLogin from './MainMenuLogin';
+import ModalComponent from '../../ModalComponent/ModalComponent';
+import { modalMessages } from '../../../../consts';
 import {
   getLoggedState,
   getSuccessState,
-  logoutUserRequest,
-  resetUserState,
-} from '../../../../redux/usersRedux';
-import { getTotalQuantity } from '../../../../redux/cartRedux';
-import ModalComponent from '../../ModalComponent/ModalComponent';
-import { modalMessages } from '../../../../consts';
+} from '../../../../redux/users/userSelectors';
+import { logoutUserRequest } from '../../../../redux/users/userThunks';
+import { resetUserState } from '../../../../redux/users/userActions';
+import { getTotalQuantity } from '../../../../redux/cart/cartSelectors';
 
 export const MainMenu = () => {
   const dispatch = useDispatch();

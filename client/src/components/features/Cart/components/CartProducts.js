@@ -3,18 +3,16 @@ import styles from './CartProducts.module.scss';
 import { Button, Container } from 'react-bootstrap';
 import CartProductForm from './CartProductForm';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getDetailedCartProducts,
-  removeAllProductsFromCart,
-} from '../../../../redux/cartRedux';
 import { Cart } from 'react-bootstrap-icons';
 import Divider from '../../../layout/Divider/Divider';
 import { getTotalPrice } from '../../../../Utils/getTotalPrice';
 import { useNavigate } from 'react-router-dom';
-import { resetOrderState } from '../../../../redux/ordersRedux';
-import { getLoggedState } from '../../../../redux/usersRedux';
+import { getLoggedState } from '../../../../redux/users/userSelectors';
 import ModalComponent from '../../ModalComponent/ModalComponent';
 import { modalMessages } from '../../../../consts';
+import { getDetailedCartProducts } from '../../../../redux/cart/cartSelectors';
+import { removeAllProductsFromCart } from '../../../../redux/cart/cartActions';
+import { resetOrderState } from '../../../../redux/orders/orderActions';
 
 export const CartProducts = () => {
   const [showModal, setShowModal] = useState(false);

@@ -1,16 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getDetailedCartProducts,
-  getTotalQuantity,
-  removeAllProductsFromCart,
-} from '../../../../redux/cartRedux';
 import styles from './MainMenuCart.module.scss';
 import { Button } from 'react-bootstrap';
 import MainMenuProductCartForm from './MainMenuProductCartForm';
 import { Link, useNavigate } from 'react-router-dom';
 import { getTotalPrice } from '../../../../Utils/getTotalPrice';
 import { maxDisplayedProducts } from '../../../../consts';
+import {
+  getDetailedCartProducts,
+  getTotalQuantity,
+} from '../../../../redux/cart/cartSelectors';
+import { removeAllProductsFromCart } from '../../../../redux/cart/cartActions';
 
 const MainMenuCart = () => {
   const dispatch = useDispatch();

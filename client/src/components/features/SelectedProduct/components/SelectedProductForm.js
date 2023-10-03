@@ -6,7 +6,7 @@ import './ImageGallery.css';
 import { generateImageList } from '../../../../Utils/generateImageList';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { addProductToCart } from '../../../../redux/cartRedux';
+import { addProductToCart } from '../../../../redux/cart/cartActions';
 
 const SelectedProductForm = ({ data }) => {
   const dispatch = useDispatch();

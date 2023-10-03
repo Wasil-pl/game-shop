@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Alert, Container, Spinner } from 'react-bootstrap';
 import Divider from '../../../layout/Divider/Divider';
+import SelectedProductForm from './SelectedProductForm';
+import { loadProductByIdRequest } from '../../../../redux/products/productThunks';
 import {
   getErrorState,
   getLoadingState,
   getProductById,
-  loadProductByIdRequest,
-} from '../../../../redux/productsRedux';
-import SelectedProductForm from './SelectedProductForm';
+} from '../../../../redux/products/productSelectors';
 
 export const SelectedProduct = () => {
   const { id } = useParams();

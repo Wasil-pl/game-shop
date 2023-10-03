@@ -3,15 +3,15 @@ import RegisterForm from './RegisterForm';
 import { Alert, Container, Spinner } from 'react-bootstrap';
 import Divider from '../../../layout/Divider/Divider';
 import { modalMessages } from '../../../../consts';
+import ModalComponent from '../../ModalComponent/ModalComponent';
+import { useNavigate } from 'react-router-dom';
 import {
   getRegisterErrorState,
   getSuccessState,
   getUsersLoadingState,
-  registerUserRequest,
-  resetUserState,
-} from '../../../../redux/usersRedux';
-import ModalComponent from '../../ModalComponent/ModalComponent';
-import { useNavigate } from 'react-router-dom';
+} from '../../../../redux/users/userSelectors';
+import { registerUserRequest } from '../../../../redux/users/userThunks';
+import { resetUserState } from '../../../../redux/users/userActions';
 
 export const Register = () => {
   const dispatch = useDispatch();

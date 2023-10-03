@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getAllProducts } from '../../../redux/productsRedux';
 import ProductThumb from '../../layout/ProductThumb/ProductThumb';
 import { Container } from 'react-bootstrap';
 import Divider from '../../layout/Divider/Divider';
@@ -9,6 +8,7 @@ import { getScreenMode } from '../../../redux/screenSizeRedux';
 import { getProductsPerPage } from '../../../Utils/getProductsPerPage';
 import CustomPagination from '../../features/CustomPagination/CustomPagination';
 import clsx from 'clsx';
+import { getAllProducts } from '../../../redux/products/productSelectors';
 
 const AllProducts = () => {
   const products = useSelector(getAllProducts);

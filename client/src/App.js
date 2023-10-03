@@ -7,10 +7,10 @@ import AllProducts from './components/pages/AllProducts/AllProducts';
 import ProductsByPlatform from './components/pages/ProductsByPlatform/ProductsByPlatform';
 import SearchResult from './components/pages/SearchResult/SearchResult';
 import { SelectedProduct } from './components/features/SelectedProduct/index';
-import { checkUserSession } from './redux/usersRedux';
 import { CartProducts } from './components/features/Cart/index';
 import { Checkout } from './components/features/Checkout/index';
 import { Register } from './components/features/Register/index';
+import { checkUserSession } from './redux/users/userThunks';
 
 const App = () => {
   const dispatch = useDispatch();

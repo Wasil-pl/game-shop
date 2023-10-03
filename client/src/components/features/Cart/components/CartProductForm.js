@@ -3,13 +3,13 @@ import styles from './CartProductForm.module.scss';
 import { IMAGES_URL } from '../../../../config';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
+import { getTotalPrice } from '../../../../Utils/getTotalPrice';
+import { Trash } from 'react-bootstrap-icons';
 import {
   decreaseProductQuantityInCart,
   increaseProductQuantityInCart,
   removeProductFromCart,
-} from '../../../../redux/cartRedux';
-import { getTotalPrice } from '../../../../Utils/getTotalPrice';
-import { Trash } from 'react-bootstrap-icons';
+} from '../../../../redux/cart/cartActions';
 
 const CartProductForm = ({ data }) => {
   const dispatch = useDispatch();

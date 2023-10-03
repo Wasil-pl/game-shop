@@ -10,9 +10,9 @@ import {
 } from '../../../Utils/productThumbFunctions';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addProductToCart } from '../../../redux/cartRedux';
 import ModalComponent from '../../features/ModalComponent/ModalComponent';
 import { modalMessages } from '../../../consts';
+import { addProductToCart } from '../../../redux/cart/cartActions';
 
 const ProductThumb = ({ data, variant = '' }) => {
   const [showModal, setShowModal] = useState(false);

@@ -3,16 +3,15 @@ import { Alert, Container, Spinner } from 'react-bootstrap';
 import Divider from '../../../layout/Divider/Divider';
 import CheckoutForm from './CheckoutForm';
 import { useDispatch, useSelector } from 'react-redux';
-
+import ModalComponent from '../../ModalComponent/ModalComponent';
+import { modalMessages } from '../../../../consts';
+import { useNavigate } from 'react-router-dom';
 import {
   getErrorState,
   getLoadingState,
   getSuccessState,
-  resetOrderState,
-} from '../../../../redux/ordersRedux';
-import ModalComponent from '../../ModalComponent/ModalComponent';
-import { modalMessages } from '../../../../consts';
-import { useNavigate } from 'react-router-dom';
+} from '../../../../redux/orders/orderSelectors';
+import { resetOrderState } from '../../../../redux/orders/orderActions';
 
 export const Checkout = () => {
   const dispatch = useDispatch();
