@@ -11,7 +11,7 @@ export const getDetailedCartProducts = createSelector(
   (allProducts, cartProducts) => {
     return cartProducts.map((cartProduct) => {
       const fullProductInfo = allProducts.find(
-        (product) => product.id === cartProduct.id,
+        (product) => product.id === cartProduct.productId,
       );
       return {
         ...cartProduct,
@@ -63,21 +63,21 @@ export const cartReducer = (statePart = [], action) => {
   switch (action.type) {
     case ADD_PRODUCT_TO_CART: {
       const existingProduct = statePart.products.find(
-        (product) => product.id === action.payload,
+        (product) => product.productId === action.payload,
       );
       if (!existingProduct) {
         newState = {
           ...statePart,
           products: [
             ...statePart.products,
-            { id: action.payload, quantity: 1 },
+            { productId: action.payload, quantity: 1 },
           ],
         };
       } else {
         newState = {
           ...statePart,
           products: statePart.products.map((product) =>
-            product.id === action.payload
+            product.productId === action.payload
               ? { ...product, quantity: product.quantity + 1 }
               : product,
           ),
@@ -90,7 +90,7 @@ export const cartReducer = (statePart = [], action) => {
       newState = {
         ...statePart,
         products: statePart.products.filter(
-          (product) => product.id !== action.payload,
+          (product) => product.productId !== action.payload,
         ),
       };
       localStorage.setItem('cartProducts', JSON.stringify(newState.products));
@@ -107,7 +107,7 @@ export const cartReducer = (statePart = [], action) => {
       newState = {
         ...statePart,
         products: statePart.products.map((product) =>
-          product.id === action.payload
+          product.productId === action.payload
             ? { ...product, quantity: product.quantity + 1 }
             : product,
         ),
@@ -119,7 +119,7 @@ export const cartReducer = (statePart = [], action) => {
       newState = {
         ...statePart,
         products: statePart.products.map((product) =>
-          product.id === action.payload && product.quantity > 1
+          product.productId === action.payload && product.quantity > 1
             ? { ...product, quantity: product.quantity - 1 }
             : product,
         ),

@@ -10,6 +10,7 @@ import {
   Put,
   Req,
   UseGuards,
+  Request,
 } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { Order, OrderStatus } from '@prisma/client';
@@ -39,7 +40,7 @@ export class OrdersController {
     @Param('id', new ParseUUIDPipe()) id: Order['id'],
     @Req() req: any,
   ) {
-    const order = await this.orderService.getOrderById(id);
+    const order = await this.orderService.getOrder(id);
     if (!order) throw new NotFoundException('Order not found');
 
     const userId = req.user.id;
@@ -62,6 +63,7 @@ export class OrdersController {
       orderData: CreateOrderDTO;
       items: CreateOrderItemsDTO[];
     },
+    @Request() req,
   ): Promise<Order> {
     const { orderData, items } = data;
 
@@ -69,7 +71,9 @@ export class OrdersController {
       throw new BadRequestException('Invalid order data or items.');
     }
 
-    return this.orderService.create(orderData, items);
+    const userId = req.user.id;
+
+    return this.orderService.create(orderData, items, userId);
   }
 
   /* --------------------- UPDATE ORDER STATUS --------------------- */

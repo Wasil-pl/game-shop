@@ -9,7 +9,7 @@ import styles from './MainMenuCart.module.scss';
 import { Button } from 'react-bootstrap';
 import MainMenuProductCartForm from './MainMenuProductCartForm';
 import { Link, useNavigate } from 'react-router-dom';
-import { getTotalPrice } from '../../../../Utils/cartFunctions';
+import { getTotalPrice } from '../../../../Utils/getTotalPrice';
 import { maxDisplayedProducts } from '../../../../consts';
 
 const MainMenuCart = () => {

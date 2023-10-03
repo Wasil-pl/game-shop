@@ -5,7 +5,7 @@ import { API_URL } from '../config';
 export const getAllUsers = (state) => state.users.list;
 export const getUser = (state) => state.users.user;
 
-export const getLoggedState = (state) => state.users.logged;
+export const getLoggedState = (state) => state.users.isLogged;
 export const getUsersLoadingState = (state) => state.users.loading;
 export const getUsersErrorState = (state) => state.users.error;
 
@@ -13,6 +13,7 @@ export const getUsersErrorState = (state) => state.users.error;
 export const loadUsers = (payload) => ({ payload, type: LOAD_USERS });
 export const loadUser = (payload) => ({ payload, type: LOAD_USER });
 export const logoutUser = (payload) => ({ payload, type: LOGOUT_USER });
+export const loginUser = (payload) => ({ payload, type: LOGIN_USER });
 
 export const startUserRequest = (payload) => ({
   payload,
@@ -31,6 +32,7 @@ const createActionName = (name) => `app/products/${name}`;
 const LOAD_USERS = createActionName('LOAD_USERS');
 const LOAD_USER = createActionName('LOAD_USER');
 const LOGOUT_USER = createActionName('LOGOUT_USER');
+const LOGIN_USER = createActionName('LOGIN_USER');
 
 const START_USER_REQUEST = createActionName('START_USER_REQUEST');
 const ERROR_USER_REQUEST = createActionName('ERROR_USER_REQUEST');
@@ -51,11 +53,11 @@ export const loadUsersRequest = () => {
   };
 };
 
-export const loadUserRequest = () => {
+export const loadUserRequest = (userId) => {
   return async (dispatch) => {
     dispatch(startUserRequest());
     try {
-      const data = await httpClient.get(`${API_URL}/api/users`);
+      const data = await httpClient.get(`${API_URL}/api/users/${userId}`);
       dispatch(loadUser(data));
       dispatch(endUserRequest());
     } catch (error) {
@@ -69,8 +71,9 @@ export const loginUserRequest = (user) => {
   return async (dispatch) => {
     dispatch(startUserRequest());
     try {
-      const data = await httpClient.post(`${API_URL}/api/auth/login`, user);
-      dispatch(loadUserRequest(data));
+      await httpClient.post(`${API_URL}/api/auth/login`, user);
+      dispatch(loginUser());
+      dispatch(endUserRequest());
     } catch (error) {
       const action = errorUserRequest({ message: error.message });
       dispatch(action);
@@ -83,10 +86,11 @@ export const checkUserSession = () => {
     dispatch(startUserRequest());
     try {
       const response = await httpClient.get(`${API_URL}/api/auth/isLogged`);
+
       const { isValid } = response;
 
       if (isValid) {
-        dispatch(loadUserRequest());
+        dispatch(loginUser());
       }
     } catch (error) {
       const action = errorUserRequest({ message: error.message });
@@ -117,7 +121,7 @@ export const usersReducer = (
     loading: false,
     error: null,
     success: false,
-    logged: false,
+    isLogged: false,
   },
   action,
 ) => {
@@ -125,9 +129,11 @@ export const usersReducer = (
     case LOAD_USERS:
       return { ...statePart, list: [...action.payload] };
     case LOAD_USER:
-      return { ...statePart, user: action.payload, logged: true };
+      return { ...statePart, user: action.payload };
     case LOGOUT_USER:
-      return { ...statePart, user: {}, logged: false };
+      return { ...statePart, user: {}, isLogged: false };
+    case LOGIN_USER:
+      return { ...statePart, isLogged: true };
     case START_USER_REQUEST:
       return { ...statePart, loading: true, error: null };
     case END_USER_REQUEST:

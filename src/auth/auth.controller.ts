@@ -35,9 +35,7 @@ export class AuthController {
   async login(@Request() req, @Response() res) {
     const tokens = await this.authService.createSession(req.user);
     res.cookie('auth', tokens, { httpOnly: true });
-    res.send({
-      message: 'success',
-    });
+    res.json(req.user.id);
   }
 
   /* --------------------- IS LOGGED --------------------- */
@@ -54,7 +52,7 @@ export class AuthController {
 
       const decoded = this.jwtService.verify(token);
       if (decoded) {
-        return { isValid: true };
+        return { isValid: true, userId: decoded.sub };
       }
     } catch (error) {
       return { message: error.message };

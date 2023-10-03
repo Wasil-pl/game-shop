@@ -15,6 +15,7 @@ import SearchResult from './components/pages/SearchResult/SearchResult';
 import { SelectedProduct } from './components/features/SelectedProduct/index';
 import { checkUserSession } from './redux/usersRedux';
 import { CartProducts } from './components/features/Cart/index';
+import { Checkout } from './components/features/Checkout/index';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ const App = () => {
         />
         <Route path="/products/:id" element={<SelectedProduct />} />
         <Route path="/cart" element={<CartProducts />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </MainLayout>
   );

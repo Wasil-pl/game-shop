@@ -92,7 +92,10 @@ model Order {
   userId        String?
   totalQuantity Int
   totalPrice    Decimal
-  address       String
+  city          String
+  street        String
+  postalCode    String
+  address       String?
   status        OrderStatus @default(PENDING)
 
   createdAt DateTime @default(now())

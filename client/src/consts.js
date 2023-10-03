@@ -19,3 +19,19 @@ export const Error = ({ children }) => (
 );
 
 export const maxDisplayedProducts = 3;
+
+export const modalMessages = {
+  orderSuccess: {
+    headerText: 'Order placed successfully',
+    textMessage: 'Thank you for your order!',
+  },
+  loginRequired: {
+    headerText: 'Login required',
+    textMessage: 'You need to be logged in to place an order',
+  },
+  outOfStock: {
+    headerText: 'Out of stock',
+    textMessage:
+      'Sorry, this product is out of stock, you can order it, but it will take longer to deliver. Please confirm if you want to order this product.',
+  },
+};

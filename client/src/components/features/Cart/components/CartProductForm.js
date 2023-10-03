@@ -6,8 +6,10 @@ import { useDispatch } from 'react-redux';
 import {
   decreaseProductQuantityInCart,
   increaseProductQuantityInCart,
+  removeProductFromCart,
 } from '../../../../redux/cartRedux';
-import { getTotalPrice } from '../../../../Utils/cartFunctions';
+import { getTotalPrice } from '../../../../Utils/getTotalPrice';
+import { Trash } from 'react-bootstrap-icons';
 
 const CartProductForm = ({ data }) => {
   const dispatch = useDispatch();
@@ -24,12 +26,22 @@ const CartProductForm = ({ data }) => {
     }
   };
 
+  const handleRemoveProduct = () => {
+    dispatch(removeProductFromCart(data.id));
+  };
+
   return (
-    <>
+    <div>
       <div className={styles.container}>
         <div className={styles.productBox}>
           <div className={styles.image}>
             <img src={IMAGES_URL + data.mainPicture} alt={data.name} />
+          </div>
+          <div className={styles.productInfo}>
+            <h3>{data.name}</h3>
+            <p>{data.platform}</p>
+            <p>PEGI: {data.pegi}</p>
+            <p>Language: {data.language}</p>
           </div>
         </div>
         <div className={styles.inputBox}>
@@ -51,10 +63,11 @@ const CartProductForm = ({ data }) => {
         </div>
         <div className={styles.priceBox}>
           <p>{totalPrice} zł</p>
+          <Trash onClick={handleRemoveProduct} className={styles.trash} />
         </div>
       </div>
       <hr />
-    </>
+    </div>
   );
 };
 

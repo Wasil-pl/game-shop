@@ -11,7 +11,14 @@ export class OrdersService {
   public getOrders(): Promise<Order[]> {
     return this.prismaService.order.findMany({
       include: {
-        user: true,
+        user: {
+          select: {
+            id: false,
+            email: true,
+            firstName: true,
+          },
+        },
+
         items: {
           include: {
             product: true,
@@ -23,14 +30,47 @@ export class OrdersService {
 
   /* --------------------- GET ORDER BY ID --------------------- */
 
-  public getOrderById(id: Order['id']): Promise<Order | null> {
+  public getOrder(id: Order['id']): Promise<Order | null> {
     return this.prismaService.order.findUnique({
       where: { id },
-      include: {
-        user: true,
+      select: {
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+        userId: true,
+        totalQuantity: true,
+        totalPrice: true,
+        status: true,
+        address: true,
+        city: true,
+        street: true,
+        postalCode: true,
+
+        user: {
+          select: {
+            id: false,
+            email: true,
+            firstName: true,
+          },
+        },
+
         items: {
           include: {
-            product: true,
+            product: {
+              select: {
+                id: false,
+                name: true,
+                platform: true,
+                price: false,
+                salePrice: false,
+                inStock: false,
+                pictureOne: false,
+                pictureTwo: false,
+                pictureThree: false,
+                pictureFour: false,
+                pictureFive: false,
+              },
+            },
           },
         },
       },
@@ -40,8 +80,9 @@ export class OrdersService {
   /* --------------------- CREATE ORDER --------------------- */
 
   public async create(
-    orderData: Omit<Order, 'id' | 'createdAt' | 'updatedAt'>,
+    orderData: Omit<Order, 'id' | 'createdAt' | 'updatedAt' | 'userId'>,
     items: { productId: string; quantity: number }[],
+    userId: string,
   ): Promise<Order> {
     let calculatedTotalQuantity = 0;
     let calculatedTotalPrice = 0;
@@ -54,12 +95,6 @@ export class OrdersService {
       });
 
       if (!product) throw new BadRequestException('Product not found');
-
-      if (product.inStock < item.quantity) {
-        throw new BadRequestException(
-          `Product with ID ${item.productId} is not available in sufficient quantity.`,
-        );
-      }
 
       if (product.salePrice) {
         calculatedTotalPrice += Number(product.salePrice) * item.quantity;
@@ -87,6 +122,7 @@ export class OrdersService {
     return await this.prismaService.order.create({
       data: {
         ...orderData,
+        userId: userId,
         totalQuantity: calculatedTotalQuantity,
         totalPrice: calculatedTotalPrice,
         items: {

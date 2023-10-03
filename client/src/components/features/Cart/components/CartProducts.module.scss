@@ -5,7 +5,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin: 40px 20px;
+
+    .cartIcon {
+      color: $color-text-danger;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      & > svg {
+        margin-right: 10px;
+        font-size: $extra-large-size;
+      }
+    }
 
     h2 {
       font-size: $extra-large-size;
@@ -27,6 +38,28 @@
 
     .columnQuantity {
       flex: 1;
+    }
+  }
+
+  .totalPriceBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      font-size: $slide-font-size;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .totalPrice {
+      font-size: $large-size;
+      font-weight: 600;
+      margin: 0 20px;
+    }
+
+    & > button {
+      width: 200px;
     }
   }
 }

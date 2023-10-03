@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ProductThumb.module.scss';
 import { IMAGES_URL } from '../../../config';
 import { Button } from 'react-bootstrap';
@@ -11,8 +11,13 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addProductToCart } from '../../../redux/cartRedux';
+import ModalComponent from '../../features/ModalComponent/ModalComponent';
+import { modalMessages } from '../../../consts';
 
 const ProductThumb = ({ data, variant = '' }) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const { inStock } = data;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -20,10 +25,20 @@ const ProductThumb = ({ data, variant = '' }) => {
     navigate(`/products/${id}`);
   };
 
-  const handleAddToCart = (e) => {
-    e.preventDefault();
+  const handleAddToCart = () => {
+    if (inStock <= 0) return setShowModal(true);
+    console.log('inStock:', inStock);
+
     dispatch(addProductToCart(data.id));
   };
+
+  const onConfirm = (e) => {
+    e.preventDefault();
+    dispatch(addProductToCart(data.id));
+    setShowModal(false);
+  };
+
+  const handleCloseModal = () => setShowModal(false);
 
   return (
     <div className={`${styles.card} ${styles[variant]}`}>
@@ -88,6 +103,15 @@ const ProductThumb = ({ data, variant = '' }) => {
           </Button>
         </div>
       </div>
+
+      <ModalComponent
+        show={showModal}
+        onClose={handleCloseModal}
+        onConfirm={onConfirm}
+        headerText={modalMessages.outOfStock.headerText}
+        textMessage={modalMessages.outOfStock.textMessage}
+        cancel
+      />
     </div>
   );
 };

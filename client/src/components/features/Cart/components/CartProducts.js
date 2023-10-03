@@ -1,20 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './CartProducts.module.scss';
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import CartProductForm from './CartProductForm';
-import { useSelector } from 'react-redux';
-import { getDetailedCartProducts } from '../../../../redux/cartRedux';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getDetailedCartProducts,
+  removeAllProductsFromCart,
+} from '../../../../redux/cartRedux';
 import { Cart } from 'react-bootstrap-icons';
 import Divider from '../../../layout/Divider/Divider';
+import { getTotalPrice } from '../../../../Utils/getTotalPrice';
+import { useNavigate } from 'react-router-dom';
+import { resetOrderState } from '../../../../redux/ordersRedux';
+import { getLoggedState } from '../../../../redux/usersRedux';
+import ModalComponent from '../../ModalComponent/ModalComponent';
+import { modalMessages } from '../../../../consts';
 
 export const CartProducts = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const products = useSelector(getDetailedCartProducts);
+  const isLogged = useSelector(getLoggedState);
+
+  useEffect(() => {
+    dispatch(resetOrderState());
+  }, [dispatch]);
+
+  const handleCloseModal = () => setShowModal(false);
+  const handleShowModal = () => setShowModal(true);
+
+  const handleClearCart = () => {
+    dispatch(removeAllProductsFromCart());
+  };
+
+  const handleCheckout = () => {
+    if (!isLogged) return handleShowModal(true);
+
+    navigate('/checkout');
+  };
+
+  const totalPrice = getTotalPrice(products);
+
   return (
     <Container className={styles.container}>
       <Divider text={'Cart'} />
       <div className={styles.titleBox}>
         <h2>Your Shopping Cart</h2>
-        <div className={styles.cartIcon}>
+        <div onClick={handleClearCart} className={styles.cartIcon}>
           <Cart />
           Empty Cart
         </div>
@@ -30,6 +64,27 @@ export const CartProducts = () => {
           <CartProductForm key={product.id} data={product} />
         ))}
       </div>
+
+      <div className={styles.totalPriceBox}>
+        <h3>
+          <span className={styles.totalPrice}>Total Price:</span>
+          {totalPrice} zł
+        </h3>
+        <Button
+          onClick={handleCheckout}
+          className={styles.checkoutButton}
+          variant="primary"
+        >
+          Checkout
+        </Button>
+      </div>
+
+      <ModalComponent
+        show={showModal}
+        onConfirm={handleCloseModal}
+        headerText={modalMessages.loginRequired.headerText}
+        textMessage={modalMessages.loginRequired.textMessage}
+      />
     </Container>
   );
 };

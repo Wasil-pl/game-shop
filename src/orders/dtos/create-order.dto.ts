@@ -1,18 +1,11 @@
 import { OrderStatus } from '@prisma/client';
 import { Decimal } from '@prisma/client/runtime/library';
-import {
-  IsDecimal,
-  IsInt,
-  IsNotEmpty,
-  IsString,
-  IsUUID,
-} from 'class-validator';
+import { IsDecimal, IsInt, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateOrderDTO {
   @IsNotEmpty()
-  @IsUUID()
   @IsString()
-  userId: string;
+  email: string;
 
   @IsNotEmpty()
   @IsDecimal()
@@ -23,6 +16,17 @@ export class CreateOrderDTO {
   totalQuantity: number;
 
   @IsNotEmpty()
+  @IsString()
+  city: string;
+
+  @IsNotEmpty()
+  @IsString()
+  street: string;
+
+  @IsNotEmpty()
+  @IsString()
+  postalCode: string;
+
   @IsString()
   address: string;
 

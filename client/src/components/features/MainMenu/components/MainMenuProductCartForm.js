@@ -9,7 +9,7 @@ import styles from './MainMenuProductCartForm.module.scss';
 import { IMAGES_URL } from '../../../../config';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { Trash } from 'react-bootstrap-icons';
-import { getTotalPrice } from '../../../../Utils/cartFunctions';
+import { getTotalPrice } from '../../../../Utils/getTotalPrice';
 
 const MainMenuProductCartForm = ({ product }) => {
   const dispatch = useDispatch();

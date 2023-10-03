@@ -12,6 +12,7 @@ const initialState = {
   users: {
     loading: false,
     error: null,
+    isLogged: false,
     user: null,
     list: [],
   },
