@@ -18,3 +18,5 @@ export const getNewProducts = createSelector(getAllActiveProducts, (products) =>
 );
 export const getErrorState = (state) => state.products.error;
 export const getLoadingState = (state) => state.products.loading;
+export const getAddedProductId = (state) => state.products.addedProductId;
+export const getAddProductStates = (state) => state.products.addProductStates;

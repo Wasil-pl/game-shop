@@ -8,6 +8,9 @@ import {
   loadProductById,
   loadProductsByPlatform,
   searchProducts,
+  addProduct,
+  addProductContentSuccess,
+  addProductContentError,
 } from './productActions';
 
 export const loadProductsRequest = () => {
@@ -65,6 +68,23 @@ export const searchProductsRequest = (searchPhrase) => {
       dispatch(endRequest());
     } catch (error) {
       const action = errorRequest({ message: error.message });
+      dispatch(action);
+    }
+  };
+};
+
+export const addProductContentRequest = (data) => {
+  return async (dispatch) => {
+    dispatch(startRequest());
+    try {
+      const response = await httpClient.post(
+        `${API_URL}/api/products/add`,
+        data,
+      );
+      dispatch(addProduct(response));
+      dispatch(addProductContentSuccess(response.id));
+    } catch (error) {
+      const action = addProductContentError({ message: error.message });
       dispatch(action);
     }
   };

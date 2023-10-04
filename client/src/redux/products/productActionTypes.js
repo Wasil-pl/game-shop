@@ -8,3 +8,22 @@ export const LOAD_PRODUCTS_BY_PLATFORM = createActionName(
 );
 export const SEARCH_PRODUCTS = createActionName('SEARCH_PRODUCTS');
 export const LOAD_PRODUCT = createActionName('LOAD_PRODUCT');
+export const ADD_PRODUCT = createActionName('ADD_PRODUCT');
+export const ADD_PRODUCT_CONTENT_SUCCESS = createActionName(
+  'ADD_PRODUCT_CONTENT_SUCCESS',
+);
+export const ADD_PRODUCT_CONTENT_ERROR = createActionName(
+  'ADD_PRODUCT_CONTENT_ERROR',
+);
+export const ADD_PRODUCT_IMAGES_SUCCESS = createActionName(
+  'ADD_PRODUCT_IMAGES_SUCCESS',
+);
+export const ADD_PRODUCT_IMAGES_ERROR = createActionName(
+  'ADD_PRODUCT_IMAGES_ERROR',
+);
+export const ACTIVATE_PRODUCT_SUCCESS = createActionName(
+  'ACTIVATE_PRODUCT_SUCCESS',
+);
+export const ACTIVATE_PRODUCT_ERROR = createActionName(
+  'ACTIVATE_PRODUCT_ERROR',
+);

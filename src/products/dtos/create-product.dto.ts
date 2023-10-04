@@ -4,6 +4,7 @@ import {
   IsDecimal,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   Length,
   Min,
@@ -41,6 +42,7 @@ export class CreateProductDto {
   @IsNotEmpty()
   price: Decimal;
 
+  @IsOptional()
   @IsDecimal()
-  salePrice: Decimal;
+  salePrice: Decimal | null;
 }

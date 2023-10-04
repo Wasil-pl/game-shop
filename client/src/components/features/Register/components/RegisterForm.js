@@ -65,7 +65,7 @@ const RegisterForm = ({ action }) => {
               validate: (value) =>
                 value === watch('password') || errorMessages.passwordMatch,
             })}
-            type="passwordRepeat"
+            type="password"
             placeholder="Password repeat"
             required
             autoComplete="current-password"
@@ -80,7 +80,6 @@ const RegisterForm = ({ action }) => {
             {...register('firstName', {
               required: errorMessages.required,
             })}
-            type="firstName"
             placeholder="firstName"
             required
             autoComplete="firstName"

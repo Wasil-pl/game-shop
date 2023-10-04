@@ -35,7 +35,6 @@ const CheckoutForm = () => {
             {...register('city', {
               required: errorMessages.required,
             })}
-            type="city"
             placeholder="city"
             autoComplete="city"
             required
@@ -48,7 +47,6 @@ const CheckoutForm = () => {
             {...register('street', {
               required: errorMessages.required,
             })}
-            type="street "
             placeholder="Street"
             autoComplete="street"
             required
@@ -61,7 +59,6 @@ const CheckoutForm = () => {
             {...register('postalCode', {
               required: errorMessages.required,
             })}
-            type="postalCode "
             placeholder="Postal Code"
             autoComplete="postalCode"
             required
@@ -72,7 +69,6 @@ const CheckoutForm = () => {
           <Form.Label>Address:</Form.Label>
           <Form.Control
             {...register('address')}
-            type="address "
             placeholder="Address ( optional )"
             autoComplete="address"
             required

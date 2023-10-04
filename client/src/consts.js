@@ -10,12 +10,20 @@ export const errorMessages = {
   validateFile: 'Invalid file type',
   minLength: (minLength) =>
     `This field must be at least ${minLength} characters long`,
+  maxLength: (maxLength) =>
+    `This field must be no more than ${maxLength} characters long`,
   passwordMatch: 'Passwords do not match',
+  minNumber: (minNumber) => `This field must be at least ${minNumber}`,
 };
 
 export const patterns = {
   emailPattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
   passwordMinLength: 5,
+  languageMinLength: 2,
+  languageMaxLength: 3,
+  descryptionMinLength: 10,
+  descryptionMaxLength: 1000,
+  numberMin: 1,
 };
 
 export const Error = ({ children }) => (
@@ -49,3 +57,5 @@ export const modalMessages = {
 };
 
 export const registerSuccessMessage = 'Account created successfully!';
+
+export const platformOptions = ['PC', 'PLAYSTATION', 'XBOX', 'NINTENDO'];

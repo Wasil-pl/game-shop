@@ -7,6 +7,21 @@ const initialState = {
     listByPlatform: [],
     searchList: [],
     selectedProduct: {},
+    addedProductId: null,
+    addProductStates: {
+      content: {
+        success: false,
+        error: null,
+      },
+      images: {
+        success: false,
+        error: null,
+      },
+      activate: {
+        success: false,
+        error: null,
+      },
+    },
   },
 
   users: {

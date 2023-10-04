@@ -17,6 +17,7 @@ import {
 import { logoutUserRequest } from '../../../../redux/users/userThunks';
 import { resetUserState } from '../../../../redux/users/userActions';
 import { getTotalQuantity } from '../../../../redux/cart/cartSelectors';
+import { AddProduct } from '../../AddProduct/index';
 
 export const MainMenu = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,11 @@ export const MainMenu = () => {
             </NavDropdown>
             <NavDropdown title="Admin Panel">
               <NavDropdown.Item href="#">All Orders</NavDropdown.Item>
-              <NavDropdown.Item href="#">Ad Product</NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to={'/products/addProduct'} element={<AddProduct />}>
+                  Ad Product
+                </Link>
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <SearchPhrase />
