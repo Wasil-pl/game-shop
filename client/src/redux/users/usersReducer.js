@@ -8,6 +8,8 @@ import {
   ERROR_USER_REGISTER_REQUEST,
   END_USER_REQUEST,
   RESET_USER_STATE,
+  END_USER_LOGIN_REQUEST,
+  END_USER_REGISTER_REQUEST,
 } from './userActionTypes';
 
 export const usersReducer = (
@@ -16,7 +18,8 @@ export const usersReducer = (
     user: {},
     loading: false,
     error: null,
-    success: false,
+    loginSuccess: false,
+    registerSuccess: false,
     registerError: null,
     isLogged: false,
   },
@@ -34,7 +37,16 @@ export const usersReducer = (
     case START_USER_REQUEST:
       return { ...statePart, loading: true, error: null };
     case END_USER_REQUEST:
-      return { ...statePart, loading: false, error: null, success: true };
+      return { ...statePart, loading: false, error: null };
+    case END_USER_LOGIN_REQUEST:
+      return { ...statePart, loading: false, error: null, loginSuccess: true };
+    case END_USER_REGISTER_REQUEST:
+      return {
+        ...statePart,
+        loading: false,
+        error: null,
+        registerSuccess: true,
+      };
     case ERROR_USER_REQUEST:
       return { ...statePart, loading: false, error: action.payload.message };
     case ERROR_USER_REGISTER_REQUEST:
@@ -49,7 +61,8 @@ export const usersReducer = (
         loading: false,
         error: null,
         registerError: null,
-        success: false,
+        loginSuccess: false,
+        registerSuccess: false,
       };
     default:
       return statePart;

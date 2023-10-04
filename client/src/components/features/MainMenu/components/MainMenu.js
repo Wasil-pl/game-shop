@@ -12,7 +12,7 @@ import ModalComponent from '../../ModalComponent/ModalComponent';
 import { modalMessages } from '../../../../consts';
 import {
   getLoggedState,
-  getSuccessState,
+  getLoginSuccessState,
 } from '../../../../redux/users/userSelectors';
 import { logoutUserRequest } from '../../../../redux/users/userThunks';
 import { resetUserState } from '../../../../redux/users/userActions';
@@ -22,7 +22,7 @@ export const MainMenu = () => {
   const dispatch = useDispatch();
 
   const isLogged = useSelector(getLoggedState);
-  const loginSuccess = useSelector(getSuccessState);
+  const loginSuccess = useSelector(getLoginSuccessState);
 
   const totalQuantity = useSelector(getTotalQuantity);
 

@@ -8,6 +8,8 @@ import {
   ERROR_USER_REGISTER_REQUEST,
   END_USER_REQUEST,
   RESET_USER_STATE,
+  END_USER_REGISTER_REQUEST,
+  END_USER_LOGIN_REQUEST,
 } from './userActionTypes';
 
 export const loadUsers = (payload) => ({ payload, type: LOAD_USERS });
@@ -25,6 +27,14 @@ export const errorUserRequest = (payload) => ({
 export const errorUserRegisterRequest = (payload) => ({
   payload,
   type: ERROR_USER_REGISTER_REQUEST,
+});
+export const endUserRegisterRequest = (payload) => ({
+  payload,
+  type: END_USER_REGISTER_REQUEST,
+});
+export const endUserLoginRequest = (payload) => ({
+  payload,
+  type: END_USER_LOGIN_REQUEST,
 });
 export const endUserRequest = (payload) => ({
   payload,

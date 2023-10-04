@@ -9,4 +9,10 @@ export const ERROR_USER_REGISTER_REQUEST = createActionName(
   'ERROR_USER_REGISTER_REQUEST',
 );
 export const END_USER_REQUEST = createActionName('END_USER_REQUEST');
+export const END_USER_REGISTER_REQUEST = createActionName(
+  'END_USER_REGISTER_REQUEST',
+);
+export const END_USER_LOGIN_REQUEST = createActionName(
+  'END_USER_LOGIN_REQUEST',
+);
 export const RESET_USER_STATE = createActionName('RESET_USER_STATE');

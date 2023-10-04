@@ -7,7 +7,7 @@ import ModalComponent from '../../ModalComponent/ModalComponent';
 import { useNavigate } from 'react-router-dom';
 import {
   getRegisterErrorState,
-  getSuccessState,
+  getRegisterSuccessState,
   getUsersLoadingState,
 } from '../../../../redux/users/userSelectors';
 import { registerUserRequest } from '../../../../redux/users/userThunks';
@@ -18,7 +18,7 @@ export const Register = () => {
   const navigate = useNavigate();
   const isLoading = useSelector(getUsersLoadingState);
   const errorMessages = useSelector(getRegisterErrorState);
-  const success = useSelector(getSuccessState);
+  const success = useSelector(getRegisterSuccessState);
 
   const handleSubmit = async (user) => {
     dispatch(registerUserRequest(user));

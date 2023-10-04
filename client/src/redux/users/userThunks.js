@@ -9,7 +9,7 @@ import {
   errorUserRequest,
   errorUserRegisterRequest,
   endUserRequest,
-  resetUserState,
+  endUserLoginRequest,
 } from './userActions';
 
 export const loadUsersRequest = () => {
@@ -19,7 +19,6 @@ export const loadUsersRequest = () => {
       const data = await httpClient.get(`${API_URL}/api/users`);
       dispatch(loadUsers(data));
       dispatch(endUserRequest());
-      dispatch(resetUserState());
     } catch (error) {
       const action = errorUserRequest({ message: error.message });
       dispatch(action);
@@ -34,7 +33,6 @@ export const loadUserRequest = (userId) => {
       const data = await httpClient.get(`${API_URL}/api/users/${userId}`);
       dispatch(loadUser(data));
       dispatch(endUserRequest());
-      dispatch(resetUserState());
     } catch (error) {
       const action = errorUserRequest({ message: error.message });
       dispatch(action);
@@ -48,7 +46,7 @@ export const loginUserRequest = (user) => {
     try {
       await httpClient.post(`${API_URL}/api/auth/login`, user);
       dispatch(loginUser());
-      dispatch(endUserRequest());
+      dispatch(endUserLoginRequest());
     } catch (error) {
       const action = errorUserRequest({ message: error.message });
       dispatch(action);
@@ -61,7 +59,7 @@ export const registerUserRequest = (user) => {
     dispatch(startUserRequest());
     try {
       await httpClient.post(`${API_URL}/api/auth/register`, user);
-      dispatch(endUserRequest());
+      dispatch(endUserLoginRequest());
     } catch (error) {
       const action = errorUserRegisterRequest({ message: error.message });
       dispatch(action);
@@ -82,7 +80,6 @@ export const checkUserSession = () => {
       }
 
       dispatch(endUserRequest());
-      dispatch(resetUserState());
     } catch (error) {
       const action = errorUserRequest({ message: error.message });
       dispatch(action);
@@ -97,7 +94,6 @@ export const logoutUserRequest = () => {
       await httpClient.delete(`${API_URL}/api/auth/logout`);
       dispatch(logoutUser());
       dispatch(endUserRequest());
-      dispatch(resetUserState());
     } catch (error) {
       const action = errorUserRequest({ message: error.message });
       dispatch(action);
