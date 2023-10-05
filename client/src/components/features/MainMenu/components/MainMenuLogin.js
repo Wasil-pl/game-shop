@@ -15,8 +15,7 @@ const MainMenuLogin = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (data) => {
-    const response = await dispatch(loginUserRequest(data));
-    console.log('response:', response);
+    dispatch(loginUserRequest(data));
   };
 
   const isLoading = useSelector(getUsersLoadingState);

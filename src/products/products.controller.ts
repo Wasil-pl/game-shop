@@ -148,6 +148,24 @@ export class ProductsController {
     }
   }
 
+  /* --------------------- POST IS ACTIVE --------------------- */
+
+  @UseGuards(AdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
+  @Put('/add/isActive/:id')
+  public async addIsActive(
+    @Param('id', new ParseUUIDPipe()) id: Product['id'],
+    @Body('isActive') isActiveString: string,
+  ) {
+    const product = await this.productService.getProductById(id);
+    if (!product) throw new NotFoundException('Product not found');
+
+    const isActive = isActiveString === 'true';
+
+    await this.productService.addIsActive(id, isActive);
+    return { message: 'Product active status added successfully' };
+  }
+
   /* --------------------- PUT DATA --------------------- */
 
   @UseGuards(AdminAuthGuard)

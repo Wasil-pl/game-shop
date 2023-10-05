@@ -17,7 +17,7 @@ import {
 import { logoutUserRequest } from '../../../../redux/users/userThunks';
 import { resetUserState } from '../../../../redux/users/userActions';
 import { getTotalQuantity } from '../../../../redux/cart/cartSelectors';
-import { AddProduct } from '../../AddProduct/index';
+import AddProduct from '../../AddProduct/AddProduct';
 
 export const MainMenu = () => {
   const dispatch = useDispatch();

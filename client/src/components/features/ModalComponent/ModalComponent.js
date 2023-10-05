@@ -5,13 +5,13 @@ const ModalComponent = ({ show, onConfirm, headerText, textMessage }) => {
   return (
     <Modal backdrop="static" keyboard={false} show={show} onHide={onConfirm}>
       <Modal.Header closeButton>
-        <Modal.Title>{headerText}</Modal.Title>
+        <Modal.Title className="text-center w-100">{headerText}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="text-center">
         <p>{textMessage}</p>
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={onConfirm}>
+      <Modal.Footer className="justify-content-center">
+        <Button variant="outline-info" onClick={onConfirm}>
           Confirm
         </Button>
       </Modal.Footer>

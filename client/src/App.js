@@ -11,7 +11,7 @@ import { CartProducts } from './components/features/Cart/index';
 import { Checkout } from './components/features/Checkout/index';
 import { Register } from './components/features/Register/index';
 import { checkUserSession } from './redux/users/userThunks';
-import { AddProduct } from './components/features/AddProduct/index';
+import AddProduct from './components/features/AddProduct/AddProduct';
 
 const App = () => {
   const dispatch = useDispatch();

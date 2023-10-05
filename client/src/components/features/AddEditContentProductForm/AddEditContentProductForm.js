@@ -1,29 +1,20 @@
-import React, { useEffect } from 'react';
-import styles from './AddProductFirstStep.module.scss';
+import React from 'react';
+import styles from './AddEditContentProductForm.module.scss';
 import { Button, Form } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import {
   Error,
   errorMessages,
   patterns,
   platformOptions,
-} from '../../../../consts';
-import { addProductContentRequest } from '../../../../redux/products/productThunks';
+} from '../../../consts';
 
-const AddEditProductFirstStep = ({ nextStep, content }) => {
-  const dispatch = useDispatch();
+const AddEditContentProductForm = ({ action, defaultValues, actionText }) => {
   const {
     register,
     handleSubmit: validate,
     formState: { errors },
-  } = useForm();
-
-  useEffect(() => {
-    if (content.success) {
-      nextStep();
-    }
-  }, [content, nextStep]);
+  } = useForm({ defaultValues });
 
   const handleSubmit = (data) => {
     const transformedData = {
@@ -33,7 +24,7 @@ const AddEditProductFirstStep = ({ nextStep, content }) => {
       price: parseFloat(data.price).toFixed(2),
       salePrice: data.salePrice ? parseFloat(data.salePrice).toFixed(2) : null,
     };
-    dispatch(addProductContentRequest(transformedData));
+    action(transformedData);
   };
 
   return (
@@ -188,7 +179,7 @@ const AddEditProductFirstStep = ({ nextStep, content }) => {
 
         <Form.Group className={styles.buttonBox}>
           <Button type="submit" variant="primary">
-            next step
+            {actionText}
           </Button>
         </Form.Group>
       </Form>
@@ -196,4 +187,4 @@ const AddEditProductFirstStep = ({ nextStep, content }) => {
   );
 };
 
-export default AddEditProductFirstStep;
+export default AddEditContentProductForm;

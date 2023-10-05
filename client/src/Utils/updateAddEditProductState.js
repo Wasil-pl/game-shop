@@ -1,10 +1,10 @@
-export const updateAddEditProductState = (
+export const updateAddEditProductState = ({
   state,
   operation,
   success,
   error,
-  productId = null,
-) => {
+  productId,
+}) => {
   return {
     ...state,
     loading: false,
@@ -12,8 +12,8 @@ export const updateAddEditProductState = (
     addProductStates: {
       ...state.addProductStates,
       [operation]: {
-        success,
-        error,
+        success: success,
+        error: error,
       },
     },
   };

@@ -24,6 +24,7 @@ export const patterns = {
   descryptionMinLength: 10,
   descryptionMaxLength: 1000,
   numberMin: 1,
+  acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
 };
 
 export const Error = ({ children }) => (
@@ -54,8 +55,38 @@ export const modalMessages = {
     headerText: 'Login success',
     textMessage: 'You are logged in, welcome!',
   },
+  addEditContentSuccess: {
+    headerText: 'Content added successfully',
+    textMessage: 'You can now add images',
+  },
+  addEditImagesSuccess: {
+    headerText: 'Images added successfully',
+    textMessage: 'You can now activate product',
+  },
+  addEditActivateSuccess: {
+    headerText: 'Product activated successfully',
+    textMessage: 'You can now view your product',
+  },
 };
 
 export const registerSuccessMessage = 'Account created successfully!';
 
 export const platformOptions = ['PC', 'PLAYSTATION', 'XBOX', 'NINTENDO'];
+
+export const fileNames = [
+  'mainPicture',
+  'pictureOne',
+  'pictureTwo',
+  'pictureThree',
+  'pictureFour',
+  'pictureFive',
+];
+
+export const labels = [
+  'Main Picture',
+  'First picture',
+  'Second picture',
+  'Third picture',
+  'Fourth picture',
+  'Fifth picture',
+];

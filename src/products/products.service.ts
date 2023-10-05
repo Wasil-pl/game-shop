@@ -98,6 +98,18 @@ export class ProductsService {
     });
   }
 
+  /* --------------------- ADD IS ACTIVE --------------------- */
+
+  public async addIsActive(
+    id: Product['id'],
+    isActive: Product['isActive'],
+  ): Promise<Product> {
+    return await this.prismaService.product.update({
+      where: { id },
+      data: { isActive },
+    });
+  }
+
   /* --------------------- UPDATE PRODUCT DATA --------------------- */
 
   public async updateDataProduct(

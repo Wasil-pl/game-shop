@@ -1,5 +1,6 @@
 const baseOptions = {
   method: 'GET',
+  credentials: 'include',
 };
 
 const validateRequest = async (res) => {
@@ -26,7 +27,7 @@ const makeRequest = async (url, method = 'GET', formData, options) => {
   return fetch(url, requestOptions).then(validateRequest);
 };
 
-export const formClient = {
+export const httpClientFormData = {
   post: (url, formData) => makeRequest(url, 'POST', formData),
   put: (url, formData) => makeRequest(url, 'PUT', formData),
   patch: (url, formData) => makeRequest(url, 'PATCH', formData),
