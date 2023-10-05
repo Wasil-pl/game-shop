@@ -47,7 +47,7 @@ export const Checkout = () => {
       <CheckoutForm />
       <ModalComponent
         show={success}
-        onConfirm={handleCloseModal}
+        onClose={handleCloseModal}
         headerText={modalMessages.orderSuccess.headerText}
         textMessage={modalMessages.orderSuccess.textMessage}
       />

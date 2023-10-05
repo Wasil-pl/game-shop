@@ -100,7 +100,7 @@ const ProductThumb = ({ data, variant = '' }) => {
 
       <ModalComponent
         show={showModal}
-        onConfirm={handleCloseModal}
+        onClose={handleCloseModal}
         headerText={modalMessages.outOfStock.headerText}
         textMessage={modalMessages.outOfStock.textMessage}
       />

@@ -8,10 +8,10 @@ import { getScreenMode } from '../../../redux/screenSizeRedux';
 import { getProductsPerPage } from '../../../Utils/getProductsPerPage';
 import CustomPagination from '../../features/CustomPagination/CustomPagination';
 import clsx from 'clsx';
-import { getAllProducts } from '../../../redux/products/productSelectors';
+import { getAllActiveProducts } from '../../../redux/products/productSelectors';
 
 const AllProducts = () => {
-  const products = useSelector(getAllProducts);
+  const products = useSelector(getAllActiveProducts);
   const screenMode = useSelector(getScreenMode);
   const [currentPage, setCurrentPage] = useState(1);
   const [fade, setFade] = useState(false);

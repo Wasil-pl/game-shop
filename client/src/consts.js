@@ -67,6 +67,10 @@ export const modalMessages = {
     headerText: 'Product activated successfully',
     textMessage: 'You can now view your product',
   },
+  deleteProductConfirm: {
+    headerText: (name) => `Delete ${name}?`,
+    textMessage: 'Are you sure you want to delete this product?',
+  },
 };
 
 export const registerSuccessMessage = 'Account created successfully!';

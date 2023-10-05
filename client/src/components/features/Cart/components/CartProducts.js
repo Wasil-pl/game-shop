@@ -79,7 +79,7 @@ export const CartProducts = () => {
 
       <ModalComponent
         show={showModal}
-        onConfirm={handleCloseModal}
+        onClose={handleCloseModal}
         headerText={modalMessages.loginRequired.headerText}
         textMessage={modalMessages.loginRequired.textMessage}
       />

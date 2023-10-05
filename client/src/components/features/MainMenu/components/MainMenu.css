@@ -1,0 +1,9 @@
+.dropdown-menu.show {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 10px;
+}
+
+.dropdown-menu.show > a {
+  margin: 5px 0;
+}

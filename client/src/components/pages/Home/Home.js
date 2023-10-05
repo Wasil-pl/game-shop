@@ -10,7 +10,7 @@ import {
   getNewProducts,
   getSaleProducts,
 } from '../../../redux/products/productSelectors';
-import { loadProductsRequest } from '../../../redux/products/productThunks';
+import { loadProductsIsActiveRequest } from '../../../redux/products/productThunks';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Home = () => {
   const errorMessages = useSelector(getErrorState);
 
   useEffect(() => {
-    dispatch(loadProductsRequest());
+    dispatch(loadProductsIsActiveRequest());
   }, [dispatch]);
 
   return (

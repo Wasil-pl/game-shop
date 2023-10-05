@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './MainMenu.module.scss';
+import './MainMenu.css';
 import { Navbar, Nav, NavDropdown, Button } from 'react-bootstrap';
 import CarouselComponent from '../../Carousel/Carousel';
 import { Link } from 'react-router-dom';
@@ -18,6 +19,7 @@ import { logoutUserRequest } from '../../../../redux/users/userThunks';
 import { resetUserState } from '../../../../redux/users/userActions';
 import { getTotalQuantity } from '../../../../redux/cart/cartSelectors';
 import AddProduct from '../../AddProduct/AddProduct';
+import { ProductControlPanel } from '../../ProductControlPanel/index';
 
 export const MainMenu = () => {
   const dispatch = useDispatch();
@@ -47,16 +49,20 @@ export const MainMenu = () => {
         <Navbar.Collapse className={styles.navBarCollapse}>
           <Nav className={`me-auto ${styles.nav}`}>
             <NavDropdown title="User">
-              <NavDropdown.Item href="#">My Orders</NavDropdown.Item>
-              <NavDropdown.Item href="#">My Account</NavDropdown.Item>
+              <Link href="#">My Orders</Link>
+              <Link href="#">My Account</Link>
             </NavDropdown>
             <NavDropdown title="Admin Panel">
-              <NavDropdown.Item href="#">All Orders</NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to={'/products/addProduct'} element={<AddProduct />}>
-                  Ad Product
-                </Link>
-              </NavDropdown.Item>
+              <Link href="#">All Orders</Link>
+              <Link to={'/products/addProduct'} element={<AddProduct />}>
+                Ad Product
+              </Link>
+              <Link
+                to={'/productControlPanel'}
+                element={<ProductControlPanel />}
+              >
+                Product Control Panel
+              </Link>
             </NavDropdown>
           </Nav>
           <SearchPhrase />
@@ -92,7 +98,7 @@ export const MainMenu = () => {
 
       <ModalComponent
         show={loginSuccess}
-        onConfirm={handleCloseModal}
+        onClose={handleCloseModal}
         headerText={modalMessages.loginSuccess.headerText}
         textMessage={modalMessages.loginSuccess.textMessage}
       />

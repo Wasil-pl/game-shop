@@ -1,0 +1,20 @@
+@import '../../../../styles/settings.scss';
+
+.tableContainer {
+  font-size: $small-size;
+
+  .title {
+    font-size: $medium-size;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .buttonsContainer {
+    display: flex;
+
+    .actionButton {
+      font-size: $small-size;
+      margin: 5px;
+    }
+  }
+}

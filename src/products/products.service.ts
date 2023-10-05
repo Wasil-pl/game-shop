@@ -12,6 +12,14 @@ export class ProductsService {
     return this.prismaService.product.findMany({});
   }
 
+  /* --------------------- GET PRODUCTS IS ACTIVE --------------------- */
+
+  public getProductsIsActive(): Promise<Product[]> {
+    return this.prismaService.product.findMany({
+      where: { isActive: true },
+    });
+  }
+
   /* --------------------- GET PRODUCT BY ID --------------------- */
 
   public getProductById(id: Product['id']): Promise<Product | null> {
@@ -26,7 +34,10 @@ export class ProductsService {
     platform: Product['platform'],
   ): Promise<Product[]> {
     return this.prismaService.product.findMany({
-      where: { platform },
+      where: {
+        platform,
+        isActive: true,
+      },
     });
   }
 
@@ -36,7 +47,10 @@ export class ProductsService {
     searchPhrase: string,
   ): Promise<Product[]> {
     return this.prismaService.product.findMany({
-      where: { name: { contains: searchPhrase } },
+      where: {
+        name: { contains: searchPhrase },
+        isActive: true,
+      },
     });
   }
 

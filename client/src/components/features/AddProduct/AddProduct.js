@@ -86,7 +86,7 @@ const AddProduct = () => {
 
           <ModalComponent
             show={content.success}
-            onConfirm={handleCloseModal}
+            onClose={handleCloseModal}
             headerText={modalMessages.addEditContentSuccess.headerText}
             textMessage={modalMessages.addEditContentSuccess.textMessage}
           />
@@ -123,7 +123,7 @@ const AddProduct = () => {
 
           <ModalComponent
             show={images.success}
-            onConfirm={handleCloseModal}
+            onClose={handleCloseModal}
             headerText={modalMessages.addEditImagesSuccess.headerText}
             textMessage={modalMessages.addEditImagesSuccess.textMessage}
           />
@@ -160,7 +160,7 @@ const AddProduct = () => {
 
           <ModalComponent
             show={activate.success}
-            onConfirm={handleCloseModal}
+            onClose={handleCloseModal}
             headerText={modalMessages.addEditActivateSuccess.headerText}
             textMessage={modalMessages.addEditActivateSuccess.textMessage}
           />

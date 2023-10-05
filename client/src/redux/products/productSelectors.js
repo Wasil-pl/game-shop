@@ -1,12 +1,10 @@
 import { createSelector } from 'reselect';
 
-export const getAllProducts = (state) => state.products.list;
+export const getAllProducts = (state) => state.products.all;
 export const getProductsByPlatform = (state) => state.products.listByPlatform;
 export const getProductsBySearchPhrase = (state) => state.products.searchList;
 export const getProductById = (state) => state.products.selectedProduct;
-export const getAllActiveProducts = createSelector(getAllProducts, (products) =>
-  products.filter((product) => product.isActive),
-);
+export const getAllActiveProducts = (state) => state.products.activeProducts;
 export const getSaleProducts = createSelector(
   getAllActiveProducts,
   (products) => products.filter((product) => product.salePrice),

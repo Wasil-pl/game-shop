@@ -30,9 +30,18 @@ export class ProductsController {
 
   /* --------------------- GET --------------------- */
 
+  @UseGuards(AdminAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('/')
   public getProducts() {
     return this.productService.getProducts();
+  }
+
+  /* --------------------- GET IS ACTIVE --------------------- */
+
+  @Get('/isActive')
+  public getProductsIsActive() {
+    return this.productService.getProductsIsActive();
   }
 
   /* --------------------- GET BY ID --------------------- */

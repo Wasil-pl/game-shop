@@ -17,6 +17,8 @@ import {
   editProduct,
   activateProductSuccess,
   activateProductError,
+  loadProductsIsActive,
+  deleteProduct,
 } from './productActions';
 
 export const loadProductsRequest = () => {
@@ -25,6 +27,20 @@ export const loadProductsRequest = () => {
     try {
       const data = await httpClient.get(`${API_URL}/api/products`);
       dispatch(loadProducts(data));
+      dispatch(endRequest());
+    } catch (error) {
+      const action = errorRequest({ message: error.message });
+      dispatch(action);
+    }
+  };
+};
+
+export const loadProductsIsActiveRequest = () => {
+  return async (dispatch) => {
+    dispatch(startRequest());
+    try {
+      const data = await httpClient.get(`${API_URL}/api/products/isActive`);
+      dispatch(loadProductsIsActive(data));
       dispatch(endRequest());
     } catch (error) {
       const action = errorRequest({ message: error.message });
@@ -125,6 +141,20 @@ export const addProductIsActiveRequest = (payload, id) => {
       dispatch(activateProductSuccess());
     } catch (error) {
       const action = activateProductError({ message: error.message });
+      dispatch(action);
+    }
+  };
+};
+
+export const deleteProductRequest = (id) => {
+  return async (dispatch) => {
+    dispatch(startRequest());
+    try {
+      await httpClient.delete(`${API_URL}/api/products/delete/${id}`);
+      dispatch(deleteProduct(id));
+      dispatch(endRequest());
+    } catch (error) {
+      const action = errorRequest({ message: error.message });
       dispatch(action);
     }
   };

@@ -16,6 +16,8 @@ import {
   ADD_PRODUCT_IMAGES_SUCCESS,
   RESET_PRODUCT_STATES,
   EDIT_PRODUCT,
+  LOAD_PRODUCTS_ISACTIVE,
+  DELETE_PRODUCT,
 } from './productActionTypes';
 
 export const productsReducer = (
@@ -23,7 +25,8 @@ export const productsReducer = (
     success: false,
     loading: false,
     error: null,
-    list: [],
+    activeProducts: [],
+    all: [],
     listByPlatform: [],
     searchList: [],
     selectedProduct: {},
@@ -47,13 +50,32 @@ export const productsReducer = (
 ) => {
   switch (action.type) {
     case LOAD_PRODUCTS:
-      return { ...statePart, list: [...action.payload] };
+      return { ...statePart, all: [...action.payload] };
+    case LOAD_PRODUCTS_ISACTIVE:
+      return { ...statePart, activeProducts: [...action.payload] };
     case LOAD_PRODUCTS_BY_PLATFORM:
       return { ...statePart, listByPlatform: [...action.payload] };
     case SEARCH_PRODUCTS:
       return { ...statePart, searchList: [...action.payload] };
     case LOAD_PRODUCT:
       return { ...statePart, selectedProduct: { ...action.payload } };
+    case ADD_PRODUCT:
+      return {
+        ...statePart,
+        all: [...statePart.all, action.payload],
+      };
+    case EDIT_PRODUCT:
+      return {
+        ...statePart,
+        all: statePart.all.map((product) =>
+          product._id === action.payload.id ? action.payload : product,
+        ),
+      };
+    case DELETE_PRODUCT:
+      return {
+        ...statePart,
+        all: statePart.all.filter((product) => product.id !== action.payload),
+      };
     case START_REQUEST:
       return {
         ...statePart,
@@ -78,18 +100,6 @@ export const productsReducer = (
       return { ...statePart, loading: false, error: null };
     case ERROR_REQUEST:
       return { ...statePart, loading: false, error: action.payload.message };
-    case ADD_PRODUCT:
-      return {
-        ...statePart,
-        list: [...statePart.list, action.payload],
-      };
-    case EDIT_PRODUCT:
-      return {
-        ...statePart,
-        list: statePart.list.map((product) =>
-          product._id === action.payload._id ? action.payload : product,
-        ),
-      };
     case ADD_PRODUCT_CONTENT_SUCCESS:
       return updateAddEditProductState({
         state: statePart,

@@ -3,6 +3,7 @@ import {
   ERROR_REQUEST,
   END_REQUEST,
   LOAD_PRODUCTS,
+  LOAD_PRODUCTS_ISACTIVE,
   LOAD_PRODUCTS_BY_PLATFORM,
   SEARCH_PRODUCTS,
   LOAD_PRODUCT,
@@ -14,12 +15,17 @@ import {
   ADD_PRODUCT_IMAGES_ERROR,
   ADD_PRODUCT_ISACTIVE_SUCCESS,
   ADD_PRODUCT_ISACTIVE_ERROR,
+  DELETE_PRODUCT,
 } from './productActionTypes';
 
 export const startRequest = (payload) => ({ payload, type: START_REQUEST });
 export const errorRequest = (payload) => ({ payload, type: ERROR_REQUEST });
 export const endRequest = (payload) => ({ payload, type: END_REQUEST });
 export const loadProducts = (payload) => ({ payload, type: LOAD_PRODUCTS });
+export const loadProductsIsActive = (payload) => ({
+  payload,
+  type: LOAD_PRODUCTS_ISACTIVE,
+});
 export const loadProductsByPlatform = (payload) => ({
   payload,
   type: LOAD_PRODUCTS_BY_PLATFORM,
@@ -28,6 +34,7 @@ export const searchProducts = (payload) => ({ payload, type: SEARCH_PRODUCTS });
 export const loadProductById = (payload) => ({ payload, type: LOAD_PRODUCT });
 export const addProduct = (payload) => ({ payload, type: ADD_PRODUCT });
 export const editProduct = (payload) => ({ payload, type: EDIT_PRODUCT });
+export const deleteProduct = (payload) => ({ payload, type: DELETE_PRODUCT });
 export const addProductContentSuccess = (payload) => ({
   payload,
   type: ADD_PRODUCT_CONTENT_SUCCESS,

@@ -51,7 +51,7 @@ export const Register = () => {
 
       <ModalComponent
         show={success}
-        onConfirm={handleCloseModal}
+        onClose={handleCloseModal}
         headerText={modalMessages.registerSuccess.headerText}
         textMessage={modalMessages.registerSuccess.textMessage}
       />
