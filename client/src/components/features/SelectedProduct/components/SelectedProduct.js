@@ -25,8 +25,8 @@ export const SelectedProduct = () => {
 
   return (
     <Container>
-      <Divider text={product.name} />
-      <Divider text={product.platform} variant={'secondLine'} />
+      <Divider text={product?.name} />
+      <Divider text={product?.platform} variant={'secondLine'} />
 
       {errorMessages && (
         <Alert className="alert" variant="danger">

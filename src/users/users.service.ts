@@ -17,6 +17,63 @@ export class UsersService {
   public getUser(id: User['id']): Promise<User | null> {
     return this.prismaService.user.findUnique({
       where: { id },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        password: false,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+
+        orders: {
+          select: {
+            id: true,
+            createdAt: true,
+            updatedAt: true,
+            userId: false,
+            totalQuantity: true,
+            totalPrice: true,
+            status: true,
+            address: true,
+            city: true,
+            street: true,
+            postalCode: true,
+
+            items: {
+              select: {
+                id: false,
+                quantity: true,
+                productId: false,
+                orderId: false,
+                createdAt: false,
+                updatedAt: false,
+
+                product: {
+                  select: {
+                    id: false,
+                    name: true,
+                    description: false,
+                    price: false,
+                    pegi: false,
+                    language: false,
+                    mainPicture: false,
+                    createdAt: false,
+                    updatedAt: false,
+                    platform: true,
+                    pictureOne: false,
+                    pictureTwo: false,
+                    pictureThree: false,
+                    pictureFour: false,
+                    pictureFive: false,
+                    isActive: false,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     });
   }
 

@@ -14,7 +14,7 @@ import {
 export const ordersReducer = (
   statePart = {
     list: [],
-    selectedOrder: {},
+    selectedOrder: null,
     loading: false,
     error: null,
     addOrderSuccess: false,

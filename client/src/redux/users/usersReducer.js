@@ -15,7 +15,7 @@ import {
 export const usersReducer = (
   statePart = {
     list: [],
-    user: {},
+    user: null,
     loading: false,
     error: null,
     loginSuccess: false,
@@ -31,7 +31,7 @@ export const usersReducer = (
     case LOAD_USER:
       return { ...statePart, user: action.payload };
     case LOGOUT_USER:
-      return { ...statePart, user: {}, isLogged: false };
+      return { ...statePart, user: null, isLogged: false };
     case LOGIN_USER:
       return { ...statePart, isLogged: true };
     case START_USER_REQUEST:

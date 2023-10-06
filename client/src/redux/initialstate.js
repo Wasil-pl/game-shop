@@ -7,7 +7,7 @@ const initialState = {
     all: [],
     listByPlatform: [],
     searchList: [],
-    selectedProduct: {},
+    selectedProduct: null,
     addedProductId: null,
     addProductStates: {
       content: {
@@ -38,7 +38,7 @@ const initialState = {
 
   orders: {
     list: [],
-    selectedOrder: {},
+    selectedOrder: null,
     loading: false,
     error: null,
     addOrderSuccess: false,

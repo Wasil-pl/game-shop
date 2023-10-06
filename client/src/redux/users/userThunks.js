@@ -26,11 +26,11 @@ export const loadUsersRequest = () => {
   };
 };
 
-export const loadUserRequest = (userId) => {
+export const loadUserRequest = () => {
   return async (dispatch) => {
     dispatch(startUserRequest());
     try {
-      const data = await httpClient.get(`${API_URL}/api/users/${userId}`);
+      const data = await httpClient.get(`${API_URL}/api/users/user`);
       dispatch(loadUser(data));
       dispatch(endUserRequest());
     } catch (error) {

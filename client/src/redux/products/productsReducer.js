@@ -29,7 +29,7 @@ export const productsReducer = (
     all: [],
     listByPlatform: [],
     searchList: [],
-    selectedProduct: {},
+    selectedProduct: null,
     addedProductId: null,
     addProductStates: {
       content: {

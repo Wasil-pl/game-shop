@@ -46,8 +46,7 @@ export const addOrderRequest = (order) => {
   return async (dispatch) => {
     dispatch(startRequest());
     try {
-      const data = await httpClient.post(`${API_URL}/api/orders`, order);
-      dispatch(addOrder(data));
+      await httpClient.post(`${API_URL}/api/orders`, order);
       dispatch(endRequest());
       dispatch(addOrderSuccess());
       dispatch(loadProductsIsActiveRequest());

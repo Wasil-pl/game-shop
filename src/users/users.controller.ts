@@ -5,6 +5,7 @@ import {
   NotFoundException,
   Param,
   ParseUUIDPipe,
+  Req,
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
@@ -28,9 +29,10 @@ export class UsersController {
   /* --------------------- GET USER BY ID --------------------- */
 
   @UseGuards(JwtAuthGuard)
-  @Get('/:id')
-  public getUser(@Param('id', new ParseUUIDPipe()) id: User['id']) {
-    const user = this.userService.getUser(id);
+  @Get('/user')
+  public getUser(id: User['id'], @Req() req: any) {
+    const userId = req.user.id;
+    const user = this.userService.getUser(userId);
     if (!user) {
       throw new NotFoundException(`User with id ${id} not found`);
     }

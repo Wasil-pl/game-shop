@@ -34,6 +34,7 @@ export class OrdersController {
 
   /* --------------------- GET ORDER BY ID --------------------- */
 
+  @UseGuards(AdminAuthGuard)
   @UseGuards(JwtAuthGuard)
   @Get('/:id')
   public async getOrderById(

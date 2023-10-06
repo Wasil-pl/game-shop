@@ -1,0 +1,15 @@
+.container {
+  text-align: center;
+
+  .cardContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .card {
+      margin: 10px;
+      min-width: 250px;
+      max-width: 300px;
+    }
+  }
+}

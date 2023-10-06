@@ -3,7 +3,7 @@ import styles from './MainMenu.module.scss';
 import './MainMenu.css';
 import { Navbar, Nav, NavDropdown, Button } from 'react-bootstrap';
 import CarouselComponent from '../../Carousel/Carousel';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Home from '../../../pages/Home/Home';
 import SearchPhrase from '../../SearchPhrase/SearchPhrase';
 import MainMenuCart from './MainMenuCart';
@@ -23,6 +23,7 @@ import { ProductControlPanel } from '../../ProductControlPanel/index';
 
 export const MainMenu = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const isLogged = useSelector(getLoggedState);
   const loginSuccess = useSelector(getLoginSuccessState);
@@ -31,6 +32,7 @@ export const MainMenu = () => {
 
   const handleLogout = () => {
     dispatch(logoutUserRequest());
+    navigate('/');
   };
 
   const handleCloseModal = () => {
@@ -49,7 +51,7 @@ export const MainMenu = () => {
         <Navbar.Collapse className={styles.navBarCollapse}>
           <Nav className={`me-auto ${styles.nav}`}>
             <NavDropdown title="User">
-              <Link href="#">My orders</Link>
+              <Link to={'/user/orders'}>My orders</Link>
               <Link href="#">My account</Link>
             </NavDropdown>
             <NavDropdown title="Admin Panel">
