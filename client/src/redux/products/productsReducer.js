@@ -8,16 +8,16 @@ import {
   SEARCH_PRODUCTS,
   LOAD_PRODUCT,
   ADD_PRODUCT,
-  ADD_PRODUCT_CONTENT_SUCCESS,
-  ADD_PRODUCT_CONTENT_ERROR,
-  ADD_PRODUCT_ISACTIVE_ERROR,
-  ADD_PRODUCT_ISACTIVE_SUCCESS,
-  ADD_PRODUCT_IMAGES_ERROR,
-  ADD_PRODUCT_IMAGES_SUCCESS,
   RESET_PRODUCT_STATES,
   EDIT_PRODUCT,
   LOAD_PRODUCTS_ISACTIVE,
   DELETE_PRODUCT,
+  ADD_EDIT_PRODUCT_CONTENT_SUCCESS,
+  ADD_EDIT_PRODUCT_CONTENT_ERROR,
+  ADD_EDIT_PRODUCT_IMAGES_SUCCESS,
+  ADD_EDIT_PRODUCT_IMAGES_ERROR,
+  ADD_EDIT_PRODUCT_ISACTIVE_SUCCESS,
+  ADD_EDIT_PRODUCT_ISACTIVE_ERROR,
 } from './productActionTypes';
 
 export const productsReducer = (
@@ -68,7 +68,7 @@ export const productsReducer = (
       return {
         ...statePart,
         all: statePart.all.map((product) =>
-          product._id === action.payload.id ? action.payload : product,
+          product.id === action.payload.id ? action.payload : product,
         ),
       };
     case DELETE_PRODUCT:
@@ -100,7 +100,7 @@ export const productsReducer = (
       return { ...statePart, loading: false, error: null };
     case ERROR_REQUEST:
       return { ...statePart, loading: false, error: action.payload.message };
-    case ADD_PRODUCT_CONTENT_SUCCESS:
+    case ADD_EDIT_PRODUCT_CONTENT_SUCCESS:
       return updateAddEditProductState({
         state: statePart,
         operation: 'content',
@@ -108,14 +108,14 @@ export const productsReducer = (
         error: null,
         productId: action.payload,
       });
-    case ADD_PRODUCT_CONTENT_ERROR:
+    case ADD_EDIT_PRODUCT_CONTENT_ERROR:
       return updateAddEditProductState({
         state: statePart,
         operation: 'content',
         success: false,
         error: action.payload.message,
       });
-    case ADD_PRODUCT_IMAGES_SUCCESS:
+    case ADD_EDIT_PRODUCT_IMAGES_SUCCESS:
       return updateAddEditProductState({
         state: statePart,
         operation: 'images',
@@ -123,14 +123,14 @@ export const productsReducer = (
         error: null,
         productId: action.payload,
       });
-    case ADD_PRODUCT_IMAGES_ERROR:
+    case ADD_EDIT_PRODUCT_IMAGES_ERROR:
       return updateAddEditProductState({
         state: statePart,
         operation: 'images',
         success: false,
         error: action.payload.message,
       });
-    case ADD_PRODUCT_ISACTIVE_SUCCESS:
+    case ADD_EDIT_PRODUCT_ISACTIVE_SUCCESS:
       return updateAddEditProductState({
         state: statePart,
         operation: 'activate',
@@ -138,7 +138,7 @@ export const productsReducer = (
         error: null,
         productId: action.payload,
       });
-    case ADD_PRODUCT_ISACTIVE_ERROR:
+    case ADD_EDIT_PRODUCT_ISACTIVE_ERROR:
       return updateAddEditProductState({
         state: statePart,
         operation: 'activate',

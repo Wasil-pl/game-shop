@@ -290,15 +290,17 @@ export class ProductsController {
 
   /* --------------------- UPDATE ACTIVE STATUS --------------------- */
 
-  @Put('/update/activate/:id')
+  @Put('/update/isActive/:id')
   public async updateIsActive(
     @Param('id', new ParseUUIDPipe()) id: Product['id'],
-    @Body() data: Product['isActive'],
+    @Body('isActive') isActiveString: string,
   ) {
     const product = await this.productService.getProductById(id);
     if (!product) throw new NotFoundException('Product not found');
 
-    await this.productService.updateIsActive(id, data);
+    const isActive = isActiveString === 'true';
+
+    await this.productService.updateIsActive(id, isActive);
     return { message: 'Product active status updated successfully' };
   }
 

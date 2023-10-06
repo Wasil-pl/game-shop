@@ -87,8 +87,8 @@ const AddProduct = () => {
           <ModalComponent
             show={content.success}
             onClose={handleCloseModal}
-            headerText={modalMessages.addEditContentSuccess.headerText}
-            textMessage={modalMessages.addEditContentSuccess.textMessage}
+            headerText={modalMessages.addContentSuccess.headerText}
+            textMessage={modalMessages.addContentSuccess.textMessage}
           />
         </Container>
       );
@@ -124,8 +124,8 @@ const AddProduct = () => {
           <ModalComponent
             show={images.success}
             onClose={handleCloseModal}
-            headerText={modalMessages.addEditImagesSuccess.headerText}
-            textMessage={modalMessages.addEditImagesSuccess.textMessage}
+            headerText={modalMessages.addImagesSuccess.headerText}
+            textMessage={modalMessages.addImagesSuccess.textMessage}
           />
         </Container>
       );
@@ -161,8 +161,8 @@ const AddProduct = () => {
           <ModalComponent
             show={activate.success}
             onClose={handleCloseModal}
-            headerText={modalMessages.addEditActivateSuccess.headerText}
-            textMessage={modalMessages.addEditActivateSuccess.textMessage}
+            headerText={modalMessages.addActivateSuccess.headerText}
+            textMessage={modalMessages.addActivateSuccess.textMessage}
           />
         </Container>
       );

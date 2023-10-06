@@ -12,7 +12,6 @@ const AddEditActivateProductForm = ({ action, defaultValues, actionText }) => {
   } = useForm({ defaultValues });
 
   const handleSubmit = (data) => {
-    console.log('data:', data);
     action(data);
   };
 

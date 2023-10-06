@@ -4,6 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 import { errorMessages, fileNames, labels, patterns } from '../../../../consts';
 import ImageUpload from './ImageUpload';
 import { IMAGES_URL } from '../../../../config';
+import { removeLastNumberSegment } from '../../../../Utils/removeLastNumberSegment';
 
 export const AddEditImagesProductForm = ({
   action,
@@ -11,6 +12,8 @@ export const AddEditImagesProductForm = ({
   defaultValues,
 }) => {
   const [files, setFiles] = useState(Array(6).fill(null));
+  const [selectedFileName, setSelectedFileName] = useState(Array(6).fill(''));
+  console.log('selectedFileName:', selectedFileName);
   const [errors, setErrors] = useState(Array(6).fill(''));
 
   const handleSubmit = (e) => {
@@ -40,33 +43,40 @@ export const AddEditImagesProductForm = ({
   useEffect(() => {
     if (!defaultValues) return;
 
-    let isMounted = true;
+    const getImages = async () => {
+      const imageProperties = [
+        'mainPicture',
+        'pictureOne',
+        'pictureTwo',
+        'pictureThree',
+        'pictureFour',
+        'pictureFive',
+      ];
 
-    const getFiles = async () => {
-      try {
-        const files = await Promise.all(
-          fileNames.map(async (fileName) => {
-            const response = await fetch(IMAGES_URL + defaultValues[fileName]);
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            const file = await response.blob();
-            return new File([file], fileName, { type: file.type });
-          }),
-        );
-        if (isMounted) {
-          setFiles(files);
-        }
-      } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
-      }
+      const fetchedFiles = await Promise.all(
+        imageProperties.map(async (property) => {
+          const imageFileName = defaultValues[property];
+          if (!imageFileName) return null;
+
+          const response = await fetch(IMAGES_URL + imageFileName);
+          const parsedData = await response.blob();
+          const originalFileName = removeLastNumberSegment(imageFileName);
+
+          return new File([parsedData], originalFileName, {
+            type: parsedData.type,
+          });
+        }),
+      );
+
+      const fetchedFileNames = fetchedFiles.map((file) =>
+        file ? file.name : '',
+      );
+
+      setFiles(fetchedFiles);
+      setSelectedFileName(fetchedFileNames);
     };
 
-    getFiles();
-
-    return () => {
-      isMounted = false;
-    };
+    getImages();
   }, [defaultValues]);
 
   return (
@@ -78,9 +88,15 @@ export const AddEditImagesProductForm = ({
             label={label}
             onFileChange={(file) => {
               const newFiles = [...files];
+              const newSelectedFileName = [...selectedFileName];
+
               newFiles[index] = file;
+              newSelectedFileName[index] = file ? file.name : '';
+
               setFiles(newFiles);
+              setSelectedFileName(newSelectedFileName);
             }}
+            selectedFileName={selectedFileName[index]}
             error={errors[index]}
           />
         ))}

@@ -187,11 +187,11 @@ export class ProductsService {
 
   public async updateIsActive(
     id: Product['id'],
-    data: Product['isActive'],
+    isActive: Product['isActive'],
   ): Promise<Product> {
     return await this.prismaService.product.update({
       where: { id },
-      data: data,
+      data: { isActive },
     });
   }
 

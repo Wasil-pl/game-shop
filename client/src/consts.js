@@ -55,21 +55,33 @@ export const modalMessages = {
     headerText: 'Login success',
     textMessage: 'You are logged in, welcome!',
   },
-  addEditContentSuccess: {
+  addContentSuccess: {
     headerText: 'Content added successfully',
     textMessage: 'You can now add images',
   },
-  addEditImagesSuccess: {
+  addImagesSuccess: {
     headerText: 'Images added successfully',
     textMessage: 'You can now activate product',
   },
-  addEditActivateSuccess: {
+  addActivateSuccess: {
     headerText: 'Product activated successfully',
     textMessage: 'You can now view your product',
   },
   deleteProductConfirm: {
     headerText: (name) => `Delete ${name}?`,
     textMessage: 'Are you sure you want to delete this product?',
+  },
+  editContentSuccess: {
+    headerText: (name) => `Edit ${name}`,
+    textMessage: 'Content edited successfully',
+  },
+  editImagesSuccess: {
+    headerText: (name) => `Edit ${name}`,
+    textMessage: 'Images edited successfully',
+  },
+  editActivateSuccess: {
+    headerText: (name) => `Edit ${name}`,
+    textMessage: 'Product edited successfully',
   },
 };
 

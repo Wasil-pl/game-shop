@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './ProductControlPanelForm.module.scss';
 import { Button, Table } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { deleteProductRequest } from '../../../../redux/products/productThunks';
 import ModalComponent from '../../ModalComponent/ModalComponent';
@@ -9,6 +9,7 @@ import { modalMessages } from '../../../../consts';
 
 const ProductControlPanelForm = ({ data }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [pendingDeletion, setPendingDeletion] = useState(null);
   const clearPendingDeletion = () => setPendingDeletion(null);
@@ -17,6 +18,18 @@ const ProductControlPanelForm = ({ data }) => {
     e.preventDefault();
     dispatch(deleteProductRequest(pendingDeletion.id));
     clearPendingDeletion();
+  };
+
+  const handleEditContentProduct = (id) => {
+    navigate(`/products/edit/${id}`);
+  };
+
+  const handleEditImagesProduct = (id) => {
+    navigate(`/products/edit/images/${id}`);
+  };
+
+  const handleEditIsActiveProduct = (id) => {
+    navigate(`/products/edit/active/${id}`);
   };
 
   return (
@@ -81,6 +94,7 @@ const ProductControlPanelForm = ({ data }) => {
                     variant="primary"
                     size="sm"
                     className={styles.actionButton}
+                    onClick={() => handleEditContentProduct(product.id)}
                   >
                     Content Edit
                   </Button>
@@ -88,6 +102,7 @@ const ProductControlPanelForm = ({ data }) => {
                     variant="warning"
                     size="sm"
                     className={styles.actionButton}
+                    onClick={() => handleEditImagesProduct(product.id)}
                   >
                     Images Edit
                   </Button>
@@ -95,6 +110,7 @@ const ProductControlPanelForm = ({ data }) => {
                     variant="info"
                     size="sm"
                     className={styles.actionButton}
+                    onClick={() => handleEditIsActiveProduct(product.id)}
                   >
                     IsActive Edit
                   </Button>

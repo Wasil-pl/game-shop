@@ -10,15 +10,15 @@ import {
   loadProductsByPlatform,
   searchProducts,
   addProduct,
-  addProductContentSuccess,
-  addProductContentError,
-  addProductImagesSuccess,
-  addProductImagesError,
   editProduct,
   activateProductSuccess,
   activateProductError,
   loadProductsIsActive,
   deleteProduct,
+  addEditProductContentSuccess,
+  addEditProductImagesSuccess,
+  addEditProductContentError,
+  addEditProductImagesError,
 } from './productActions';
 
 export const loadProductsRequest = () => {
@@ -104,9 +104,9 @@ export const addProductContentRequest = (data) => {
         data,
       );
       dispatch(addProduct(response));
-      dispatch(addProductContentSuccess(response.id));
+      dispatch(addEditProductContentSuccess(response.id));
     } catch (error) {
-      const action = addProductContentError({ message: error.message });
+      const action = addEditProductContentError({ message: error.message });
       dispatch(action);
     }
   };
@@ -121,9 +121,9 @@ export const addProductImagesRequest = (data, id) => {
         data,
       );
       dispatch(editProduct(response));
-      dispatch(addProductImagesSuccess(id));
+      dispatch(addEditProductImagesSuccess(id));
     } catch (error) {
-      const action = addProductImagesError({ message: error.message });
+      const action = addEditProductImagesError({ message: error.message });
       dispatch(action);
     }
   };
@@ -155,6 +155,57 @@ export const deleteProductRequest = (id) => {
       dispatch(endRequest());
     } catch (error) {
       const action = errorRequest({ message: error.message });
+      dispatch(action);
+    }
+  };
+};
+
+export const editProductContentRequest = (data, id) => {
+  return async (dispatch) => {
+    dispatch(startRequest());
+    try {
+      const response = await httpClient.put(
+        `${API_URL}/api/products/update/${id}`,
+        data,
+      );
+      dispatch(editProduct(response));
+      dispatch(addEditProductContentSuccess());
+    } catch (error) {
+      const action = addEditProductContentError({ message: error.message });
+      dispatch(action);
+    }
+  };
+};
+
+export const editProductImagesRequest = (data, id) => {
+  return async (dispatch) => {
+    dispatch(startRequest());
+    try {
+      const response = await httpClientFormData.put(
+        `${API_URL}/api/products/update/files/${id}`,
+        data,
+      );
+      dispatch(editProduct(response));
+      dispatch(addEditProductImagesSuccess());
+    } catch (error) {
+      const action = addEditProductImagesError({ message: error.message });
+      dispatch(action);
+    }
+  };
+};
+
+export const editProductIsActiveRequest = (payload, id) => {
+  return async (dispatch) => {
+    dispatch(startRequest());
+    try {
+      const response = await httpClient.put(
+        `${API_URL}/api/products/update/isActive/${id}`,
+        payload,
+      );
+      dispatch(editProduct(response));
+      dispatch(activateProductSuccess());
+    } catch (error) {
+      const action = activateProductError({ message: error.message });
       dispatch(action);
     }
   };
