@@ -16,6 +16,7 @@ import { ProductControlPanel } from './components/features/ProductControlPanel/i
 import EditProductContent from './components/pages/EditProductContent/EditProductContent';
 import EditProductFiles from './components/pages/EditProductFiles/EditProductFiles';
 import EditProductIsActive from './components/pages/EditProductIsActive/EditProductIsActive';
+import { OrdersControlPanel } from './components/features/OrdersControlPanel/index';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ const App = () => {
           path="/products/edit/active/:id"
           element={<EditProductIsActive />}
         />
+        <Route path="/ordersControlPanel" element={<OrdersControlPanel />} />
         <Route path="/cart" element={<CartProducts />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/register" element={<Register />} />

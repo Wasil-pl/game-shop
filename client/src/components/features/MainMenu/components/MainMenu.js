@@ -49,19 +49,19 @@ export const MainMenu = () => {
         <Navbar.Collapse className={styles.navBarCollapse}>
           <Nav className={`me-auto ${styles.nav}`}>
             <NavDropdown title="User">
-              <Link href="#">My Orders</Link>
-              <Link href="#">My Account</Link>
+              <Link href="#">My orders</Link>
+              <Link href="#">My account</Link>
             </NavDropdown>
             <NavDropdown title="Admin Panel">
-              <Link href="#">All Orders</Link>
+              <Link to={'/ordersControlPanel'}>Orders control panel</Link>
               <Link to={'/products/addProduct'} element={<AddProduct />}>
-                Ad Product
+                Add product
               </Link>
               <Link
                 to={'/productControlPanel'}
                 element={<ProductControlPanel />}
               >
-                Product Control Panel
+                Product control panel
               </Link>
             </NavDropdown>
           </Nav>

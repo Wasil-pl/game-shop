@@ -153,6 +153,47 @@ export class OrdersService {
     return await this.prismaService.order.update({
       where: { id },
       data: { status },
+      select: {
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+        userId: true,
+        totalQuantity: true,
+        totalPrice: true,
+        status: true,
+        address: true,
+        city: true,
+        street: true,
+        postalCode: true,
+
+        user: {
+          select: {
+            id: false,
+            email: true,
+            firstName: true,
+          },
+        },
+
+        items: {
+          include: {
+            product: {
+              select: {
+                id: false,
+                name: true,
+                platform: true,
+                price: false,
+                salePrice: false,
+                inStock: false,
+                pictureOne: false,
+                pictureTwo: false,
+                pictureThree: false,
+                pictureFour: false,
+                pictureFive: false,
+              },
+            },
+          },
+        },
+      },
     });
   }
 }

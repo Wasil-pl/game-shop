@@ -6,6 +6,9 @@ import {
   ADD_ORDER_SUCCESS,
   LOAD_ORDERS,
   LOAD_ORDER,
+  EDIT_ORDER_STATUS,
+  ADD_ORDER,
+  EDIT_ORDER_SUCCESS,
 } from './orderActionTypes';
 
 export const ordersReducer = (
@@ -15,6 +18,7 @@ export const ordersReducer = (
     loading: false,
     error: null,
     addOrderSuccess: false,
+    editOrderSuccess: false,
   },
   action,
 ) => {
@@ -27,6 +31,20 @@ export const ordersReducer = (
         selectedOrder: action.payload,
         addOrderSuucess: true,
       };
+    case EDIT_ORDER_STATUS:
+      return {
+        ...statePart,
+        list: statePart.list.map((order) =>
+          order.id === action.payload.id ? action.payload : order,
+        ),
+      };
+    case EDIT_ORDER_SUCCESS:
+      return { ...statePart, editOrderSuccess: true };
+    case ADD_ORDER:
+      return {
+        ...statePart,
+        list: [...statePart.list, action.payload],
+      };
     case ADD_ORDER_SUCCESS:
       return { ...statePart, addOrderSuccess: true };
     case START_REQUEST:
@@ -36,7 +54,12 @@ export const ordersReducer = (
     case ERROR_REQUEST:
       return { ...statePart, loading: false, error: action.payload.message };
     case RESET_ORDER_STATE:
-      return { ...statePart, addOrderSuccess: false, error: null };
+      return {
+        ...statePart,
+        addOrderSuccess: false,
+        editOrderSuccess: false,
+        error: null,
+      };
     default:
       return statePart;
   }

@@ -1,0 +1,23 @@
+@import '../../../../styles/settings.scss';
+
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+
+  .formLayout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+    & > div {
+      margin: 10px;
+
+      label {
+        font-size: $medium-size;
+        color: $color-text;
+        margin: 0;
+      }
+    }
+  }
+}

@@ -38,6 +38,10 @@ export const modalMessages = {
     headerText: 'Order placed successfully',
     textMessage: 'Thank you for your order!',
   },
+  editOrderSuccess: {
+    headerText: 'Order edited successfully',
+    textMessage: 'Order edited successfully',
+  },
   loginRequired: {
     headerText: 'Login required',
     textMessage: 'You need to be logged in to place an order',
@@ -83,11 +87,22 @@ export const modalMessages = {
     headerText: (name) => `Edit ${name}`,
     textMessage: 'Product edited successfully',
   },
+  statusChangeConfirm: {
+    headerText: (id) => `Change status Order id: ${id}?`,
+    textMessage: 'Are you sure you want to change this status?',
+  },
 };
 
 export const registerSuccessMessage = 'Account created successfully!';
 
 export const platformOptions = ['PC', 'PLAYSTATION', 'XBOX', 'NINTENDO'];
+
+export const orderStatusOptions = [
+  'PENDING',
+  'PREPARING',
+  'SHIPPED',
+  'DELIVERED',
+];
 
 export const fileNames = [
   'mainPicture',

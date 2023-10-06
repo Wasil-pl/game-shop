@@ -9,7 +9,12 @@ const ModalComponent = ({
   onCancel,
 }) => {
   return (
-    <Modal backdrop="static" keyboard={false} show={show} onHide={onClose}>
+    <Modal
+      backdrop="static"
+      keyboard={false}
+      show={show}
+      onHide={onCancel || onClose}
+    >
       <Modal.Header closeButton>
         <Modal.Title className="text-center w-100">{headerText}</Modal.Title>
       </Modal.Header>

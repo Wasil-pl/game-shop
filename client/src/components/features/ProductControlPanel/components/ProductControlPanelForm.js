@@ -14,7 +14,7 @@ const ProductControlPanelForm = ({ data }) => {
   const [pendingDeletion, setPendingDeletion] = useState(null);
   const clearPendingDeletion = () => setPendingDeletion(null);
 
-  const handleDeleteProduct = (e, id) => {
+  const handleDeleteProduct = (e) => {
     e.preventDefault();
     dispatch(deleteProductRequest(pendingDeletion.id));
     clearPendingDeletion();
@@ -26,10 +26,6 @@ const ProductControlPanelForm = ({ data }) => {
 
   const handleEditImagesProduct = (id) => {
     navigate(`/products/edit/images/${id}`);
-  };
-
-  const handleEditIsActiveProduct = (id) => {
-    navigate(`/products/edit/active/${id}`);
   };
 
   return (
@@ -110,7 +106,6 @@ const ProductControlPanelForm = ({ data }) => {
                     variant="info"
                     size="sm"
                     className={styles.actionButton}
-                    onClick={() => handleEditIsActiveProduct(product.id)}
                   >
                     IsActive Edit
                   </Button>

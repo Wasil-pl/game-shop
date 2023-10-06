@@ -37,11 +37,12 @@ const initialState = {
   },
 
   orders: {
-    success: false,
+    list: [],
+    selectedOrder: {},
     loading: false,
     error: null,
-    list: [],
-    selectedOrder: null,
+    addOrderSuccess: false,
+    editOrderSuccess: false,
   },
 
   banner: {
