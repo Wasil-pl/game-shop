@@ -17,7 +17,7 @@ import { modalMessages } from '../../../consts/modalMessages';
 const ProductThumb = ({ data, variant = '' }) => {
   const [showModal, setShowModal] = useState(false);
 
-  const { inStock } = data;
+  const inStock = data?.inStock;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
