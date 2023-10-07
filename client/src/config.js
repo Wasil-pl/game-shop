@@ -9,3 +9,8 @@ export const SLIDER_IMAGES_URL =
   process.env.NODE_ENV === 'production'
     ? '/slider/'
     : 'http://localhost:8000/sliderImage/';
+
+export const BANNER_IMAGES_URL =
+  process.env.NODE_ENV === 'production'
+    ? '/banner/'
+    : 'http://localhost:8000/bannerImage/';

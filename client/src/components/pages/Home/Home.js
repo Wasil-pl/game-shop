@@ -10,6 +10,7 @@ import {
   getNewProducts,
   getSaleProducts,
 } from '../../../redux/products/productSelectors';
+import Banner from '../../layout/Banner/Banner';
 
 const Home = () => {
   const saleProducts = useSelector(getSaleProducts);
@@ -43,6 +44,7 @@ const Home = () => {
         title="New releases"
         variant="section-no-divider"
       />
+      <Banner />
     </div>
   );
 };
