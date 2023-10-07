@@ -21,7 +21,6 @@ export const UserOrders = () => {
   }, [dispatch]);
 
   const user = useSelector(getUser);
-  console.log('user:', user);
   const firstName = user?.firstName;
   const orders = user?.orders;
 

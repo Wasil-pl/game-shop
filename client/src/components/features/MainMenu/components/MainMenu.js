@@ -30,9 +30,7 @@ export const MainMenu = () => {
   const loginSuccess = useSelector(getLoginSuccessState);
   const userRole = useSelector(getUserRole);
   const isAdmin = userRole === 'ADMIN';
-  console.log('isAdmin:', isAdmin);
   const isUser = userRole === 'USER';
-  console.log('isUser:', isUser);
 
   const totalQuantity = useSelector(getTotalQuantity);
 

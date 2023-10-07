@@ -15,7 +15,6 @@ export const AddEditImagesProductForm = ({
 }) => {
   const [files, setFiles] = useState(Array(6).fill(null));
   const [selectedFileName, setSelectedFileName] = useState(Array(6).fill(''));
-  console.log('selectedFileName:', selectedFileName);
   const [errors, setErrors] = useState(Array(6).fill(''));
 
   const handleSubmit = (e) => {
