@@ -3,6 +3,7 @@ import Footer from '../Footer/Footer';
 import React, { useEffect, useState } from 'react';
 import { updateViewportMode } from '../../../redux/screenSizeRedux';
 import { MainMenu } from '../../features/MainMenu/index';
+import ContactUs from '../ContactUs/ContactUs';
 
 const MainLayout = ({ children }) => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const MainLayout = ({ children }) => {
     <div>
       <MainMenu />
       {children}
+      <ContactUs />
       <Footer />
     </div>
   );

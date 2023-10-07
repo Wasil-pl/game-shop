@@ -5,12 +5,12 @@ import { Button } from 'react-bootstrap';
 import MainMenuProductCartForm from './MainMenuProductCartForm';
 import { Link, useNavigate } from 'react-router-dom';
 import { getTotalPrice } from '../../../../Utils/getTotalPrice';
-import { maxDisplayedProducts } from '../../../../consts';
 import {
   getDetailedCartProducts,
   getTotalQuantity,
 } from '../../../../redux/cart/cartSelectors';
 import { removeAllProductsFromCart } from '../../../../redux/cart/cartActions';
+import { maxDisplayedProducts } from '../../../../consts/constants';
 
 const MainMenuCart = () => {
   const dispatch = useDispatch();

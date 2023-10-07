@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './MainMenuLoginForm.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { Error, errorMessages, patterns } from '../../../../consts';
+import { Error, errorMessages } from '../../../../consts/errorMesages';
+import { patterns } from '../../../../consts/patterns';
 
 const MainMenuLoginForm = ({ action }) => {
   const {

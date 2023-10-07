@@ -4,7 +4,7 @@
   border-radius: $radius;
   width: 250px;
   height: 400px;
-  background-color: $color-background;
+  background-color: $color-background-light;
   box-shadow: $shadow;
   transition: $transition;
   display: flex;
@@ -48,7 +48,7 @@
   }
 
   .cardImg {
-    background-color: $color-background-third;
+    background-color: $color-background-lightest;
     border-radius: $radius;
     height: 55%;
     text-align: center;
@@ -154,7 +154,7 @@
         }
 
         &:hover {
-          background-color: $color-background;
+          background-color: $color-background-light;
         }
 
         &:hover.xbox {
@@ -181,12 +181,12 @@
       .showMoreplaystation {
         font-size: $medium-size;
         color: $colorPlaystation;
-        background-color: $color-background;
+        background-color: $color-background-light;
         border: solid 2px $colorPlaystation;
         transition: $transitionLong;
 
         &:hover {
-          color: $color-background;
+          color: $color-background-light;
           background-color: $colorPlaystation;
         }
       }
@@ -194,12 +194,12 @@
       .showMorexbox {
         font-size: $medium-size;
         color: $colorXbox;
-        background-color: $color-background;
+        background-color: $color-background-light;
         border: solid 2px $colorXbox;
         $transition: $transitionLong;
 
         &:hover {
-          color: $color-background;
+          color: $color-background-light;
           background-color: $colorXbox;
         }
       }
@@ -207,12 +207,12 @@
       .showMorenintendo {
         font-size: $medium-size;
         color: $colorNintendo;
-        background-color: $color-background;
+        background-color: $color-background-light;
         border: solid 2px $colorNintendo;
         $transition: $transitionLong;
 
         &:hover {
-          color: $color-background;
+          color: $color-background-light;
           background-color: $colorNintendo;
         }
       }
@@ -220,12 +220,12 @@
       .showMorewindows {
         font-size: $medium-size;
         color: $colorWindows;
-        background-color: $color-background;
+        background-color: $color-background-light;
         border: solid 2px $colorWindows;
         $transition: $transitionLong;
 
         &:hover {
-          color: $color-background;
+          color: $color-background-light;
           background-color: $colorWindows;
         }
       }

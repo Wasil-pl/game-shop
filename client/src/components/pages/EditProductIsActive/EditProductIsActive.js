@@ -14,8 +14,8 @@ import {
 import Divider from '../../layout/Divider/Divider';
 import ModalComponent from '../../features/ModalComponent/ModalComponent';
 import { resetProductStates } from '../../../redux/products/productActions';
-import { modalMessages } from '../../../consts';
 import AddEditActivateProductForm from '../../features/AddEditActivateProductForm/AddEditActivateProductForm';
+import { modalMessages } from '../../../consts/modalMessages';
 
 const EditProductIsActive = () => {
   const { id } = useParams();

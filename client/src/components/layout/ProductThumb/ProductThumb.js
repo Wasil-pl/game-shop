@@ -11,8 +11,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ModalComponent from '../../features/ModalComponent/ModalComponent';
-import { modalMessages } from '../../../consts';
 import { addProductToCart } from '../../../redux/cart/cartActions';
+import { modalMessages } from '../../../consts/modalMessages';
 
 const ProductThumb = ({ data, variant = '' }) => {
   const [showModal, setShowModal] = useState(false);

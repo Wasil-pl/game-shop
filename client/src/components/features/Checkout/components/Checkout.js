@@ -4,7 +4,6 @@ import Divider from '../../../layout/Divider/Divider';
 import CheckoutForm from './CheckoutForm';
 import { useDispatch, useSelector } from 'react-redux';
 import ModalComponent from '../../ModalComponent/ModalComponent';
-import { modalMessages } from '../../../../consts';
 import { useNavigate } from 'react-router-dom';
 import {
   getErrorState,
@@ -12,6 +11,7 @@ import {
   getSuccessState,
 } from '../../../../redux/orders/orderSelectors';
 import { resetOrderState } from '../../../../redux/orders/orderActions';
+import { modalMessages } from '../../../../consts/modalMessages';
 
 export const Checkout = () => {
   const dispatch = useDispatch();

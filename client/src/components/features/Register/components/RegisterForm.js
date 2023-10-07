@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './RegisterForm.module.scss';
 import { useForm } from 'react-hook-form';
 import { Button, Form } from 'react-bootstrap';
-import { Error, errorMessages, patterns } from '../../../../consts';
+import { Error, errorMessages } from '../../../../consts/errorMesages';
+import { patterns } from '../../../../consts/patterns';
 
 const RegisterForm = ({ action }) => {
   const {

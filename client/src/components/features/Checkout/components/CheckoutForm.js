@@ -3,9 +3,9 @@ import styles from './CheckoutForm.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { Error, errorMessages } from '../../../../consts';
 import { getAllCartProducts } from '../../../../redux/cart/cartSelectors';
 import { addOrderRequest } from '../../../../redux/orders/orderThunks';
+import { Error, errorMessages } from '../../../../consts/errorMesages';
 
 const CheckoutForm = () => {
   const cart = useSelector(getAllCartProducts);

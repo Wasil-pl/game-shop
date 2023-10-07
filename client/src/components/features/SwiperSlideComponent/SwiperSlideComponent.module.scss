@@ -1,7 +1,7 @@
 @import '../../../styles/settings.scss';
 
 .section {
-  background-color: #2d445b;
+  background-color: $color-section1;
   clip-path: polygon(0 19%, 100% 0, 100% 100%, 0 83%);
   padding: 100px 0;
 
@@ -18,7 +18,7 @@
 .section-no-divider {
   padding: 100px 0;
   clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 100%);
-  background-color: $color-background-second;
+  background-color: $color-background-lighter;
   padding: 0 0 100px 0;
 
   .title {

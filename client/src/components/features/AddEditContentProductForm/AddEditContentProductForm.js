@@ -2,12 +2,9 @@ import React from 'react';
 import styles from './AddEditContentProductForm.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import {
-  Error,
-  errorMessages,
-  patterns,
-  platformOptions,
-} from '../../../consts';
+import { Error, errorMessages } from '../../../consts/errorMesages';
+import { patterns } from '../../../consts/patterns';
+import { platformOptions } from '../../../consts/constants';
 
 const AddEditContentProductForm = ({ action, defaultValues, actionText }) => {
   const {

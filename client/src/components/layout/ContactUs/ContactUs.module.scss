@@ -1,0 +1,23 @@
+@import '../../../styles/settings.scss';
+
+.ContactUs {
+  margin-top: 100px;
+  background-color: $color-background-footer;
+  color: $color-text-light;
+  padding: 20px 0;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  border-top: 5px solid $color-border-footer;
+  width: 100%;
+}
+
+.ContactUs h3 {
+  margin: 0;
+  padding-bottom: 10px;
+  font-size: $extra-large-size;
+}
+
+.ContactUs p {
+  margin: 5px 0;
+  font-size: $medium-size;
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './AddEditActivateProductForm.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { Error, errorMessages } from '../../../consts';
+import { Error, errorMessages } from '../../../consts/errorMesages';
 
 const AddEditActivateProductForm = ({ action, defaultValues, actionText }) => {
   const {

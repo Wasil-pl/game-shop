@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import RegisterForm from './RegisterForm';
 import { Alert, Container, Spinner } from 'react-bootstrap';
 import Divider from '../../../layout/Divider/Divider';
-import { modalMessages } from '../../../../consts';
 import ModalComponent from '../../ModalComponent/ModalComponent';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -12,6 +11,7 @@ import {
 } from '../../../../redux/users/userSelectors';
 import { registerUserRequest } from '../../../../redux/users/userThunks';
 import { resetUserState } from '../../../../redux/users/userActions';
+import { modalMessages } from '../../../../consts/modalMessages';
 
 export const Register = () => {
   const dispatch = useDispatch();

@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { deleteProductRequest } from '../../../../redux/products/productThunks';
 import ModalComponent from '../../ModalComponent/ModalComponent';
-import { modalMessages } from '../../../../consts';
+import { modalMessages } from '../../../../consts/modalMessages';
 
 const ProductControlPanelForm = ({ data }) => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ImageUpload.module.scss';
 import { Form } from 'react-bootstrap';
-import { Error } from '../../../../consts';
+import { Error } from '../../../../consts/errorMesages';
 
 const ImageUpload = ({ label, onFileChange, error, selectedFileName }) => (
   <Form.Group className={styles.inputBoxImageUpload}>

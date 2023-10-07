@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styles from './AddEditImagesProductForm.module.scss';
 import { Button, Form } from 'react-bootstrap';
-import { errorMessages, fileNames, labels, patterns } from '../../../../consts';
 import ImageUpload from './ImageUpload';
 import { IMAGES_URL } from '../../../../config';
 import { removeLastNumberSegment } from '../../../../Utils/removeLastNumberSegment';
+import { errorMessages } from '../../../../consts/errorMesages';
+import { patterns } from '../../../../consts/patterns';
+import { fileNames, labels } from '../../../../consts/constants';
 
 export const AddEditImagesProductForm = ({
   action,

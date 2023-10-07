@@ -8,7 +8,6 @@ import {
 } from '../../../redux/products/productThunks';
 import {
   getAddProductStates,
-  getErrorState,
   getLoadingState,
   getProductById,
 } from '../../../redux/products/productSelectors';
@@ -16,7 +15,7 @@ import Divider from '../../layout/Divider/Divider';
 import { AddEditImagesProductForm } from '../../features/AddEditImagesProductForm';
 import ModalComponent from '../../features/ModalComponent/ModalComponent';
 import { resetProductStates } from '../../../redux/products/productActions';
-import { modalMessages } from '../../../consts';
+import { modalMessages } from '../../../consts/modalMessages';
 
 const EditProductFiles = () => {
   const { id } = useParams();

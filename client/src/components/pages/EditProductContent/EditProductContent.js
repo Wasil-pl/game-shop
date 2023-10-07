@@ -9,14 +9,13 @@ import {
 } from '../../../redux/products/productThunks';
 import {
   getAddProductStates,
-  getErrorState,
   getLoadingState,
   getProductById,
 } from '../../../redux/products/productSelectors';
 import Divider from '../../layout/Divider/Divider';
 import ModalComponent from '../../features/ModalComponent/ModalComponent';
-import { modalMessages } from '../../../consts';
 import { resetProductStates } from '../../../redux/products/productActions';
+import { modalMessages } from '../../../consts/modalMessages';
 
 const EditProductContent = () => {
   const { id } = useParams();

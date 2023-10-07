@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import styles from './OrderForm.module.scss';
 import { Card, ListGroup } from 'react-bootstrap';
 import OrderStatusChange from './OrderStatusChange';
-import { modalMessages } from '../../../../consts';
 import ModalComponent from '../../ModalComponent/ModalComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEditOrderSuccessState } from '../../../../redux/orders/orderSelectors';
 import { resetOrderState } from '../../../../redux/orders/orderActions';
 import { editOrderStatusRequest } from '../../../../redux/orders/orderThunks';
+import { modalMessages } from '../../../../consts/modalMessages';
 
 const OrderForm = ({ order }) => {
   const dispatch = useDispatch();

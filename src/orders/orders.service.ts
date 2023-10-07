@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Order } from '@prisma/client';
+import { DATA_ORDER_SELECTION } from 'src/consts';
 import { PrismaService } from 'src/shared/services/prisma.service';
 
 @Injectable()
@@ -33,47 +34,7 @@ export class OrdersService {
   public getOrder(id: Order['id']): Promise<Order | null> {
     return this.prismaService.order.findUnique({
       where: { id },
-      select: {
-        id: true,
-        createdAt: true,
-        updatedAt: true,
-        userId: true,
-        totalQuantity: true,
-        totalPrice: true,
-        status: true,
-        address: true,
-        city: true,
-        street: true,
-        postalCode: true,
-
-        user: {
-          select: {
-            id: false,
-            email: true,
-            firstName: true,
-          },
-        },
-
-        items: {
-          include: {
-            product: {
-              select: {
-                id: false,
-                name: true,
-                platform: true,
-                price: false,
-                salePrice: false,
-                inStock: false,
-                pictureOne: false,
-                pictureTwo: false,
-                pictureThree: false,
-                pictureFour: false,
-                pictureFive: false,
-              },
-            },
-          },
-        },
-      },
+      select: DATA_ORDER_SELECTION,
     });
   }
 
@@ -153,47 +114,7 @@ export class OrdersService {
     return await this.prismaService.order.update({
       where: { id },
       data: { status },
-      select: {
-        id: true,
-        createdAt: true,
-        updatedAt: true,
-        userId: true,
-        totalQuantity: true,
-        totalPrice: true,
-        status: true,
-        address: true,
-        city: true,
-        street: true,
-        postalCode: true,
-
-        user: {
-          select: {
-            id: false,
-            email: true,
-            firstName: true,
-          },
-        },
-
-        items: {
-          include: {
-            product: {
-              select: {
-                id: false,
-                name: true,
-                platform: true,
-                price: false,
-                salePrice: false,
-                inStock: false,
-                pictureOne: false,
-                pictureTwo: false,
-                pictureThree: false,
-                pictureFour: false,
-                pictureFive: false,
-              },
-            },
-          },
-        },
-      },
+      select: DATA_ORDER_SELECTION,
     });
   }
 }

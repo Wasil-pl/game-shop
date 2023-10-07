@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './OrderStatusChange.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { Error, errorMessages } from '../../../../consts';
-import { orderStatusOptions } from '../../../../consts';
+import { orderStatusOptions } from '../../../../consts/constants';
+import { Error, errorMessages } from '../../../../consts/errorMesages';
 
 const OrderStatusChange = ({ action, defaultValues }) => {
   const {

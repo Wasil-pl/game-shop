@@ -7,7 +7,6 @@ import {
   getAddedProductId,
   getLoadingState,
 } from '../../../redux/products/productSelectors';
-import { modalMessages } from '../../../consts';
 import AddEditContentProductForm from '../AddEditContentProductForm/AddEditContentProductForm';
 import {
   addProductContentRequest,
@@ -18,6 +17,7 @@ import { AddEditImagesProductForm } from '../AddEditImagesProductForm/index';
 import ModalComponent from '../ModalComponent/ModalComponent';
 import { resetProductStates } from '../../../redux/products/productActions';
 import AddEditActivateProductForm from '../AddEditActivateProductForm/AddEditActivateProductForm';
+import { modalMessages } from '../../../consts/modalMessages';
 
 const AddProduct = () => {
   const [step, setStep] = useState(1);

@@ -10,7 +10,6 @@ import MainMenuCart from './MainMenuCart';
 import { useDispatch, useSelector } from 'react-redux';
 import MainMenuLogin from './MainMenuLogin';
 import ModalComponent from '../../ModalComponent/ModalComponent';
-import { modalMessages } from '../../../../consts';
 import {
   getLoggedState,
   getLoginSuccessState,
@@ -20,6 +19,7 @@ import { resetUserState } from '../../../../redux/users/userActions';
 import { getTotalQuantity } from '../../../../redux/cart/cartSelectors';
 import AddProduct from '../../AddProduct/AddProduct';
 import { ProductControlPanel } from '../../ProductControlPanel/index';
+import { modalMessages } from '../../../../consts/modalMessages';
 
 export const MainMenu = () => {
   const dispatch = useDispatch();
@@ -52,7 +52,6 @@ export const MainMenu = () => {
           <Nav className={`me-auto ${styles.nav}`}>
             <NavDropdown title="User">
               <Link to={'/user/orders'}>My orders</Link>
-              <Link href="#">My account</Link>
             </NavDropdown>
             <NavDropdown title="Admin Panel">
               <Link to={'/ordersControlPanel'}>Orders control panel</Link>

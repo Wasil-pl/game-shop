@@ -9,10 +9,10 @@ import { getTotalPrice } from '../../../../Utils/getTotalPrice';
 import { useNavigate } from 'react-router-dom';
 import { getLoggedState } from '../../../../redux/users/userSelectors';
 import ModalComponent from '../../ModalComponent/ModalComponent';
-import { modalMessages } from '../../../../consts';
 import { getDetailedCartProducts } from '../../../../redux/cart/cartSelectors';
 import { removeAllProductsFromCart } from '../../../../redux/cart/cartActions';
 import { resetOrderState } from '../../../../redux/orders/orderActions';
+import { modalMessages } from '../../../../consts/modalMessages';
 
 export const CartProducts = () => {
   const [showModal, setShowModal] = useState(false);
