@@ -31,3 +31,15 @@
 .secondLine {
   font-size: $small-size;
 }
+
+@media (max-width: 768px) {
+  .divider {
+    font-size: $extra-large-size - 5px;
+  }
+}
+
+@media (max-width: 576px) {
+  .divider {
+    font-size: $medium-size;
+  }
+}

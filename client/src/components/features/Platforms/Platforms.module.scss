@@ -3,6 +3,7 @@
 .container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   font-size: $iconSize;
   padding: 50px 0 100px;
@@ -20,6 +21,7 @@
     width: 120px;
     height: 120px;
     cursor: pointer;
+    margin: 10px;
 
     &:hover.windows {
       @extend .hoverIconStyles;

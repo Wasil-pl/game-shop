@@ -17,9 +17,9 @@ const MainLayout = ({ children }) => {
           ? 'bigDesktop'
           : windowWidth >= 992
           ? 'desktop'
-          : windowWidth >= 768
-          ? 'tablet'
           : windowWidth >= 576
+          ? 'tablet'
+          : windowWidth >= 468
           ? 'mobile'
           : 'small-mobile';
       dispatch(updateViewportMode(mode));

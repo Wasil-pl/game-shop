@@ -67,8 +67,6 @@ const Platforms = () => {
         </Link>
         <p className={styles.textAll}>All Games</p>
       </div>
-
-      <div className={styles.testWrapper}> </div>
     </Container>
   );
 };

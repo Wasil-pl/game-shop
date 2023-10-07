@@ -26,3 +26,11 @@
     text-align: left;
   }
 }
+
+@media (max-width: 768px) {
+  .section {
+    .title {
+      font-size: $title-size - 10px;
+    }
+  }
+}
