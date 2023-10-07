@@ -3,12 +3,17 @@ import styles from './CheckoutForm.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { getAllCartProducts } from '../../../../redux/cart/cartSelectors';
+import {
+  getAllCartProducts,
+  getDetailedCartProducts,
+} from '../../../../redux/cart/cartSelectors';
 import { addOrderRequest } from '../../../../redux/orders/orderThunks';
 import { Error, errorMessages } from '../../../../consts/errorMesages';
+import CartSummary from './CartSummary';
 
 const CheckoutForm = () => {
   const cart = useSelector(getAllCartProducts);
+  const cartProducts = useSelector(getDetailedCartProducts);
 
   const {
     register,
@@ -24,6 +29,8 @@ const CheckoutForm = () => {
 
   return (
     <div className={styles.container}>
+      <CartSummary cartData={cartProducts} />
+
       <Form
         className={styles.formLogin}
         noValidate
@@ -41,6 +48,7 @@ const CheckoutForm = () => {
           />
           {errors.city && <Error>{errors.city?.message}</Error>}
         </Form.Group>
+
         <Form.Group className={styles.inputBox}>
           <Form.Label>Street:</Form.Label>
           <Form.Control
@@ -53,6 +61,7 @@ const CheckoutForm = () => {
           />
           {errors.street && <Error>{errors.street?.message}</Error>}
         </Form.Group>
+
         <Form.Group className={styles.inputBox}>
           <Form.Label>Postal code:</Form.Label>
           <Form.Control
@@ -65,6 +74,7 @@ const CheckoutForm = () => {
           />
           {errors.postalCode && <Error>{errors.postalCode?.message}</Error>}
         </Form.Group>
+
         <Form.Group className={styles.inputBox}>
           <Form.Label>Address:</Form.Label>
           <Form.Control
@@ -74,6 +84,19 @@ const CheckoutForm = () => {
             required
           />
         </Form.Group>
+
+        <Form.Group className={styles.inputBox}>
+          <Form.Label>Note to the Seller:</Form.Label>
+          <Form.Control
+            {...register('message')}
+            as="textarea"
+            rows={3}
+            placeholder="Note to the Seller ( optional )"
+            autoComplete="message"
+            required
+          />
+        </Form.Group>
+
         <Form.Group className={styles.buttonBox}>
           <Button type="submit" variant="primary">
             Checkout

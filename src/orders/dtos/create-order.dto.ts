@@ -30,6 +30,9 @@ export class CreateOrderDTO {
   @IsString()
   address: string;
 
+  @IsString()
+  message: string;
+
   @IsNotEmpty()
   status: OrderStatus;
 }

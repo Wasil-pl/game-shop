@@ -81,6 +81,7 @@ export const DATA_ORDER_SELECTION = {
   city: true,
   street: true,
   postalCode: true,
+  message: true,
 
   user: {
     select: {

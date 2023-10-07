@@ -10,12 +10,14 @@ import {
   RESET_USER_STATE,
   END_USER_REGISTER_REQUEST,
   END_USER_LOGIN_REQUEST,
+  GET_USER_ROLE,
 } from './userActionTypes';
 
 export const loadUsers = (payload) => ({ payload, type: LOAD_USERS });
 export const loadUser = (payload) => ({ payload, type: LOAD_USER });
 export const logoutUser = (payload) => ({ payload, type: LOGOUT_USER });
 export const loginUser = (payload) => ({ payload, type: LOGIN_USER });
+export const getUserRole = (payload) => ({ payload, type: GET_USER_ROLE });
 export const startUserRequest = (payload) => ({
   payload,
   type: START_USER_REQUEST,

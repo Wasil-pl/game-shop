@@ -43,6 +43,18 @@
 
     .navBarCollapse {
       font-size: $medium-size;
+
+      & > a {
+        color: $color-text-light;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-shadow:
+          -1px -1px 0 #000,
+          1px -1px 0 #000,
+          -1px 1px 0 #000,
+          1px 1px 0 #000;
+        margin-right: 5px;
+      }
     }
 
     .loginDropdown > div {

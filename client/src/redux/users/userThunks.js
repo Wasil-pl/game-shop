@@ -10,6 +10,7 @@ import {
   errorUserRegisterRequest,
   endUserRequest,
   endUserLoginRequest,
+  getUserRole,
 } from './userActions';
 
 export const loadUsersRequest = () => {
@@ -46,6 +47,7 @@ export const loginUserRequest = (user) => {
     try {
       await httpClient.post(`${API_URL}/api/auth/login`, user);
       dispatch(loginUser());
+      dispatch(getUserRoleRequest());
       dispatch(endUserLoginRequest());
     } catch (error) {
       const action = errorUserRequest({ message: error.message });
@@ -77,8 +79,23 @@ export const checkUserSession = () => {
 
       if (isValid) {
         dispatch(loginUser());
+        dispatch(getUserRoleRequest());
       }
 
+      dispatch(endUserRequest());
+    } catch (error) {
+      const action = errorUserRequest({ message: error.message });
+      dispatch(action);
+    }
+  };
+};
+
+export const getUserRoleRequest = () => {
+  return async (dispatch) => {
+    dispatch(startUserRequest());
+    try {
+      const data = await httpClient.get(`${API_URL}/api/users/role`);
+      dispatch(getUserRole(data));
       dispatch(endUserRequest());
     } catch (error) {
       const action = errorUserRequest({ message: error.message });

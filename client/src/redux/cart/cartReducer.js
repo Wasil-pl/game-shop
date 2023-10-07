@@ -64,13 +64,18 @@ export const cartReducer = (statePart = [], action) => {
       return newState;
     }
     case DECREASE_PRODUCT_QUANTITY_IN_CART: {
+      const updatedProducts = statePart.products.map((product) =>
+        product.productId === action.payload
+          ? { ...product, quantity: product.quantity - 1 }
+          : product,
+      );
+      const filteredProducts = updatedProducts.filter(
+        (product) => product.quantity > 0,
+      );
+
       newState = {
         ...statePart,
-        products: statePart.products.map((product) =>
-          product.productId === action.payload && product.quantity > 1
-            ? { ...product, quantity: product.quantity - 1 }
-            : product,
-        ),
+        products: filteredProducts,
       };
       localStorage.setItem('cartProducts', JSON.stringify(newState.products));
       return newState;

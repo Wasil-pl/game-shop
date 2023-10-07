@@ -65,6 +65,9 @@ const OrderForm = ({ order }) => {
             <strong>Total quantity:</strong> {order.totalQuantity}
           </ListGroup.Item>
           <ListGroup.Item>
+            <strong>Message:</strong> {order?.message}
+          </ListGroup.Item>
+          <ListGroup.Item>
             <strong>User email:</strong> {order.user?.email}
           </ListGroup.Item>
           <ListGroup.Item>

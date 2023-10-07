@@ -96,6 +96,7 @@ model Order {
   street        String
   postalCode    String
   address       String?
+  message       String?
   status        OrderStatus @default(PENDING)
 
   createdAt DateTime @default(now())

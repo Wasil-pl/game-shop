@@ -21,9 +21,7 @@ const CartProductForm = ({ data }) => {
   };
 
   const handleDecrement = (data) => {
-    if (data.quantity > 1) {
-      dispatch(decreaseProductQuantityInCart(data.id));
-    }
+    dispatch(decreaseProductQuantityInCart(data.id));
   };
 
   const handleRemoveProduct = () => {

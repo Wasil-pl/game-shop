@@ -10,6 +10,7 @@ import {
   RESET_USER_STATE,
   END_USER_LOGIN_REQUEST,
   END_USER_REGISTER_REQUEST,
+  GET_USER_ROLE,
 } from './userActionTypes';
 
 export const usersReducer = (
@@ -22,6 +23,7 @@ export const usersReducer = (
     registerSuccess: false,
     registerError: null,
     isLogged: false,
+    userRole: null,
   },
   action,
 ) => {
@@ -31,9 +33,11 @@ export const usersReducer = (
     case LOAD_USER:
       return { ...statePart, user: action.payload };
     case LOGOUT_USER:
-      return { ...statePart, user: null, isLogged: false };
+      return { ...statePart, user: null, isLogged: false, userRole: null };
     case LOGIN_USER:
       return { ...statePart, isLogged: true };
+    case GET_USER_ROLE:
+      return { ...statePart, userRole: action.payload.role };
     case START_USER_REQUEST:
       return { ...statePart, loading: true, error: null };
     case END_USER_REQUEST:

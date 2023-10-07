@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Platforms from '../../features/Platforms/Platforms';
 import SwiperSlideComponent from '../../features/SwiperSlideComponent/SwiperSlideComponent';
 import Divider from '../../layout/Divider/Divider';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Alert, Spinner } from 'react-bootstrap';
 import {
   getErrorState,
@@ -10,19 +10,13 @@ import {
   getNewProducts,
   getSaleProducts,
 } from '../../../redux/products/productSelectors';
-import { loadProductsIsActiveRequest } from '../../../redux/products/productThunks';
 
 const Home = () => {
-  const dispatch = useDispatch();
   const saleProducts = useSelector(getSaleProducts);
   const newProducts = useSelector(getNewProducts);
 
   const isLoading = useSelector(getLoadingState);
   const errorMessages = useSelector(getErrorState);
-
-  useEffect(() => {
-    dispatch(loadProductsIsActiveRequest());
-  }, [dispatch]);
 
   return (
     <div>

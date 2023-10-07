@@ -13,6 +13,7 @@ import ModalComponent from '../../ModalComponent/ModalComponent';
 import {
   getLoggedState,
   getLoginSuccessState,
+  getUserRole,
 } from '../../../../redux/users/userSelectors';
 import { logoutUserRequest } from '../../../../redux/users/userThunks';
 import { resetUserState } from '../../../../redux/users/userActions';
@@ -27,6 +28,11 @@ export const MainMenu = () => {
 
   const isLogged = useSelector(getLoggedState);
   const loginSuccess = useSelector(getLoginSuccessState);
+  const userRole = useSelector(getUserRole);
+  const isAdmin = userRole === 'ADMIN';
+  console.log('isAdmin:', isAdmin);
+  const isUser = userRole === 'USER';
+  console.log('isUser:', isUser);
 
   const totalQuantity = useSelector(getTotalQuantity);
 
@@ -49,22 +55,27 @@ export const MainMenu = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className={styles.navBarCollapse}>
+          <Link to={'/'}>Home</Link>
           <Nav className={`me-auto ${styles.nav}`}>
-            <NavDropdown title="User">
-              <Link to={'/user/orders'}>My orders</Link>
-            </NavDropdown>
-            <NavDropdown title="Admin Panel">
-              <Link to={'/ordersControlPanel'}>Orders control panel</Link>
-              <Link to={'/products/addProduct'} element={<AddProduct />}>
-                Add product
-              </Link>
-              <Link
-                to={'/productControlPanel'}
-                element={<ProductControlPanel />}
-              >
-                Product control panel
-              </Link>
-            </NavDropdown>
+            {(isUser || isAdmin) && (
+              <NavDropdown title="User">
+                <Link to={'/user/orders'}>My orders</Link>
+              </NavDropdown>
+            )}
+            {isAdmin && (
+              <NavDropdown title="Admin Panel">
+                <Link to={'/ordersControlPanel'}>Orders control panel</Link>
+                <Link to={'/products/addProduct'} element={<AddProduct />}>
+                  Add product
+                </Link>
+                <Link
+                  to={'/productControlPanel'}
+                  element={<ProductControlPanel />}
+                >
+                  Product control panel
+                </Link>
+              </NavDropdown>
+            )}
           </Nav>
           <SearchPhrase />
           <Nav className={styles.nav}>

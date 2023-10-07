@@ -18,12 +18,20 @@ import EditProductFiles from './components/pages/EditProductFiles/EditProductFil
 import EditProductIsActive from './components/pages/EditProductIsActive/EditProductIsActive';
 import { OrdersControlPanel } from './components/features/OrdersControlPanel/index';
 import { UserOrders } from './components/features/UserOrders/index';
+import { loadProductsIsActiveRequest } from './redux/products/productThunks';
+import { resetOrderState } from './redux/orders/orderActions';
+import { resetProductStates } from './redux/products/productActions';
+import { resetUserState } from './redux/users/userActions';
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(checkUserSession());
+    dispatch(loadProductsIsActiveRequest());
+    dispatch(resetOrderState());
+    dispatch(resetProductStates());
+    dispatch(resetUserState());
   }, [dispatch]);
 
   return (

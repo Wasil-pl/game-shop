@@ -1,3 +1,5 @@
+@import '../../../../styles/settings.scss';
+
 .container {
   text-align: center;
 
@@ -7,9 +9,10 @@
     flex-wrap: wrap;
 
     .card {
-      margin: 10px;
+      margin: 15px;
       min-width: 250px;
       max-width: 300px;
+      box-shadow: $shadow-large;
     }
   }
 }

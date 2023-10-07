@@ -1,0 +1,51 @@
+@import '../../../../styles/settings.scss';
+
+.container {
+  .title {
+    text-align: center;
+    font-size: $extra-large-size;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .cart {
+    border: 2px solid $color-border;
+    border-radius: $radius;
+    padding: 10px;
+    background-color: $color-background-light;
+    box-shadow: $shadow-large;
+
+    .cartProducts {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      font-size: $medium-size;
+
+      p {
+        margin: 0;
+      }
+
+      .product {
+        flex: 1 1;
+        border-right: 2px solid $color-border;
+        padding: 10px;
+
+        .productInfo {
+          margin-bottom: 10px;
+        }
+      }
+
+      .product:last-child {
+        border-right: none;
+      }
+    }
+
+    .totalPrice {
+      padding: 10px;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

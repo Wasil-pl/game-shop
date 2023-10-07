@@ -19,3 +19,10 @@ export const getDetailedCartProducts = createSelector(
     });
   },
 );
+
+export const isProductInCart = (state, productId) =>
+  state.cart.products.some((product) => product.productId === productId);
+
+export const getCartProductQuantity = (state, productId) =>
+  state.cart.products.find((product) => product.productId === productId)
+    ?.quantity;

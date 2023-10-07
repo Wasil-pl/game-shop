@@ -178,6 +178,14 @@
         }
       }
 
+      .cartQuantity {
+        text-align: center;
+        padding: 0 15px;
+        border: 2px solid $color-border;
+        border-radius: $radius;
+        margin-right: 10px;
+      }
+
       .showMoreplaystation {
         font-size: $medium-size;
         color: $colorPlaystation;

@@ -9,10 +9,18 @@ import {
   getStockStatusColor,
 } from '../../../Utils/productThumbFunctions';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ModalComponent from '../../features/ModalComponent/ModalComponent';
-import { addProductToCart } from '../../../redux/cart/cartActions';
+import {
+  addProductToCart,
+  decreaseProductQuantityInCart,
+  increaseProductQuantityInCart,
+} from '../../../redux/cart/cartActions';
 import { modalMessages } from '../../../consts/modalMessages';
+import {
+  getCartProductQuantity,
+  isProductInCart,
+} from '../../../redux/cart/cartSelectors';
 
 const ProductThumb = ({ data, variant = '' }) => {
   const [showModal, setShowModal] = useState(false);
@@ -21,13 +29,17 @@ const ProductThumb = ({ data, variant = '' }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const isItemInCart = useSelector((state) => isProductInCart(state, data.id));
+  const cartProductQuantity = useSelector((state) =>
+    getCartProductQuantity(state, data.id),
+  );
+
   const handleSubmit = (id) => {
     navigate(`/products/${id}`);
   };
 
   const handleAddToCart = () => {
     if (inStock <= 0) return setShowModal(true);
-    console.log('inStock:', inStock);
 
     dispatch(addProductToCart(data.id));
   };
@@ -75,15 +87,41 @@ const ProductThumb = ({ data, variant = '' }) => {
         </div>
 
         <div className={styles.buttons}>
-          <Button
-            size="sm"
-            className={`${styles.cartButton} ${
-              styles[getPlatformCssClass(data.platform)]
-            }`}
-            onClick={handleAddToCart}
-          >
-            Add to cart <Cart />
-          </Button>
+          {!isItemInCart ? (
+            <Button
+              size="sm"
+              className={`${styles.cartButton} ${
+                styles[getPlatformCssClass(data.platform)]
+              }`}
+              onClick={handleAddToCart}
+            >
+              Add to cart <Cart />
+            </Button>
+          ) : (
+            <>
+              <Button
+                size="sm"
+                className={`${styles.cartButton} ${
+                  styles[getPlatformCssClass(data.platform)]
+                }`}
+                onClick={() => dispatch(decreaseProductQuantityInCart(data.id))}
+              >
+                -
+              </Button>
+
+              <span className={styles.cartQuantity}>{cartProductQuantity}</span>
+
+              <Button
+                size="sm"
+                className={`${styles.cartButton} ${
+                  styles[getPlatformCssClass(data.platform)]
+                }`}
+                onClick={() => dispatch(increaseProductQuantityInCart(data.id))}
+              >
+                +
+              </Button>
+            </>
+          )}
 
           <Button
             variant="outline-info"

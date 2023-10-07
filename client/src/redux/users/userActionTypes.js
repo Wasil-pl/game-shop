@@ -16,3 +16,4 @@ export const END_USER_LOGIN_REQUEST = createActionName(
   'END_USER_LOGIN_REQUEST',
 );
 export const RESET_USER_STATE = createActionName('RESET_USER_STATE');
+export const GET_USER_ROLE = createActionName('GET_USER_ROLE');

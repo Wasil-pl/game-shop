@@ -34,6 +34,7 @@ const initialState = {
     registerError: null,
     user: null,
     list: [],
+    userRole: null,
   },
 
   orders: {
