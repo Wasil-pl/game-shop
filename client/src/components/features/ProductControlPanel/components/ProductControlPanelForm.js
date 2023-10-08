@@ -154,7 +154,7 @@ ProductControlPanelForm.propTypes = {
       platform: PropTypes.string.isRequired,
       pegi: PropTypes.number.isRequired,
       language: PropTypes.string.isRequired,
-      mainPicture: PropTypes.string.isRequired,
+      mainPicture: PropTypes.string,
       pictureOne: PropTypes.string,
       pictureTwo: PropTypes.string,
       pictureThree: PropTypes.string,

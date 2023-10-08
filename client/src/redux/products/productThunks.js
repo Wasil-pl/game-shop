@@ -205,7 +205,6 @@ export const editProductIsActiveRequest = (payload, id) => {
         `${API_URL}/api/products/update/isActive/${id}`,
         payload,
       );
-      console.log('data:', data);
       dispatch(editProduct(data));
       dispatch(activateProductSuccess());
     } catch (error) {

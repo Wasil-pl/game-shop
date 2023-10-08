@@ -4,10 +4,8 @@ export const errorMessages = {
   selectPlatform: 'Please select an option',
   enterInput: "This input can't be empty",
   emailPattern: 'Invalid email address',
-  textPattern:
-    'This field can contain only letters, numbers, spaces and special characters: . , - _ ( )',
-  validatePrice: 'Invalid price, can contain only numbers and . ,',
   validateFile: 'Invalid file type',
+  noMainPicture: 'You can not activate product without main picture',
   minLength: (minLength) =>
     `This field must be at least ${minLength} characters long`,
   maxLength: (maxLength) =>

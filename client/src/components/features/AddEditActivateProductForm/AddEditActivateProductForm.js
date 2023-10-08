@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { Error, errorMessages } from '../../../consts/errorMesages';
 
 const AddEditActivateProductForm = ({ action, defaultValues, actionText }) => {
+  console.log('defaultValues:', defaultValues);
   const {
     register,
     handleSubmit: validate,

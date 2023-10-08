@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert, Container, Spinner } from 'react-bootstrap';
 import {
   editProductIsActiveRequest,
@@ -16,11 +16,14 @@ import ModalComponent from '../../features/ModalComponent/ModalComponent';
 import { resetProductStates } from '../../../redux/products/productActions';
 import AddEditActivateProductForm from '../../features/AddEditActivateProductForm/AddEditActivateProductForm';
 import { modalMessages } from '../../../consts/modalMessages';
+import { errorMessages } from '../../../consts/errorMesages';
 
 const EditProductIsActive = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [errorNoMainPicture, setErrorNoMainPicture] = useState(null);
 
   useEffect(() => {
     dispatch(loadProductByIdRequest(id));
@@ -32,6 +35,7 @@ const EditProductIsActive = () => {
   const { activate } = addProductStates;
 
   const handleSubmit = (data) => {
+    if (productData.mainPicture === null) return setErrorNoMainPicture(true);
     dispatch(editProductIsActiveRequest(data, id));
   };
 
@@ -52,6 +56,14 @@ const EditProductIsActive = () => {
           <Alert.Heading>Error</Alert.Heading>
           <hr />
           <p>{activate.error}</p>
+        </Alert>
+      )}
+
+      {errorNoMainPicture && (
+        <Alert className="alert" variant="danger">
+          <Alert.Heading>Error</Alert.Heading>
+          <hr />
+          <p>{errorMessages.noMainPicture}</p>
         </Alert>
       )}
 
