@@ -64,3 +64,55 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .container {
+    .productBox {
+      .image {
+        max-width: 150px;
+        height: 200px;
+        padding: 10px;
+      }
+
+      .productInfo {
+        padding: 0 10px 0 20px;
+
+        h3 {
+          font-size: $large-size;
+        }
+
+        p {
+          font-size: $medium-size;
+          margin: 0 0 10px 0;
+        }
+      }
+    }
+
+    .priceBox {
+      .trash {
+        font-size: $large-size;
+      }
+    }
+
+    .inputBox {
+      .inputGroup {
+        width: 80px;
+        margin-right: 20px;
+
+        input {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 547px) {
+  .container {
+    .productBox {
+      .image {
+        display: none;
+      }
+    }
+  }
+}

@@ -3,9 +3,7 @@ import styles from './OrderForm.module.scss';
 import { Card, ListGroup } from 'react-bootstrap';
 import OrderStatusChange from './OrderStatusChange';
 import ModalComponent from '../../ModalComponent/ModalComponent';
-import { useDispatch, useSelector } from 'react-redux';
-import { getEditOrderSuccessState } from '../../../../redux/orders/orderSelectors';
-import { resetOrderState } from '../../../../redux/orders/orderActions';
+import { useDispatch } from 'react-redux';
 import { editOrderStatusRequest } from '../../../../redux/orders/orderThunks';
 import { modalMessages } from '../../../../consts/modalMessages';
 
@@ -15,15 +13,9 @@ const OrderForm = ({ order }) => {
   const [pendingStatusChange, setPendingStatusChange] = useState(null);
   const clearPendingStatusChange = () => setPendingStatusChange(null);
 
-  const success = useSelector(getEditOrderSuccessState);
-
   const handleStatusChange = (data) => {
     dispatch(editOrderStatusRequest(data, order.id));
     clearPendingStatusChange();
-  };
-
-  const handleCloseModal = () => {
-    dispatch(resetOrderState());
   };
 
   return (
@@ -102,12 +94,6 @@ const OrderForm = ({ order }) => {
         textMessage={modalMessages.statusChangeConfirm.textMessage}
         onCancel={clearPendingStatusChange}
         actionText="Edit"
-      />
-      <ModalComponent
-        show={success}
-        onClose={handleCloseModal}
-        headerText={modalMessages.editOrderSuccess.headerText}
-        textMessage={modalMessages.editOrderSuccess.textMessage}
       />
     </div>
   );

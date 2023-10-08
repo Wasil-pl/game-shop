@@ -66,3 +66,18 @@
     }
   }
 }
+
+@media (max-width: 517px) {
+  .product {
+    .image {
+      display: none;
+    }
+  }
+
+  .inputAndPriceBox {
+    .inputGroup {
+      width: 80px;
+      margin: 0 10px;
+    }
+  }
+}

@@ -11,3 +11,7 @@
 .dropdown-menu.show > a:hover {
   color: rgb(53, 53, 223);
 }
+
+.navbar-nav {
+  align-items: flex-start;
+}

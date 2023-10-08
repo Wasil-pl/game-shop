@@ -1,9 +1,6 @@
 @import '../../../styles/settings.scss';
 
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
   background: linear-gradient(
     45deg,
     $color-background-banner-1,
@@ -20,29 +17,72 @@
   }
 }
 
-.bannerMessage {
-  text-align: center;
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 
-  h2 {
-    font-size: $extra-large-size + 4px;
-    font-weight: bold;
-    margin-bottom: 10px;
+  .bannerMessage {
+    text-align: center;
+
+    h2 {
+      font-size: $extra-large-size + 4px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: $large-size;
+      max-width: 300px;
+    }
   }
 
-  p {
-    font-size: $large-size;
-    max-width: 300px;
+  .twoImage {
+    display: flex;
+  }
+
+  .consoleImage {
+    width: 150px;
+    height: auto;
+    margin: 0 10px;
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-10px);
+    }
   }
 }
 
-.consoleImage {
-  width: 150px;
-  height: auto;
-  margin: 0 10px;
-  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
-  transition: transform 0.3s ease;
+@media (max-width: 768px) {
+  .container {
+    .consoleImage {
+      margin: 0;
+      width: 100px;
+    }
 
-  &:hover {
-    transform: translateY(-10px);
+    h2 {
+      font-size: $large-size;
+    }
+
+    p {
+      font-size: $medium-size;
+    }
+
+    .twoImage {
+      flex-direction: column;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    .bannerMessage {
+      order: 1;
+    }
+
+    .consoleImage {
+      width: 80px;
+    }
   }
 }

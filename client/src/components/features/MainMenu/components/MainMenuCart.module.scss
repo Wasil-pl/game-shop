@@ -61,3 +61,23 @@
   display: flex;
   justify-content: center;
 }
+
+@media (max-width: 517px) {
+  .container {
+    width: 250px;
+
+    .totalPrice {
+      h3 {
+        font-size: $medium-size;
+      }
+
+      p {
+        font-size: $medium-size;
+      }
+    }
+
+    .buttons {
+      font-size: $medium-size;
+    }
+  }
+}

@@ -9,7 +9,7 @@ const UserOrdersForm = ({ orders, firstName }) => {
       <p>Here are your orders:</p>
       <div className={styles.cardContainer}>
         {orders.map((order) => (
-          <Card className={styles.card}>
+          <Card key={order.id} className={styles.card}>
             <Card.Header>
               <strong>Order ID:</strong> {order.id}
             </Card.Header>
@@ -36,7 +36,7 @@ const UserOrdersForm = ({ orders, firstName }) => {
               <ListGroup.Item>
                 <strong>Products:</strong>
                 {order.items.map((item) => (
-                  <div key={item.product.name}>
+                  <div key={`${item.product.name}-${item.product.platform}`}>
                     {item.product.name} ({item.product.platform}) - Quantity:{' '}
                     {item.quantity}
                   </div>

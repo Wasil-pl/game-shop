@@ -140,3 +140,25 @@
     background-color: $color-background-light;
   }
 }
+
+@media (max-width: 576px) {
+  .container {
+    font-size: $extra-large-size + 10px;
+
+    .iconBox {
+      width: 90px;
+      height: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .iconBoxAll {
+      font-size: $medium-size;
+    }
+
+    p {
+      font-size: $small-size;
+    }
+  }
+}

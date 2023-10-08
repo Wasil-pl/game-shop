@@ -63,3 +63,89 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .container {
+    .titleBox {
+      margin: 20px 10px;
+
+      h2 {
+        font-size: $large-size;
+      }
+
+      .cartIcon {
+        font-size: $large-size;
+        & > svg {
+          font-size: $large-size;
+        }
+      }
+    }
+
+    .columnNames {
+      display: none;
+    }
+
+    .totalPriceBox {
+      h3 {
+        font-size: $extra-large-size;
+      }
+
+      .totalPrice {
+        font-size: $medium-size;
+      }
+
+      & > button {
+        font-size: $medium-size;
+        width: 100px;
+      }
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  .container {
+    .titleBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 20px 10px;
+
+      h2 {
+        font-size: $medium-size;
+      }
+
+      .cartIcon {
+        font-size: $medium-size;
+        & > svg {
+          font-size: $medium-size;
+        }
+      }
+    }
+
+    .columnNames {
+      display: none;
+    }
+
+    .totalPriceBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      h3 {
+        font-size: $large-size;
+      }
+
+      .totalPrice {
+        font-size: $medium-size;
+      }
+
+      & > button {
+        font-size: $medium-size;
+        width: 100px;
+        margin-top: 20px;
+      }
+    }
+  }
+}

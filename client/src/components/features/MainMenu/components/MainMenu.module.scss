@@ -63,8 +63,19 @@
   }
 
   .buttonBox {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
+    margin: auto 0 auto 10px;
+  }
+}
+
+@media (max-width: 390px) {
+  .menuContainer {
+    .navbar {
+      padding: 0 10px;
+
+      .logo {
+        margin-right: 0;
+        font-size: $medium-size;
+      }
+    }
   }
 }

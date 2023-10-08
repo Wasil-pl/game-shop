@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './OrderStatusChange.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -11,6 +11,8 @@ const OrderStatusChange = ({ action, defaultValues }) => {
     handleSubmit: validate,
     formState: { errors },
   } = useForm({ defaultValues });
+
+  const [selectedStatus, setSelectedStatus] = useState(defaultValues);
 
   const handleSubmit = (data) => {
     action(data);
@@ -31,6 +33,8 @@ const OrderStatusChange = ({ action, defaultValues }) => {
             placeholder="status"
             autoComplete="status"
             required
+            value={selectedStatus}
+            onChange={(e) => setSelectedStatus(e.target.value)}
           >
             {orderStatusOptions.map((status) => (
               <option key={status}>{status}</option>

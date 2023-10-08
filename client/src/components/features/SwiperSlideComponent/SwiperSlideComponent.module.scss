@@ -34,3 +34,11 @@
     }
   }
 }
+
+@media (max-width: 576px) {
+  .section {
+    .title {
+      font-size: $title-size - 20px;
+    }
+  }
+}
