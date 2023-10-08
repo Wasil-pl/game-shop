@@ -1,6 +1,9 @@
 Witaj w dokumentacji mojej aplikacji!
 Przed przystąpieniem do oceny aplikacji, chciałbym podzielić się kilkoma ważnymi informacjami:
 
+remember to update database credentials in .env file. Keep the following format: 
+DATABASE_URL="mysql://<yourDbUserName>:<yourDbPassword>@localhost:3306/gameshopdb"
+
 1. Konto Admina
 Dla celów testowych zostało utworzone konto z uprawnieniami administratora. Dzięki niemu możesz zobaczyć dodatkowe funkcje dostępne tylko dla Admina.
 
