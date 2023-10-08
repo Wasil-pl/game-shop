@@ -15,8 +15,9 @@ import { AuthModule } from './auth/auth.module';
 import { BannersModule } from './banners/banners.module';
 import { OrdersModule } from './orders/orders.module';
 import configuration from './config/configuration';
-import { CORS_OPTIONS, STATIC_PATH } from './consts';
+import { CORS_OPTIONS } from './consts';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -30,7 +31,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     }),
     BannersModule,
     OrdersModule,
-    ServeStaticModule.forRoot(STATIC_PATH),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../../', 'client', 'build'),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
