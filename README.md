@@ -1,3 +1,19 @@
+Witaj w dokumentacji mojej aplikacji!
+Przed przystąpieniem do oceny aplikacji, chciałbym podzielić się kilkoma ważnymi informacjami:
+
+1. Konto Admina
+Dla celów testowych zostało utworzone konto z uprawnieniami administratora. Dzięki niemu możesz zobaczyć dodatkowe funkcje dostępne tylko dla Admina.
+
+Dane do logowania:
+
+Login: admin@admin.com
+Hasło: admin
+
+
+2. Obiekt dla bannerów w bazie danych
+W bazie danych znajduje się obiekt przeznaczony dla bannerów. Założeniem było, aby Admin mógł wysyłać tam zdjęcia oraz treść, które następnie byłyby dynamicznie wyświetlane na stronie. Niestety, funkcjonalność ta jest jeszcze w trakcie realizacji (WIP - Work In Progress). W chwili obecnej banner oraz slider na stronie przedstawiają elementy ustawione na sztywno.
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
