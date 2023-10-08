@@ -46,17 +46,8 @@ export const AddEditImagesProductForm = ({
     if (!defaultValues) return;
 
     const getImages = async () => {
-      const imageProperties = [
-        'mainPicture',
-        'pictureOne',
-        'pictureTwo',
-        'pictureThree',
-        'pictureFour',
-        'pictureFive',
-      ];
-
       const fetchedFiles = await Promise.all(
-        imageProperties.map(async (property) => {
+        fileNames.map(async (property) => {
           const imageFileName = defaultValues[property];
           if (!imageFileName) return null;
 

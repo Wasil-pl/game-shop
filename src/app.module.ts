@@ -33,6 +33,11 @@ import { join } from 'path';
     OrdersModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../', 'client', 'build'),
+      serveRoot: '/',
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../../', 'public'),
+      serveRoot: '/public',
     }),
   ],
   controllers: [AppController],
