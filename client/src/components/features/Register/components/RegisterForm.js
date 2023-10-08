@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './RegisterForm.module.scss';
 import { useForm } from 'react-hook-form';
 import { Button, Form } from 'react-bootstrap';
@@ -95,6 +96,10 @@ const RegisterForm = ({ action }) => {
       </Form>
     </div>
   );
+};
+
+RegisterForm.propTypes = {
+  action: PropTypes.func.isRequired,
 };
 
 export default RegisterForm;

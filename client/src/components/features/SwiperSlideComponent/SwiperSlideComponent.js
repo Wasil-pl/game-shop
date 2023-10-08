@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ProductThumb from '../../layout/ProductThumb/ProductThumb';
 import { Container } from 'react-bootstrap';
 import styles from './SwiperSlideComponent.module.scss';
@@ -51,6 +52,22 @@ const SwiperSlideComponent = ({ data, title, variant = '' }) => {
       </Container>
     </section>
   );
+};
+
+SwiperSlideComponent.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      platform: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      updatedAt: PropTypes.string.isRequired,
+    }),
+  ),
+  title: PropTypes.string.isRequired,
+  variant: PropTypes.string,
 };
 
 export default SwiperSlideComponent;

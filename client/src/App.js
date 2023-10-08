@@ -54,7 +54,7 @@ const App = () => {
           element={<EditProductFiles />}
         />
         <Route
-          path="/products/edit/active/:id"
+          path="/products/edit/isActive/:id"
           element={<EditProductIsActive />}
         />
         <Route path="/ordersControlPanel" element={<OrdersControlPanel />} />

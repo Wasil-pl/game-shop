@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './MainMenuLoginForm.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -59,6 +60,10 @@ const MainMenuLoginForm = ({ action }) => {
       </Form.Group>
     </Form>
   );
+};
+
+MainMenuLoginForm.propTypes = {
+  action: PropTypes.func.isRequired,
 };
 
 export default MainMenuLoginForm;

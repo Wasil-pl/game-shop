@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './ProductControlPanelForm.module.scss';
 import { Button, Table } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
@@ -26,6 +27,10 @@ const ProductControlPanelForm = ({ data }) => {
 
   const handleEditImagesProduct = (id) => {
     navigate(`/products/edit/images/${id}`);
+  };
+
+  const handleActivateProduct = (id) => {
+    navigate(`/products/edit/isActive/${id}`);
   };
 
   return (
@@ -106,6 +111,7 @@ const ProductControlPanelForm = ({ data }) => {
                     variant="info"
                     size="sm"
                     className={styles.actionButton}
+                    onClick={() => handleActivateProduct(product.id)}
                   >
                     IsActive Edit
                   </Button>
@@ -136,6 +142,29 @@ const ProductControlPanelForm = ({ data }) => {
       />
     </div>
   );
+};
+
+ProductControlPanelForm.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      salePrice: PropTypes.string,
+      platform: PropTypes.string.isRequired,
+      pegi: PropTypes.number.isRequired,
+      language: PropTypes.string.isRequired,
+      mainPicture: PropTypes.string.isRequired,
+      pictureOne: PropTypes.string,
+      pictureTwo: PropTypes.string,
+      pictureThree: PropTypes.string,
+      pictureFour: PropTypes.string,
+      pictureFive: PropTypes.string,
+      description: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      updatedAt: PropTypes.string.isRequired,
+    }),
+  ),
 };
 
 export default ProductControlPanelForm;

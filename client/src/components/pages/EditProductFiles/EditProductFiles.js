@@ -45,7 +45,7 @@ const EditProductFiles = () => {
   return (
     <Container>
       <Divider text="Edit Product files" />
-      <Divider text={productData.name} variant={'secondLine'} />
+      <Divider text={productData?.name} variant={'secondLine'} />
 
       {images.error && (
         <Alert className="alert" variant="danger">
@@ -64,14 +64,14 @@ const EditProductFiles = () => {
       <AddEditImagesProductForm
         action={handleSubmit}
         actionText="Edit Product"
-        defaultValues={{ ...productData }}
+        defaultValues={productData}
       />
 
       <ModalComponent
         show={images.success}
         onClose={handleCloseModal}
         headerText={modalMessages.editImagesSuccess.headerText(
-          productData.name,
+          productData?.name,
         )}
         textMessage={modalMessages.editImagesSuccess.textMessage}
       />

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './OrderForm.module.scss';
 import { Card, ListGroup } from 'react-bootstrap';
 import OrderStatusChange from './OrderStatusChange';
@@ -97,6 +98,29 @@ const OrderForm = ({ order }) => {
       />
     </div>
   );
+};
+
+OrderForm.propTypes = {
+  order: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    updatedAt: PropTypes.string.isRequired,
+    totalQuantity: PropTypes.number.isRequired,
+    totalprice: PropTypes.string,
+    status: PropTypes.string.isRequired,
+    street: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    postalCode: PropTypes.string.isRequired,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        quantity: PropTypes.number.isRequired,
+        product: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          platform: PropTypes.string.isRequired,
+        }),
+      }),
+    ),
+  }),
 };
 
 export default OrderForm;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './AddEditActivateProductForm.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -45,6 +46,12 @@ const AddEditActivateProductForm = ({ action, defaultValues, actionText }) => {
       </Form>
     </div>
   );
+};
+
+AddEditActivateProductForm.propTypes = {
+  action: PropTypes.func.isRequired,
+  defaultValues: PropTypes.object,
+  actionText: PropTypes.string.isRequired,
 };
 
 export default AddEditActivateProductForm;

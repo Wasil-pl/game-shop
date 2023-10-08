@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './AddEditImagesProductForm.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import ImageUpload from './ImageUpload';
@@ -109,4 +110,10 @@ export const AddEditImagesProductForm = ({
       </Form>
     </div>
   );
+};
+
+AddEditImagesProductForm.propTypes = {
+  action: PropTypes.func.isRequired,
+  actionText: PropTypes.string.isRequired,
+  defaultValues: PropTypes.object,
 };

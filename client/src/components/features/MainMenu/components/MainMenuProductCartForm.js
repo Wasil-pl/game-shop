@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import styles from './MainMenuProductCartForm.module.scss';
 import { IMAGES_URL } from '../../../../config';
@@ -64,6 +65,20 @@ const MainMenuProductCartForm = ({ product }) => {
       <hr />
     </div>
   );
+};
+
+MainMenuProductCartForm.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    salePrice: PropTypes.string,
+    platform: PropTypes.string.isRequired,
+    pegi: PropTypes.number.isRequired,
+    language: PropTypes.string.isRequired,
+    mainPicture: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+  }),
 };
 
 export default MainMenuProductCartForm;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './SelectedProductForm.module.scss';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
@@ -75,6 +76,21 @@ const SelectedProductForm = ({ data }) => {
       </div>
     </div>
   );
+};
+
+SelectedProductForm.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    salePrice: PropTypes.string,
+    platform: PropTypes.string.isRequired,
+    pegi: PropTypes.number.isRequired,
+    language: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    updatedAt: PropTypes.string.isRequired,
+  }),
 };
 
 export default SelectedProductForm;

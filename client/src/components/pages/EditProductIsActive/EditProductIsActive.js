@@ -45,7 +45,7 @@ const EditProductIsActive = () => {
   return (
     <Container>
       <Divider text="Edit Product active" />
-      <Divider text={productData.name} variant={'secondLine'} />
+      <Divider text={productData?.name} variant={'secondLine'} />
 
       {activate.error && (
         <Alert className="alert" variant="danger">
@@ -64,14 +64,14 @@ const EditProductIsActive = () => {
       <AddEditActivateProductForm
         action={handleSubmit}
         actionText="Edit Product"
-        defaultValues={{ ...productData }}
+        defaultValues={productData}
       />
 
       <ModalComponent
         show={activate.success}
         onClose={handleCloseModal}
         headerText={modalMessages.editActivateSuccess.headerText(
-          productData.name,
+          productData?.name,
         )}
         textMessage={modalMessages.editActivateSuccess.textMessage}
       />

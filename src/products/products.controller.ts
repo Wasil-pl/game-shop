@@ -171,8 +171,7 @@ export class ProductsController {
 
     const isActive = isActiveString === 'true';
 
-    await this.productService.addIsActive(id, isActive);
-    return { message: 'Product active status added successfully' };
+    return await this.productService.addIsActive(id, isActive);
   }
 
   /* --------------------- PUT DATA --------------------- */
@@ -187,8 +186,7 @@ export class ProductsController {
     const product = await this.productService.getProductById(id);
     if (!product) throw new NotFoundException('Product not found');
 
-    await this.productService.updateDataProduct(id, productData);
-    return { message: 'Product updated successfully' };
+    return await this.productService.updateDataProduct(id, productData);
   }
 
   /* --------------------- PUT FILES --------------------- */
@@ -221,6 +219,8 @@ export class ProductsController {
     },
     @Param('id', new ParseUUIDPipe()) id: Product['id'],
   ) {
+    const oldFiles: string[] = [];
+
     try {
       const mainPicture = files.mainPicture?.[0];
       const pictureOne = files.pictureOne?.[0];
@@ -252,7 +252,7 @@ export class ProductsController {
       if (pictureFive && !acceptedFileTypes.includes(pictureFive.mimetype))
         throw new BadRequestException('Invalid file type');
 
-      this.productService.updateFilesProduct(
+      const updateFiles = this.productService.updateFilesProduct(
         id,
         mainPicture,
         pictureOne,
@@ -262,28 +262,24 @@ export class ProductsController {
         pictureFive,
       );
 
-      const oldMainPicture = product.mainPicture;
-      const oldPictureOne = product.pictureOne;
-      const oldPictureTwo = product.pictureTwo;
-      const oldPictureThree = product.pictureThree;
-      const oldPictureFour = product.pictureFour;
-      const oldPictureFive = product.pictureFive;
+      if (product.mainPicture) oldFiles.push(product.mainPicture);
+      if (product.pictureOne) oldFiles.push(product.pictureOne);
+      if (product.pictureTwo) oldFiles.push(product.pictureTwo);
+      if (product.pictureThree) oldFiles.push(product.pictureThree);
+      if (product.pictureFour) oldFiles.push(product.pictureFour);
+      if (product.pictureFive) oldFiles.push(product.pictureFive);
 
-      if (oldMainPicture) deleteFile(oldMainPicture);
-      if (oldPictureOne) deleteFile(oldPictureOne);
-      if (oldPictureTwo) deleteFile(oldPictureTwo);
-      if (oldPictureThree) deleteFile(oldPictureThree);
-      if (oldPictureFour) deleteFile(oldPictureFour);
-      if (oldPictureFive) deleteFile(oldPictureFive);
+      for (const file of oldFiles) {
+        deleteFile(file);
+      }
 
-      return { message: 'Product updated successfully' };
+      return updateFiles;
     } catch (error) {
       for (const key in files) {
         if (files[key]) {
           deleteFile(files[key][0].filename);
         }
       }
-
       throw error;
     }
   }
@@ -300,8 +296,7 @@ export class ProductsController {
 
     const isActive = isActiveString === 'true';
 
-    await this.productService.updateIsActive(id, isActive);
-    return { message: 'Product active status updated successfully' };
+    return await this.productService.updateIsActive(id, isActive);
   }
 
   /* --------------------- DELETE --------------------- */
@@ -315,7 +310,7 @@ export class ProductsController {
     const product = await this.productService.getProductById(id);
     if (!product) throw new NotFoundException('Product not found');
 
-    await this.productService.delete(id);
+    const productToDelete = await this.productService.delete(id);
 
     const mainPicture = product.mainPicture;
     const pictureOne = product.pictureOne;
@@ -331,6 +326,6 @@ export class ProductsController {
     if (pictureFour) deleteFile(pictureFour);
     if (pictureFive) deleteFile(pictureFive);
 
-    return { message: 'Product deleted successfully' };
+    return productToDelete;
   }
 }

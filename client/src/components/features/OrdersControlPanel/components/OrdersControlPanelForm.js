@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './OrdersControlPanelForm.module.scss';
 import OrderForm from './OrderForm';
 import Divider from '../../../layout/Divider/Divider';
@@ -50,6 +51,37 @@ const OrdersControlPanelForm = ({ data }) => {
       />
     </div>
   );
+};
+
+OrdersControlPanelForm.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      updatedAt: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      city: PropTypes.string.isRequired,
+      postalCode: PropTypes.string.isRequired,
+      street: PropTypes.string.isRequired,
+      address: PropTypes.string,
+      totalprice: PropTypes.string,
+      totalQuantity: PropTypes.number.isRequired,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          quantity: PropTypes.number.isRequired,
+          product: PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            price: PropTypes.string.isRequired,
+            platform: PropTypes.string.isRequired,
+            isActive: PropTypes.bool.isRequired,
+            createdAt: PropTypes.string.isRequired,
+            updatedAt: PropTypes.string.isRequired,
+          }),
+        }),
+      ),
+    }),
+  ),
 };
 
 export default OrdersControlPanelForm;

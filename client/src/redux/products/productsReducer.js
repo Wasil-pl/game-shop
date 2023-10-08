@@ -64,17 +64,39 @@ export const productsReducer = (
         ...statePart,
         all: [...statePart.all, action.payload],
       };
+
     case EDIT_PRODUCT:
+      let editedAll = statePart.all.map((product) =>
+        product.id === action.payload.id ? action.payload : product,
+      );
+
+      let editedActiveProducts;
+      if (action.payload.isActive) {
+        editedActiveProducts = statePart.activeProducts.some(
+          (p) => p.id === action.payload.id,
+        )
+          ? statePart.activeProducts.map((product) =>
+              product.id === action.payload.id ? action.payload : product,
+            )
+          : [...statePart.activeProducts, action.payload];
+      } else {
+        editedActiveProducts = statePart.activeProducts.filter(
+          (product) => product.id !== action.payload.id,
+        );
+      }
+
       return {
         ...statePart,
-        all: statePart.all.map((product) =>
-          product.id === action.payload.id ? action.payload : product,
-        ),
+        all: editedAll,
+        activeProducts: editedActiveProducts,
       };
     case DELETE_PRODUCT:
       return {
         ...statePart,
         all: statePart.all.filter((product) => product.id !== action.payload),
+        activeProducts: statePart.activeProducts.filter(
+          (product) => product.id !== action.payload,
+        ),
       };
     case START_REQUEST:
       return {

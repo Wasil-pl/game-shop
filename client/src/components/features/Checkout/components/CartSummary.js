@@ -18,7 +18,7 @@ const CartSummary = () => {
       <div className={styles.cart}>
         <div className={styles.cartProducts}>
           {cartProducts.map((product) => (
-            <div className={styles.product} key={product.id}>
+            <div className={styles.product} key={product.productId}>
               <div className={styles.productInfo}>
                 <h3>{product.name}</h3>
                 <p>{product.platform}</p>
@@ -36,7 +36,10 @@ const CartSummary = () => {
             Total Quantity: <strong>{totalQuantity}</strong>
           </p>
           <p>
-            Total Price: <strong>{totalPrice}</strong>
+            Total Price:{' '}
+            <strong>
+              {isNaN(totalPrice) ? 'Error calculating price' : totalPrice}
+            </strong>
           </p>
         </div>
       </div>

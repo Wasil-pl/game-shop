@@ -45,7 +45,7 @@ const EditProductContent = () => {
   return (
     <Container>
       <Divider text="Edit Product Content" />
-      <Divider text={productData.name} variant={'secondLine'} />
+      <Divider text={productData?.name} variant={'secondLine'} />
 
       {content.error && (
         <Alert className="alert" variant="danger">
@@ -61,17 +61,19 @@ const EditProductContent = () => {
         </div>
       )}
 
-      <AddEditContentProductForm
-        action={handleSubmit}
-        actionText="Edit Product"
-        defaultValues={{ ...productData }}
-      />
+      {!isLoading && !content.error && (
+        <AddEditContentProductForm
+          action={handleSubmit}
+          actionText="Edit Product"
+          defaultValues={productData}
+        />
+      )}
 
       <ModalComponent
         show={content.success}
         onClose={handleCloseModal}
         headerText={modalMessages.editContentSuccess.headerText(
-          productData.name,
+          productData?.name,
         )}
         textMessage={modalMessages.editContentSuccess.textMessage}
       />

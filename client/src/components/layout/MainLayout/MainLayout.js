@@ -1,6 +1,7 @@
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import Footer from '../Footer/Footer';
-import React, { useEffect, useState } from 'react';
 import { updateViewportMode } from '../../../redux/screenSizeRedux';
 import { MainMenu } from '../../features/MainMenu/index';
 import ContactUs from '../ContactUs/ContactUs';
@@ -38,6 +39,10 @@ const MainLayout = ({ children }) => {
       <Footer />
     </div>
   );
+};
+
+MainLayout.propTypes = {
+  children: PropTypes.node,
 };
 
 export default MainLayout;

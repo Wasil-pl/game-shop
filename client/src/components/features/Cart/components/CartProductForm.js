@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './CartProductForm.module.scss';
 import { IMAGES_URL } from '../../../../config';
 import { Button, Form, InputGroup } from 'react-bootstrap';
@@ -67,6 +68,22 @@ const CartProductForm = ({ data }) => {
       <hr />
     </div>
   );
+};
+
+CartProductForm.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    salePrice: PropTypes.string,
+    platform: PropTypes.string.isRequired,
+    pegi: PropTypes.number.isRequired,
+    language: PropTypes.string.isRequired,
+    mainPicture: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    updatedAt: PropTypes.string.isRequired,
+  }),
 };
 
 export default CartProductForm;

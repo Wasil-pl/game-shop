@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './OrderStatusChange.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -51,6 +52,11 @@ const OrderStatusChange = ({ action, defaultValues }) => {
       </Form>
     </div>
   );
+};
+
+OrderStatusChange.propTypes = {
+  action: PropTypes.func.isRequired,
+  defaultValues: PropTypes.string,
 };
 
 export default OrderStatusChange;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './ProductThumb.module.scss';
 import { IMAGES_URL } from '../../../config';
 import { Button } from 'react-bootstrap';
@@ -144,6 +145,19 @@ const ProductThumb = ({ data, variant = '' }) => {
       />
     </div>
   );
+};
+
+ProductThumb.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    salePrice: PropTypes.string,
+    platform: PropTypes.string.isRequired,
+    mainPicture: PropTypes.string.isRequired,
+    inStock: PropTypes.number.isRequired,
+  }),
+  variant: PropTypes.string,
 };
 
 export default ProductThumb;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 
 const ModalComponent = ({
@@ -33,6 +34,14 @@ const ModalComponent = ({
       </Modal.Footer>
     </Modal>
   );
+};
+
+ModalComponent.propTypes = {
+  show: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  headerText: PropTypes.string.isRequired,
+  textMessage: PropTypes.string.isRequired,
+  onCancel: PropTypes.func,
 };
 
 export default ModalComponent;

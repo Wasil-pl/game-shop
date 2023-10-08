@@ -150,8 +150,11 @@ export const deleteProductRequest = (id) => {
   return async (dispatch) => {
     dispatch(startRequest());
     try {
-      await httpClient.delete(`${API_URL}/api/products/delete/${id}`);
-      dispatch(deleteProduct(id));
+      const data = await httpClient.delete(
+        `${API_URL}/api/products/delete/${id}`,
+      );
+
+      dispatch(deleteProduct(data.id));
       dispatch(endRequest());
     } catch (error) {
       const action = errorRequest({ message: error.message });
@@ -198,11 +201,12 @@ export const editProductIsActiveRequest = (payload, id) => {
   return async (dispatch) => {
     dispatch(startRequest());
     try {
-      const response = await httpClient.put(
+      const data = await httpClient.put(
         `${API_URL}/api/products/update/isActive/${id}`,
         payload,
       );
-      dispatch(editProduct(response));
+      console.log('data:', data);
+      dispatch(editProduct(data));
       dispatch(activateProductSuccess());
     } catch (error) {
       const action = activateProductError({ message: error.message });

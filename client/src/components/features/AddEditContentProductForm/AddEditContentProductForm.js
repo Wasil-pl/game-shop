@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './AddEditContentProductForm.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -21,6 +22,7 @@ const AddEditContentProductForm = ({ action, defaultValues, actionText }) => {
       price: parseFloat(data.price).toFixed(2),
       salePrice: data.salePrice ? parseFloat(data.salePrice).toFixed(2) : null,
     };
+
     action(transformedData);
   };
 
@@ -182,6 +184,12 @@ const AddEditContentProductForm = ({ action, defaultValues, actionText }) => {
       </Form>
     </div>
   );
+};
+
+AddEditContentProductForm.propTypes = {
+  action: PropTypes.func.isRequired,
+  defaultValues: PropTypes.object,
+  actionText: PropTypes.string.isRequired,
 };
 
 export default AddEditContentProductForm;

@@ -32,7 +32,7 @@ const CheckoutForm = () => {
       <CartSummary cartData={cartProducts} />
 
       <Form
-        className={styles.formLogin}
+        className={styles.form}
         noValidate
         onSubmit={validate(handleSubmit)}
       >
