@@ -3,6 +3,10 @@ Przed przystąpieniem do oceny aplikacji, chciałbym podzielić się kilkoma wa�
 
 remember to update database credentials in .env file. Keep the following format: 
 DATABASE_URL="mysql://<yourDbUserName>:<yourDbPassword>@localhost:3306/gameshopdb"
+and use
+JWT_SECRET="xrwe4543534"
+
+PORT="8000"
 
 1. Konto Admina
 Dla celów testowych zostało utworzone konto z uprawnieniami administratora. Dzięki niemu możesz zobaczyć dodatkowe funkcje dostępne tylko dla Admina.
