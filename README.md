@@ -1,3 +1,5 @@
+https://game-shop-i0du.onrender.com/
+
 Witaj w dokumentacji mojej aplikacji!
 Przed przystąpieniem do oceny aplikacji, chciałbym podzielić się kilkoma ważnymi informacjami:
 
@@ -7,6 +9,8 @@ and use
 JWT_SECRET="xrwe4543534"
 
 PORT="8000"
+
+miałem spore problemy z deployem na render, żeby przyśpieszyć proces dodałem dist do git.
 
 1. Konto Admina
 Dla celów testowych zostało utworzone konto z uprawnieniami administratora. Dzięki niemu możesz zobaczyć dodatkowe funkcje dostępne tylko dla Admina.
