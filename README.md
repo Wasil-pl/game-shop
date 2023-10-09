@@ -20,11 +20,12 @@ Dane do logowania:
 Login: admin@admin.com
 Hasło: admin
 
+2. Można też założyć nowe konto, ale tylko z uprawnieniami dla Usera
 
-2. Obiekt dla bannerów w bazie danych
+3. Obiekt dla bannerów w bazie danych
 W bazie danych znajduje się obiekt przeznaczony dla bannerów. Założeniem było, aby Admin mógł wysyłać tam zdjęcia oraz treść, które następnie byłyby dynamicznie wyświetlane na stronie. Niestety, funkcjonalność ta jest jeszcze w trakcie realizacji (WIP - Work In Progress). W chwili obecnej banner oraz slider na stronie przedstawiają elementy ustawione na sztywno.
 
-3. Nazewnictwo zdjęć w aplikacji
+4. Nazewnictwo zdjęć w aplikacji
 Zdjęcia dodawane przez aplikację mają dodany człon w postaci aktualnej daty, aby uniknąć duplikacji nazw. W trakcie edycji plików, system dodawał kolejne człony do nazw, co prowadziło do tworzenia się bardzo długich nazw składających się z wielu segmentów. W związku z tym, wprowadziłem funkcję, która usuwa ten dodatkowy człon. Teraz wszystko działa poprawnie, ale funkcja ta działa tylko na plikach dodanych z frontu. Dane początkowe nie mają tego członu, co powoduje, że usuwana jest cała nazwa pliku. Aby przetestować tę funkcjonalność, zalecam utworzenie nowych produktów z poziomu panelu Admina.
 
 
