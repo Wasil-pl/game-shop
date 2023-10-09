@@ -22,6 +22,7 @@ import { loadProductsIsActiveRequest } from './redux/products/productThunks';
 import { resetOrderState } from './redux/orders/orderActions';
 import { resetProductStates } from './redux/products/productActions';
 import { resetUserState } from './redux/users/userActions';
+import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ const App = () => {
         <Route path="/products/addProduct" element={<AddProduct />} />
         <Route path="/productControlPanel" element={<ProductControlPanel />} />
         <Route path="/user/orders" element={<UserOrders />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </MainLayout>
   );
