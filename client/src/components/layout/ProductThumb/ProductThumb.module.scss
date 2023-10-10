@@ -50,7 +50,7 @@
   .cardImg {
     background-color: $color-background-lightest;
     border-radius: $radius;
-    height: 55%;
+    height: 50%;
     text-align: center;
     padding: 10px;
     margin: 10px;
@@ -65,7 +65,7 @@
   .cardBody {
     margin: 10px;
     display: flex;
-    height: 27%;
+    height: 32%;
     flex-direction: column;
     justify-content: space-between;
 
@@ -332,5 +332,67 @@
 
   .noInSwiper {
     margin: 10px 5px;
+  }
+}
+
+@media (max-width: 467px) {
+  .card {
+    width: 250px;
+    height: 400px;
+
+    .cardImg {
+      height: 50%;
+      padding: 10px 0;
+      margin: 10px;
+    }
+
+    .cardBody {
+      height: 32%;
+
+      .cardTitle {
+        font-size: $large-size;
+        margin: 0 0 10px 0;
+      }
+
+      .priceBox {
+        font-size: $medium-size;
+
+        .cardSalePrice {
+          font-size: $extra-large-size;
+        }
+      }
+
+      .inStockBox {
+        .stockBarContainer {
+          height: 10px;
+        }
+      }
+
+      .buttons {
+        .cartButton {
+          font-size: $medium-size;
+        }
+
+        .cartQuantity {
+          font-size: $medium-size;
+        }
+
+        .showMoreplaystation {
+          font-size: $medium-size;
+        }
+
+        .showMorexbox {
+          font-size: $medium-size;
+        }
+
+        .showMorenintendo {
+          font-size: $medium-size;
+        }
+
+        .showMorewindows {
+          font-size: $medium-size;
+        }
+      }
+    }
   }
 }

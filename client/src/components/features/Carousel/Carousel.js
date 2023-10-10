@@ -15,11 +15,21 @@ const CarouselComponent = () => {
   return (
     <Carousel className={styles.carousel} controls={false}>
       <Carousel.Item>
-        <img
-          className={`d-block w-100 ${styles.carouselItem}`}
-          src={SLIDER_IMAGES_URL + 'TheWitcher.jpg'}
-          alt="TheWitcher.jpg"
-        />
+        <picture>
+          <source
+            media="(max-width: 910px)"
+            srcSet={`${SLIDER_IMAGES_URL}TheWitcher_tablet.jpg`}
+          />
+          <source
+            media="(min-width: 911px)"
+            srcSet={`${SLIDER_IMAGES_URL}TheWitcher.jpg`}
+          />
+          <img
+            className={`d-block w-100 ${styles.carouselItem}`}
+            src={`${SLIDER_IMAGES_URL}TheWitcher.jpg`}
+            alt="TheWitcher.jpg"
+          />
+        </picture>
         <Carousel.Caption>
           <h5>Wiedźmin 3</h5>
           <Button
@@ -32,11 +42,21 @@ const CarouselComponent = () => {
       </Carousel.Item>
 
       <Carousel.Item>
-        <img
-          className={`d-block w-100 ${styles.carouselItem}`}
-          src={SLIDER_IMAGES_URL + 'assassinsCreed.jpg'}
-          alt="assassinsCreed.jpg"
-        />
+        <picture>
+          <source
+            media="(max-width: 774px)"
+            srcSet={`${SLIDER_IMAGES_URL}assassinsCreed_tablet.jpg`}
+          />
+          <source
+            media="(min-width: 775px)"
+            srcSet={`${SLIDER_IMAGES_URL}assassinsCreed.jpg`}
+          />
+          <img
+            className={`d-block w-100 ${styles.carouselItem}`}
+            src={SLIDER_IMAGES_URL + 'assassinsCreed.jpg'}
+            alt="assassinsCreed.jpg"
+          />
+        </picture>
         <Carousel.Caption>
           <h5>Assassins Creed</h5>
           <Button
@@ -49,11 +69,21 @@ const CarouselComponent = () => {
       </Carousel.Item>
 
       <Carousel.Item>
-        <img
-          className={`d-block w-100 ${styles.carouselItem}`}
-          src={SLIDER_IMAGES_URL + 'RDR2.jpg'}
-          alt="RDR2.jpg"
-        />
+        <picture>
+          <source
+            media="(max-width: 850px)"
+            srcSet={`${SLIDER_IMAGES_URL}RDR2_tablet.jpg`}
+          />
+          <source
+            media="(min-width: 851px)"
+            srcSet={`${SLIDER_IMAGES_URL}RDR2.jpg`}
+          />
+          <img
+            className={`d-block w-100 ${styles.carouselItem}`}
+            src={SLIDER_IMAGES_URL + 'RDR2.jpg'}
+            alt="RDR2.jpg"
+          />
+        </picture>
         <Carousel.Caption>
           <h5>Red Dead Redemption 2</h5>
           <Button

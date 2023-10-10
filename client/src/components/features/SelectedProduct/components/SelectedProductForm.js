@@ -6,12 +6,21 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 import './ImageGallery.css';
 import { generateImageList } from '../../../../Utils/generateImageList';
 import { Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { addProductToCart } from '../../../../redux/cart/cartActions';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addProductToCart,
+  decreaseProductQuantityInCart,
+  increaseProductQuantityInCart,
+} from '../../../../redux/cart/cartActions';
+import { getCartProductQuantity } from '../../../../redux/cart/cartSelectors';
 
 const SelectedProductForm = ({ data }) => {
   const dispatch = useDispatch();
   const images = generateImageList(data);
+
+  const cartProductQuantity = useSelector((state) =>
+    getCartProductQuantity(state, data.id),
+  );
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -73,6 +82,26 @@ const SelectedProductForm = ({ data }) => {
         >
           Add to cart
         </Button>
+
+        <div className={styles.inputBox}>
+          <Button
+            size="sm"
+            onClick={() => dispatch(decreaseProductQuantityInCart(data.id))}
+          >
+            -
+          </Button>
+
+          <span className={styles.cartQuantity}>
+            {cartProductQuantity ? cartProductQuantity : '0'}
+          </span>
+
+          <Button
+            size="sm"
+            onClick={() => dispatch(increaseProductQuantityInCart(data.id))}
+          >
+            +
+          </Button>
+        </div>
       </div>
     </div>
   );
