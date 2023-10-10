@@ -45,12 +45,12 @@ exports.AppModule = AppModule = __decorate([
             banners_module_1.BannersModule,
             orders_module_1.OrdersModule,
             serve_static_1.ServeStaticModule.forRoot({
-                rootPath: (0, path_1.join)(__dirname, '../../', 'client', 'build'),
-                serveRoot: '/',
-            }),
-            serve_static_1.ServeStaticModule.forRoot({
                 rootPath: (0, path_1.join)(__dirname, '../../', 'public'),
                 serveRoot: '/public',
+            }),
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: (0, path_1.join)(__dirname, '../../', 'client', 'build'),
+                renderPath: '*',
             }),
         ],
         controllers: [app_controller_1.AppController],

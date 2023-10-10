@@ -32,12 +32,12 @@ import { join } from 'path';
     BannersModule,
     OrdersModule,
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../../', 'client', 'build'),
-      serveRoot: '/',
-    }),
-    ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../', 'public'),
       serveRoot: '/public',
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../../', 'client', 'build'),
+      renderPath: '*',
     }),
   ],
   controllers: [AppController],
